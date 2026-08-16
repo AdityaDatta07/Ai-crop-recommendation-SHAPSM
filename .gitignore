@@ -141,3 +141,77 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# ============================================================
+# Project-specific additions (crop-recommendation)
+# Appended below the standard Node template above.
+# ============================================================
+
+# ---------- Secrets / credentials ----------
+.env.local
+secrets/
+*.pem
+*.key
+*-key.json
+gee-*.json
+service-account*.json
+
+# ---------- Python (apps/api, services/ml, services/geo) ----------
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- Notebooks ----------
+.ipynb_checkpoints/
+
+# ---------- ML artifacts & large binaries ----------
+services/ml/artifacts/
+mlruns/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+*.pt
+*.ckpt
+
+# ---------- Geospatial / bulk data ----------
+# Keep data/reference/ and data/seed/ committed; ignore downloads.
+data/raw/
+data/cache/
+data/tmp/
+*.tif
+*.tiff
+*.nc
+*.zip
+
+# ---------- Next.js PWA generated service worker ----------
+apps/web/public/sw.js
+apps/web/public/workbox-*.js
+
+# ---------- Supabase local dev ----------
+.supabase/
+supabase/.branches/
+supabase/.temp/
+
+# ---------- Build tooling ----------
+.turbo/
+.vercel/
+
+# ---------- IDE / Editor ----------
+.vscode/
+.idea/
+*.swp
+
+# ---------- OS files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
