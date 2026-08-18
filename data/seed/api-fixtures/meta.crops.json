@@ -1,0 +1,20 @@
+{
+  "crops": [
+    { "crop_code": "WHEAT",     "name": "Wheat",      "name_hi": "गेहूँ",      "category": "cereal",  "seasons": ["rabi"] },
+    { "crop_code": "RICE",      "name": "Rice",       "name_hi": "चावल",       "category": "cereal",  "seasons": ["kharif"] },
+    { "crop_code": "MAIZE",     "name": "Maize",      "name_hi": "मक्का",      "category": "cereal",  "seasons": ["kharif", "rabi"] },
+    { "crop_code": "BARLEY",    "name": "Barley",     "name_hi": "जौ",         "category": "cereal",  "seasons": ["rabi"] },
+    { "crop_code": "SORGHUM",   "name": "Sorghum",    "name_hi": "ज्वार",      "category": "millet",  "seasons": ["kharif", "rabi"] },
+    { "crop_code": "PEARLMLT",  "name": "Pearl millet","name_hi": "बाजरा",     "category": "millet",  "seasons": ["kharif"] },
+    { "crop_code": "CHICKPEA",  "name": "Chickpea",   "name_hi": "चना",        "category": "pulse",   "seasons": ["rabi"] },
+    { "crop_code": "PIGEONPEA", "name": "Pigeon pea", "name_hi": "अरहर",       "category": "pulse",   "seasons": ["kharif"] },
+    { "crop_code": "LENTIL",    "name": "Lentil",     "name_hi": "मसूर",       "category": "pulse",   "seasons": ["rabi"] },
+    { "crop_code": "MUSTARD",   "name": "Mustard",    "name_hi": "सरसों",      "category": "oilseed", "seasons": ["rabi"] },
+    { "crop_code": "GROUNDNUT", "name": "Groundnut",  "name_hi": "मूंगफली",    "category": "oilseed", "seasons": ["kharif", "zaid"] },
+    { "crop_code": "SOYBEAN",   "name": "Soybean",    "name_hi": "सोयाबीन",    "category": "oilseed", "seasons": ["kharif"] },
+    { "crop_code": "COTTON",    "name": "Cotton",     "name_hi": "कपास",       "category": "fibre",   "seasons": ["kharif"] },
+    { "crop_code": "SUGARCANE", "name": "Sugarcane",  "name_hi": "गन्ना",      "category": "cash",    "seasons": ["kharif"] },
+    { "crop_code": "POTATO",    "name": "Potato",     "name_hi": "आलू",        "category": "vegetable","seasons": ["rabi"] },
+    { "crop_code": "ONION",     "name": "Onion",      "name_hi": "प्याज",      "category": "vegetable","seasons": ["rabi", "kharif"] }
+  ]
+}

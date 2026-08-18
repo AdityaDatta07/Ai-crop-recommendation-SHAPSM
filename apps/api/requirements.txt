@@ -1,0 +1,49 @@
+# apps/api dependencies.
+#
+# Install from the REPOSITORY ROOT, not from this directory:
+#   pip install -r apps/api/requirements.txt
+#
+# Why floors (>=) and not exact pins:
+#
+# pydantic-core and PyYAML ship compiled wheels built per Python version. Pin
+# them exactly and pip will try to COMPILE them from source on any interpreter
+# newer than the pin - which needs Rust and MSVC Build Tools on Windows, and
+# fails on a clean machine. Floors let pip pick whatever wheel matches the
+# Python you actually have.
+#
+# The one exact coupling that must stay: httpx is capped by supabase.
+# supabase 2.x requires httpx<0.28,>=0.26. Do not raise the httpx ceiling
+# without checking what supabase allows, or the install becomes unresolvable.
+#
+# Verified: every dependency here resolves to a prebuilt wheel on Windows and
+# Linux for CPython 3.13 and 3.14. Always install with --only-binary=:all: so a
+# missing wheel fails loudly instead of triggering a source build.
+
+fastapi>=0.115.5
+uvicorn>=0.32.1
+pydantic>=2.10.3,<3
+pydantic-settings>=2.6.1
+PyYAML>=6.0.2
+python-ulid>=3.0.0
+
+httpx>=0.26,<0.28
+supabase>=2.10.0,<3
+
+# Earth Engine. Optional at runtime: services/geo/provider.py only imports it
+# when USE_MOCK_GEO=false, so the app runs without credentials or this package.
+# Pure Python plus google-api-python-client; no compiler needed.
+earthengine-api>=1.4.3
+
+# Reads .env in scripts/verify_external_sources.py; pydantic-settings already
+# depends on it, this just makes the dependency explicit.
+python-dotenv>=1.0.0
+
+# --- dev ---
+pytest>=8.3.4
+
+# Note: plain `uvicorn`, deliberately not `uvicorn[standard]`.
+# The [standard] extra pulls httptools, watchfiles and uvloop - all compiled,
+# all prone to the same source-build failure on a new Python, and uvloop does
+# not support Windows at all. `--reload` still works without them; it falls
+# back to polling the filesystem, which is imperceptibly slower and one less
+# thing to break the day before a demo.

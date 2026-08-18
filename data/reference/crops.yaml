@@ -1,0 +1,303 @@
+# Agronomic reference data — PROVISIONAL. See sources.yaml: agronomic_provisional_v1.
+#
+# These thresholds drive the ranking. They are plausible values from general crop
+# science, NOT verified against a citable ICAR publication. Every crop scored
+# from this file is returned with its confidence capped and the provisional
+# citation attached, so the uncertainty reaches the screen instead of hiding in
+# a config file.
+#
+# Field notes:
+#   ph_optimal    - inside this band the pH factor scores 1.0
+#   ph_absolute   - outside this band it scores 0.0; between the two it tapers
+#   temp_*        - same taper, against mean seasonal temperature in Celsius
+#   rainfall_mm   - seasonal water need; the gap is what irrigation must cover
+#   sowing_window - month-day; the year is resolved at request time
+#   legume        - fixes nitrogen, which the rotation and nitrogen factors use
+#   nitrogen_demand - low | medium | high, scored against available soil N
+
+version: 1
+updated: 2026-08-17
+source: agronomic_provisional_v1
+
+crops:
+  WHEAT:
+    seasons: [rabi]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [18.0, 25.0]
+    temp_absolute_c: [8.0, 35.0]
+    rainfall_mm: [400, 650]
+    irrigation_need: medium
+    texture_preferred: [loam, clay loam, silt loam]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 135
+    sowing_window: {start: "11-05", end: "12-10"}
+    varieties: [HD-3086, HD-2967, DBW-187]
+    risks:
+      - {type: pest, name: Yellow rust, severity: medium}
+      - {type: weather, name: Terminal heat stress at grain filling, severity: medium}
+
+  BARLEY:
+    seasons: [rabi]
+    ph_optimal: [6.5, 8.0]
+    ph_absolute: [5.5, 9.0]
+    temp_optimal_c: [15.0, 25.0]
+    temp_absolute_c: [5.0, 35.0]
+    rainfall_mm: [300, 500]
+    irrigation_need: low
+    texture_preferred: [loam, sandy loam]
+    nitrogen_demand: medium
+    legume: false
+    duration_days: 125
+    sowing_window: {start: "10-25", end: "11-30"}
+    varieties: [RD-2035, DWRB-101]
+    risks:
+      - {type: disease, name: Powdery mildew, severity: low}
+
+  CHICKPEA:
+    seasons: [rabi]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.5, 8.5]
+    temp_optimal_c: [15.0, 25.0]
+    temp_absolute_c: [8.0, 32.0]
+    rainfall_mm: [300, 450]
+    irrigation_need: low
+    texture_preferred: [loam, clay loam, sandy loam]
+    nitrogen_demand: low
+    legume: true
+    duration_days: 125
+    sowing_window: {start: "10-15", end: "11-20"}
+    varieties: [JG-14, JAKI-9218, Pusa-372]
+    risks:
+      - {type: disease, name: Fusarium wilt, severity: medium}
+      - {type: pest, name: Pod borer, severity: medium}
+
+  LENTIL:
+    seasons: [rabi]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.5, 8.5]
+    temp_optimal_c: [15.0, 25.0]
+    temp_absolute_c: [6.0, 32.0]
+    rainfall_mm: [250, 400]
+    irrigation_need: low
+    texture_preferred: [loam, sandy loam]
+    nitrogen_demand: low
+    legume: true
+    duration_days: 120
+    sowing_window: {start: "10-20", end: "11-25"}
+    varieties: [PL-8, HUL-57]
+    risks:
+      - {type: pest, name: Pod borer, severity: low}
+
+  MUSTARD:
+    seasons: [rabi]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [10.0, 25.0]
+    temp_absolute_c: [5.0, 32.0]
+    rainfall_mm: [250, 400]
+    irrigation_need: low
+    texture_preferred: [loam, sandy loam]
+    nitrogen_demand: medium
+    legume: false
+    duration_days: 130
+    sowing_window: {start: "10-10", end: "11-10"}
+    varieties: [Pusa Bold, Varuna, RH-30]
+    risks:
+      - {type: pest, name: Mustard aphid, severity: high}
+
+  RICE:
+    seasons: [kharif]
+    ph_optimal: [5.5, 7.0]
+    ph_absolute: [4.5, 8.5]
+    temp_optimal_c: [22.0, 32.0]
+    temp_absolute_c: [15.0, 40.0]
+    rainfall_mm: [1000, 1500]
+    irrigation_need: high
+    texture_preferred: [clay, clay loam, silty clay]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 130
+    sowing_window: {start: "06-10", end: "07-20"}
+    varieties: [Pusa Basmati-1509, Swarna, MTU-7029]
+    risks:
+      - {type: pest, name: Brown planthopper, severity: medium}
+      - {type: resource, name: Very high water requirement, severity: high}
+
+  MAIZE:
+    seasons: [kharif, rabi]
+    ph_optimal: [5.8, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [21.0, 30.0]
+    temp_absolute_c: [12.0, 38.0]
+    rainfall_mm: [500, 800]
+    irrigation_need: medium
+    texture_preferred: [loam, sandy loam, silt loam]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 110
+    sowing_window: {start: "06-15", end: "07-15"}
+    varieties: [HQPM-1, PMH-1]
+    risks:
+      - {type: pest, name: Fall armyworm, severity: high}
+
+  SORGHUM:
+    seasons: [kharif, rabi]
+    ph_optimal: [6.0, 8.0]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [24.0, 32.0]
+    temp_absolute_c: [15.0, 40.0]
+    rainfall_mm: [400, 650]
+    irrigation_need: low
+    texture_preferred: [clay, clay loam, loam]
+    nitrogen_demand: medium
+    legume: false
+    duration_days: 115
+    sowing_window: {start: "06-15", end: "07-15"}
+    varieties: [M-35-1, CSH-16]
+    risks:
+      - {type: pest, name: Shoot fly, severity: medium}
+
+  PEARLMLT:
+    seasons: [kharif]
+    ph_optimal: [6.5, 8.0]
+    ph_absolute: [5.5, 9.0]
+    temp_optimal_c: [25.0, 35.0]
+    temp_absolute_c: [18.0, 42.0]
+    rainfall_mm: [300, 500]
+    irrigation_need: low
+    texture_preferred: [sandy, sandy loam, loam]
+    nitrogen_demand: low
+    legume: false
+    duration_days: 85
+    sowing_window: {start: "06-20", end: "07-25"}
+    varieties: [HHB-67 Improved, Pusa Composite-383]
+    risks:
+      - {type: disease, name: Downy mildew, severity: medium}
+
+  PIGEONPEA:
+    seasons: [kharif]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [20.0, 30.0]
+    temp_absolute_c: [15.0, 38.0]
+    rainfall_mm: [600, 900]
+    irrigation_need: low
+    texture_preferred: [loam, sandy loam, clay loam]
+    nitrogen_demand: low
+    legume: true
+    duration_days: 180
+    sowing_window: {start: "06-15", end: "07-15"}
+    varieties: [ICPL-87119, UPAS-120]
+    risks:
+      - {type: disease, name: Wilt, severity: medium}
+      - {type: pest, name: Pod borer, severity: high}
+
+  GROUNDNUT:
+    seasons: [kharif, zaid]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [25.0, 32.0]
+    temp_absolute_c: [18.0, 40.0]
+    rainfall_mm: [500, 800]
+    irrigation_need: medium
+    texture_preferred: [sandy loam, loam, sandy]
+    nitrogen_demand: low
+    legume: true
+    duration_days: 115
+    sowing_window: {start: "06-15", end: "07-20"}
+    varieties: [GG-20, TAG-24]
+    risks:
+      - {type: disease, name: Tikka leaf spot, severity: medium}
+      - {type: quality, name: Aflatoxin in wet harvest conditions, severity: medium}
+
+  SOYBEAN:
+    seasons: [kharif]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [22.0, 32.0]
+    temp_absolute_c: [15.0, 38.0]
+    rainfall_mm: [600, 900]
+    irrigation_need: medium
+    texture_preferred: [loam, clay loam]
+    nitrogen_demand: low
+    legume: true
+    duration_days: 100
+    sowing_window: {start: "06-15", end: "07-10"}
+    varieties: [JS-9560, JS-2034]
+    risks:
+      - {type: pest, name: Girdle beetle, severity: medium}
+      - {type: weather, name: Waterlogging on poorly drained soil, severity: medium}
+
+  COTTON:
+    seasons: [kharif]
+    ph_optimal: [6.5, 8.0]
+    ph_absolute: [5.5, 8.5]
+    temp_optimal_c: [22.0, 32.0]
+    temp_absolute_c: [16.0, 42.0]
+    rainfall_mm: [600, 1000]
+    irrigation_need: medium
+    texture_preferred: [clay, clay loam, loam]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 165
+    sowing_window: {start: "05-15", end: "06-30"}
+    varieties: [Bt hybrids as locally approved]
+    risks:
+      - {type: pest, name: Pink bollworm, severity: high}
+      - {type: cost, name: High input and labour cost, severity: medium}
+
+  SUGARCANE:
+    seasons: [kharif]
+    ph_optimal: [6.5, 7.5]
+    ph_absolute: [5.0, 8.5]
+    temp_optimal_c: [24.0, 34.0]
+    temp_absolute_c: [15.0, 42.0]
+    rainfall_mm: [1200, 1800]
+    irrigation_need: high
+    texture_preferred: [loam, clay loam]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 330
+    sowing_window: {start: "02-01", end: "03-31"}
+    varieties: [Co-0238]
+    risks:
+      - {type: resource, name: Very high water requirement, severity: high}
+      - {type: market, name: Payment delays from mills, severity: medium}
+
+  POTATO:
+    seasons: [rabi]
+    ph_optimal: [5.5, 6.5]
+    ph_absolute: [4.5, 7.5]
+    temp_optimal_c: [15.0, 22.0]
+    temp_absolute_c: [7.0, 30.0]
+    rainfall_mm: [300, 500]
+    irrigation_need: high
+    texture_preferred: [sandy loam, loam]
+    nitrogen_demand: high
+    legume: false
+    duration_days: 100
+    sowing_window: {start: "10-01", end: "11-15"}
+    varieties: [Kufri Bahar, Kufri Jyoti]
+    risks:
+      - {type: disease, name: Late blight, severity: high}
+      - {type: market, name: Post-harvest price crash without cold storage, severity: high}
+
+  ONION:
+    seasons: [rabi, kharif]
+    ph_optimal: [6.0, 7.5]
+    ph_absolute: [5.5, 8.0]
+    temp_optimal_c: [15.0, 25.0]
+    temp_absolute_c: [8.0, 35.0]
+    rainfall_mm: [350, 550]
+    irrigation_need: medium
+    texture_preferred: [loam, sandy loam]
+    nitrogen_demand: medium
+    legume: false
+    duration_days: 130
+    sowing_window: {start: "11-01", end: "12-15"}
+    varieties: [Agrifound Light Red, N-53]
+    risks:
+      - {type: disease, name: Purple blotch, severity: medium}
+      - {type: market, name: Extreme price volatility, severity: high}

@@ -1,0 +1,325 @@
+{
+  "request_id": "req_MOCKPBLDHRABI",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-LDH",
+    "district_name": "Ludhiana",
+    "centroid": [
+      75.85,
+      30.9
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "sandy loam",
+      "ph": 7.5,
+      "organic_carbon_pct": 0.52,
+      "nitrogen_kg_ha": 181.0,
+      "phosphorus_kg_ha": 30.0,
+      "potassium_kg_ha": 138.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 461.0,
+      "season_rainfall_mm": 40.0,
+      "avg_temp_c": 20.5,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "LENTIL",
+      "name": "Lentil",
+      "variety_suggested": "PL-8",
+      "score": 0.8047,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.5 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside lentil's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 210 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-20",
+          "end": "2026-11-25"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 120
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.21,
+        "input_cost_per_ha": 42089,
+        "expected_price_per_quintal": 7000,
+        "gross_revenue": 84700,
+        "net_margin": 42611,
+        "margin_per_ha": 42611,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "low"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "MUSTARD",
+      "name": "Mustard",
+      "variety_suggested": "Pusa Bold",
+      "score": 0.7822,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.5 C is within the ideal 10.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside mustard's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 210 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-10",
+          "end": "2026-11-10"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-20"
+        },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.54,
+        "input_cost_per_ha": 46962,
+        "expected_price_per_quintal": 6200,
+        "gross_revenue": 95480,
+        "net_margin": 48518,
+        "margin_per_ha": 48518,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Mustard aphid",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "BARLEY",
+      "name": "Barley",
+      "variety_suggested": "RD-2035",
+      "score": 0.7712,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.5 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside barley's preferred 6.5-8.0 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 260 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-25",
+          "end": "2026-11-30"
+        },
+        "harvest_window": {
+          "start": "2027-02-27",
+          "end": "2027-04-04"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 3.52,
+        "input_cost_per_ha": 45770,
+        "expected_price_per_quintal": 2150,
+        "gross_revenue": 75680,
+        "net_margin": 29910,
+        "margin_per_ha": 29910,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Powdery mildew",
+          "severity": "low"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "CHICKPEA",
+      "name": "Chickpea",
+      "variety_suggested": "JG-14",
+      "score": 0.7698,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.5 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside chickpea's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 260 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-15",
+          "end": "2026-11-20"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.27,
+        "input_cost_per_ha": 45054,
+        "expected_price_per_quintal": 5875,
+        "gross_revenue": 74612,
+        "net_margin": 29558,
+        "margin_per_ha": 29558,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Fusarium wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "ONION",
+      "name": "Onion",
+      "variety_suggested": "Agrifound Light Red",
+      "score": 0.6498,
+      "confidence": "medium",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.5 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside onion's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        },
+        {
+          "factor": "market_price",
+          "impact": "negative",
+          "detail": "No support price published for this crop; margin depends entirely on the mandi."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-11-01",
+          "end": "2026-12-15"
+        },
+        "harvest_window": {
+          "start": "2027-03-11",
+          "end": "2027-04-24"
+        },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": null,
+        "input_cost_per_ha": null,
+        "expected_price_per_quintal": null,
+        "gross_revenue": null,
+        "net_margin": null,
+        "margin_per_ha": null,
+        "price_source": null,
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Purple blotch",
+          "severity": "medium"
+        },
+        {
+          "type": "market",
+          "name": "Extreme price volatility",
+          "severity": "high"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PRICE_UNAVAILABLE",
+      "message": "No published price for Onion. Their revenue figures are left blank rather than guessed."
+    },
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "request_id": "req_MOCKKABLRKHARIF",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-BLR",
+    "district_name": "Bengaluru Rural",
+    "centroid": [
+      77.51,
+      13.22
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 6.7,
+      "organic_carbon_pct": 0.35,
+      "nitrogen_kg_ha": 175.0,
+      "phosphorus_kg_ha": 9.0,
+      "potassium_kg_ha": 220.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 1012.0,
+      "season_rainfall_mm": 59.0,
+      "avg_temp_c": 27.5,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "PIGEONPEA",
+      "name": "Pigeon pea",
+      "variety_suggested": "ICPL-87119",
+      "score": 0.7744,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.7 sits inside pigeon pea's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 27.5 C is within the ideal 20.0-30.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 541 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-12-12",
+          "end": "2028-01-11"
+        },
+        "duration_days": 180
+      },
+      "economics": {
+        "expected_yield_t_ha": 0.88,
+        "input_cost_per_ha": 45947,
+        "expected_price_per_quintal": 8450,
+        "gross_revenue": 74360,
+        "net_margin": 28413,
+        "margin_per_ha": 28413,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "SORGHUM",
+      "name": "Sorghum",
+      "variety_suggested": "M-35-1",
+      "score": 0.7633,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 27.5 C is within the ideal 24.0-32.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.7 sits inside sorghum's preferred 6.0-8.0 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 341 mm short of the 400 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-07"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.29,
+        "input_cost_per_ha": 33257,
+        "expected_price_per_quintal": 4023,
+        "gross_revenue": 51897,
+        "net_margin": 18640,
+        "margin_per_ha": 18640,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Shoot fly",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "PEARLMLT",
+      "name": "Pearl millet",
+      "variety_suggested": "HHB-67 Improved",
+      "score": 0.7265,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 27.5 C is within the ideal 25.0-35.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.7 sits inside pearl millet's preferred 6.5-8.0 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 241 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-20",
+          "end": "2027-07-25"
+        },
+        "harvest_window": {
+          "start": "2027-09-13",
+          "end": "2027-10-18"
+        },
+        "duration_days": 85
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.56,
+        "input_cost_per_ha": 28297,
+        "expected_price_per_quintal": 2900,
+        "gross_revenue": 45240,
+        "net_margin": 16943,
+        "margin_per_ha": 16943,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Downy mildew",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "SOYBEAN",
+      "name": "Soybean",
+      "variety_suggested": "JS-9560",
+      "score": 0.7127,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.7 sits inside soybean's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 27.5 C is within the ideal 22.0-32.0 C range."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 541 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-10"
+        },
+        "harvest_window": {
+          "start": "2027-09-23",
+          "end": "2027-10-18"
+        },
+        "duration_days": 100
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.42,
+        "input_cost_per_ha": 52928,
+        "expected_price_per_quintal": 5708,
+        "gross_revenue": 81054,
+        "net_margin": 28126,
+        "margin_per_ha": 28126,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Girdle beetle",
+          "severity": "medium"
+        },
+        {
+          "type": "weather",
+          "name": "Waterlogging on poorly drained soil",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "GROUNDNUT",
+      "name": "Groundnut",
+      "variety_suggested": "GG-20",
+      "score": 0.6627,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.7 sits inside groundnut's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 27.5 C is within the ideal 25.0-32.0 C range."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 441 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-20"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-12"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 2.08,
+        "input_cost_per_ha": 104229,
+        "expected_price_per_quintal": 7517,
+        "gross_revenue": 156354,
+        "net_margin": 52125,
+        "margin_per_ha": 52125,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Tikka leaf spot",
+          "severity": "medium"
+        },
+        {
+          "type": "quality",
+          "name": "Aflatoxin in wet harvest conditions",
+          "severity": "medium"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-KNP",
+    "district_name": "Kanpur Nagar",
+    "centroid": [
+      80.35,
+      26.45
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 7.0,
+      "organic_carbon_pct": 0.58,
+      "nitrogen_kg_ha": 268.0,
+      "phosphorus_kg_ha": 20.0,
+      "potassium_kg_ha": 269.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 643.0,
+      "season_rainfall_mm": 129.0,
+      "avg_temp_c": 21.7,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  }
+}

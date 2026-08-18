@@ -1,0 +1,152 @@
+{
+  "location_resolved": {
+    "state_code": "MH",
+    "district_code": "MH-AUR",
+    "district_name": "Chhatrapati Sambhajinagar",
+    "centroid": [
+      75.34,
+      19.88
+    ],
+    "area_ha": 1.0
+  },
+  "observed_on": "2026-08-13",
+  "cloud_cover_pct": 0.6,
+  "indices": [
+    {
+      "key": "ndvi",
+      "name": "Vegetation vigour (NDVI)",
+      "value": 0.19,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Sparse cover — early growth, weeds, or crop residue.",
+      "formula": "(B8 - B4) / (B8 + B4)"
+    },
+    {
+      "key": "savi",
+      "name": "Soil-adjusted vigour (SAVI)",
+      "value": 0.162,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Sparse cover — early growth, weeds, or crop residue.",
+      "formula": "((B8 - B4) / (B8 + B4 + 0.5)) * 1.5"
+    },
+    {
+      "key": "ndmi",
+      "name": "Canopy moisture (NDMI)",
+      "value": 0.046,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Low moisture — irrigation would likely be needed early.",
+      "formula": "(B8 - B11) / (B8 + B11)"
+    },
+    {
+      "key": "evi",
+      "name": "Enhanced vegetation (EVI)",
+      "value": 0.148,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Little live biomass.",
+      "formula": "2.5 * (B8 - B4) / (B8 + 6*B4 - 7.5*B2 + 1)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2024-09-27",
+      "ndvi": 0.727
+    },
+    {
+      "date": "2024-10-27",
+      "ndvi": 0.575
+    },
+    {
+      "date": "2024-11-26",
+      "ndvi": 0.41
+    },
+    {
+      "date": "2024-12-26",
+      "ndvi": 0.258
+    },
+    {
+      "date": "2025-01-25",
+      "ndvi": 0.221
+    },
+    {
+      "date": "2025-02-24",
+      "ndvi": 0.26
+    },
+    {
+      "date": "2025-03-26",
+      "ndvi": 0.364
+    },
+    {
+      "date": "2025-04-25",
+      "ndvi": 0.509
+    },
+    {
+      "date": "2025-05-25",
+      "ndvi": 0.727
+    },
+    {
+      "date": "2025-06-24",
+      "ndvi": 0.817
+    },
+    {
+      "date": "2025-07-24",
+      "ndvi": 0.83
+    },
+    {
+      "date": "2025-08-23",
+      "ndvi": 0.742
+    },
+    {
+      "date": "2025-09-22",
+      "ndvi": 0.641
+    },
+    {
+      "date": "2025-10-22",
+      "ndvi": 0.502
+    },
+    {
+      "date": "2025-11-21",
+      "ndvi": 0.364
+    },
+    {
+      "date": "2025-12-21",
+      "ndvi": 0.267
+    },
+    {
+      "date": "2026-01-20",
+      "ndvi": 0.307
+    },
+    {
+      "date": "2026-02-19",
+      "ndvi": 0.333
+    },
+    {
+      "date": "2026-03-21",
+      "ndvi": 0.41
+    },
+    {
+      "date": "2026-04-20",
+      "ndvi": 0.5
+    },
+    {
+      "date": "2026-05-20",
+      "ndvi": 0.641
+    },
+    {
+      "date": "2026-06-19",
+      "ndvi": 0.744
+    },
+    {
+      "date": "2026-07-19",
+      "ndvi": 0.784
+    },
+    {
+      "date": "2026-08-18",
+      "ndvi": 0.751
+    }
+  ],
+  "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured",
+  "tile_url_template": null
+}

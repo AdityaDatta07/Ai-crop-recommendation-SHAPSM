@@ -1,0 +1,41 @@
+{
+  "states": [
+    {
+      "state_code": "UP",
+      "state_name": "Uttar Pradesh",
+      "districts": [
+        { "district_code": "UP-LKO", "district_name": "Lucknow", "centroid": [80.94, 26.84] },
+        { "district_code": "UP-KNP", "district_name": "Kanpur Nagar", "centroid": [80.35, 26.45] },
+        { "district_code": "UP-VNS", "district_name": "Varanasi", "centroid": [82.97, 25.32] },
+        { "district_code": "UP-MRT", "district_name": "Meerut", "centroid": [77.71, 28.98] }
+      ]
+    },
+    {
+      "state_code": "PB",
+      "state_name": "Punjab",
+      "districts": [
+        { "district_code": "PB-LDH", "district_name": "Ludhiana", "centroid": [75.85, 30.90] },
+        { "district_code": "PB-AMR", "district_name": "Amritsar", "centroid": [74.87, 31.63] },
+        { "district_code": "PB-BTI", "district_name": "Bathinda", "centroid": [74.95, 30.21] }
+      ]
+    },
+    {
+      "state_code": "MH",
+      "state_name": "Maharashtra",
+      "districts": [
+        { "district_code": "MH-NGP", "district_name": "Nagpur", "centroid": [79.09, 21.15] },
+        { "district_code": "MH-AUR", "district_name": "Chhatrapati Sambhajinagar", "centroid": [75.34, 19.88] },
+        { "district_code": "MH-PUN", "district_name": "Pune", "centroid": [73.86, 18.52] }
+      ]
+    },
+    {
+      "state_code": "KA",
+      "state_name": "Karnataka",
+      "districts": [
+        { "district_code": "KA-BLR", "district_name": "Bengaluru Rural", "centroid": [77.51, 13.22] },
+        { "district_code": "KA-BGK", "district_name": "Bagalkot", "centroid": [75.70, 16.18] },
+        { "district_code": "KA-MYS", "district_name": "Mysuru", "centroid": [76.64, 12.30] }
+      ]
+    }
+  ]
+}

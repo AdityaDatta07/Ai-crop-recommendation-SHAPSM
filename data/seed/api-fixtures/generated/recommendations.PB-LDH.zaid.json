@@ -1,0 +1,104 @@
+{
+  "request_id": "req_MOCKPBLDHZAID",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-LDH",
+    "district_name": "Ludhiana",
+    "centroid": [
+      75.85,
+      30.9
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "sandy loam",
+      "ph": 7.5,
+      "organic_carbon_pct": 0.52,
+      "nitrogen_kg_ha": 181.0,
+      "phosphorus_kg_ha": 30.0,
+      "potassium_kg_ha": 138.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 461.0,
+      "season_rainfall_mm": 40.0,
+      "avg_temp_c": 20.5,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "GROUNDNUT",
+      "name": "Groundnut",
+      "variety_suggested": "GG-20",
+      "score": 0.5451,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside groundnut's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "positive",
+          "detail": "Sandy loam soil is well suited; this crop prefers sandy loam, loam, sandy."
+        },
+        {
+          "factor": "temperature",
+          "impact": "negative",
+          "detail": "Average 20.5 C is cooler than the ideal 25.0-32.0 C range."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-20"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-12"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.97,
+        "input_cost_per_ha": 104229,
+        "expected_price_per_quintal": 7517,
+        "gross_revenue": 148085,
+        "net_margin": 43856,
+        "margin_per_ha": 43856,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Tikka leaf spot",
+          "severity": "medium"
+        },
+        {
+          "type": "quality",
+          "name": "Aflatoxin in wet harvest conditions",
+          "severity": "medium"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

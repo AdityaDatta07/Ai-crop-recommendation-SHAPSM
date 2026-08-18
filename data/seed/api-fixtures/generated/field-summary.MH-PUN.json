@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "MH",
+    "district_code": "MH-PUN",
+    "district_name": "Pune",
+    "centroid": [
+      73.86,
+      18.52
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "silt loam",
+      "ph": 6.5,
+      "organic_carbon_pct": 0.57,
+      "nitrogen_kg_ha": 267.0,
+      "phosphorus_kg_ha": 14.0,
+      "potassium_kg_ha": 124.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 752.0,
+      "season_rainfall_mm": 78.0,
+      "avg_temp_c": 25.1,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  }
+}

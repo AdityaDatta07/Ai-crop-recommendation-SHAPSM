@@ -1,0 +1,326 @@
+{
+  "request_id": "req_MOCKMHNGPKHARIF",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "MH",
+    "district_code": "MH-NGP",
+    "district_name": "Nagpur",
+    "centroid": [
+      79.09,
+      21.15
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "silt loam",
+      "ph": 8.3,
+      "organic_carbon_pct": 0.47,
+      "nitrogen_kg_ha": 285.0,
+      "phosphorus_kg_ha": 17.0,
+      "potassium_kg_ha": 227.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 916.0,
+      "season_rainfall_mm": 193.0,
+      "avg_temp_c": 24.2,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "PEARLMLT",
+      "name": "Pearl millet",
+      "variety_suggested": "HHB-67 Improved",
+      "score": 0.7135,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 24.2 C is cooler than the ideal 25.0-35.0 C range."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) covers this crop's needs."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-20",
+          "end": "2027-07-25"
+        },
+        "harvest_window": {
+          "start": "2027-09-13",
+          "end": "2027-10-18"
+        },
+        "duration_days": 85
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.56,
+        "input_cost_per_ha": 28297,
+        "expected_price_per_quintal": 2900,
+        "gross_revenue": 45240,
+        "net_margin": 16943,
+        "margin_per_ha": 16943,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Downy mildew",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "SORGHUM",
+      "name": "Sorghum",
+      "variety_suggested": "M-35-1",
+      "score": 0.6483,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 24.0-32.0 C range."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-8.0 band, which can limit nutrient uptake."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-07"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.23,
+        "input_cost_per_ha": 33257,
+        "expected_price_per_quintal": 4023,
+        "gross_revenue": 49483,
+        "net_margin": 16226,
+        "margin_per_ha": 16226,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Shoot fly",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "PIGEONPEA",
+      "name": "Pigeon pea",
+      "variety_suggested": "ICPL-87119",
+      "score": 0.6128,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 20.0-30.0 C range."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 407 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-7.5 band, which can limit nutrient uptake."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-12-12",
+          "end": "2028-01-11"
+        },
+        "duration_days": 180
+      },
+      "economics": {
+        "expected_yield_t_ha": 0.82,
+        "input_cost_per_ha": 45947,
+        "expected_price_per_quintal": 8450,
+        "gross_revenue": 69290,
+        "net_margin": 23343,
+        "margin_per_ha": 23343,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "MAIZE",
+      "name": "Maize",
+      "variety_suggested": "HQPM-1",
+      "score": 0.5959,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 21.0-30.0 C range."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "positive",
+          "detail": "Silt loam soil is well suited; this crop prefers loam, sandy loam, silt loam."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 307 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 5.8-7.5 band, which can limit nutrient uptake."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-03",
+          "end": "2027-11-02"
+        },
+        "duration_days": 110
+      },
+      "economics": {
+        "expected_yield_t_ha": 2.84,
+        "input_cost_per_ha": 45270,
+        "expected_price_per_quintal": 2410,
+        "gross_revenue": 68444,
+        "net_margin": 23174,
+        "margin_per_ha": 23174,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Fall armyworm",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "COTTON",
+      "name": "Cotton",
+      "variety_suggested": "Bt hybrids as locally approved",
+      "score": 0.5561,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 22.0-32.0 C range."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) is below the 300 kg/ha this crop wants; expect to make it up with fertiliser."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.5-8.0 band, which can limit nutrient uptake."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 407 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-05-15",
+          "end": "2027-06-30"
+        },
+        "harvest_window": {
+          "start": "2027-10-27",
+          "end": "2027-12-12"
+        },
+        "duration_days": 165
+      },
+      "economics": {
+        "expected_yield_t_ha": 0.42,
+        "input_cost_per_ha": 24248,
+        "expected_price_per_quintal": 8267,
+        "gross_revenue": 34721,
+        "net_margin": 10473,
+        "margin_per_ha": 10473,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Pink bollworm",
+          "severity": "high"
+        },
+        {
+          "type": "cost",
+          "name": "High input and labour cost",
+          "severity": "medium"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

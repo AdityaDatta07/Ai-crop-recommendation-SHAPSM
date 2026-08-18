@@ -1,0 +1,152 @@
+{
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-LDH",
+    "district_name": "Ludhiana",
+    "centroid": [
+      75.85,
+      30.9
+    ],
+    "area_ha": 1.0
+  },
+  "observed_on": "2026-08-12",
+  "cloud_cover_pct": 25.1,
+  "indices": [
+    {
+      "key": "ndvi",
+      "name": "Vegetation vigour (NDVI)",
+      "value": 0.19,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Sparse cover — early growth, weeds, or crop residue.",
+      "formula": "(B8 - B4) / (B8 + B4)"
+    },
+    {
+      "key": "savi",
+      "name": "Soil-adjusted vigour (SAVI)",
+      "value": 0.162,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Sparse cover — early growth, weeds, or crop residue.",
+      "formula": "((B8 - B4) / (B8 + B4 + 0.5)) * 1.5"
+    },
+    {
+      "key": "ndmi",
+      "name": "Canopy moisture (NDMI)",
+      "value": 0.057,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Low moisture — irrigation would likely be needed early.",
+      "formula": "(B8 - B11) / (B8 + B11)"
+    },
+    {
+      "key": "evi",
+      "name": "Enhanced vegetation (EVI)",
+      "value": 0.148,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Little live biomass.",
+      "formula": "2.5 * (B8 - B4) / (B8 + 6*B4 - 7.5*B2 + 1)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2024-09-27",
+      "ndvi": 0.666
+    },
+    {
+      "date": "2024-10-27",
+      "ndvi": 0.553
+    },
+    {
+      "date": "2024-11-26",
+      "ndvi": 0.367
+    },
+    {
+      "date": "2024-12-26",
+      "ndvi": 0.272
+    },
+    {
+      "date": "2025-01-25",
+      "ndvi": 0.248
+    },
+    {
+      "date": "2025-02-24",
+      "ndvi": 0.315
+    },
+    {
+      "date": "2025-03-26",
+      "ndvi": 0.375
+    },
+    {
+      "date": "2025-04-25",
+      "ndvi": 0.53
+    },
+    {
+      "date": "2025-05-25",
+      "ndvi": 0.666
+    },
+    {
+      "date": "2025-06-24",
+      "ndvi": 0.795
+    },
+    {
+      "date": "2025-07-24",
+      "ndvi": 0.787
+    },
+    {
+      "date": "2025-08-23",
+      "ndvi": 0.756
+    },
+    {
+      "date": "2025-09-22",
+      "ndvi": 0.668
+    },
+    {
+      "date": "2025-10-22",
+      "ndvi": 0.557
+    },
+    {
+      "date": "2025-11-21",
+      "ndvi": 0.375
+    },
+    {
+      "date": "2025-12-21",
+      "ndvi": 0.288
+    },
+    {
+      "date": "2026-01-20",
+      "ndvi": 0.246
+    },
+    {
+      "date": "2026-02-19",
+      "ndvi": 0.311
+    },
+    {
+      "date": "2026-03-21",
+      "ndvi": 0.367
+    },
+    {
+      "date": "2026-04-20",
+      "ndvi": 0.514
+    },
+    {
+      "date": "2026-05-20",
+      "ndvi": 0.668
+    },
+    {
+      "date": "2026-06-19",
+      "ndvi": 0.799
+    },
+    {
+      "date": "2026-07-19",
+      "ndvi": 0.795
+    },
+    {
+      "date": "2026-08-18",
+      "ndvi": 0.772
+    }
+  ],
+  "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured",
+  "tile_url_template": null
+}

@@ -1,0 +1,70 @@
+{
+  "districts": {
+    "UP-LKO": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "UP-KNP": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "UP-VNS": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "UP-MRT": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "PB-LDH": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "PB-AMR": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "PB-BTI": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "MH-NGP": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "MH-AUR": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "MH-PUN": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "KA-BLR": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "KA-BGK": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ],
+    "KA-MYS": [
+      "kharif",
+      "rabi",
+      "zaid"
+    ]
+  },
+  "generated_from": "http://127.0.0.1:8100"
+}

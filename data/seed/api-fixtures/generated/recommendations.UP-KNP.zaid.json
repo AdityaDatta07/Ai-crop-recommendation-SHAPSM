@@ -1,0 +1,104 @@
+{
+  "request_id": "req_MOCKUPKNPZAID",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-KNP",
+    "district_name": "Kanpur Nagar",
+    "centroid": [
+      80.35,
+      26.45
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 7.0,
+      "organic_carbon_pct": 0.58,
+      "nitrogen_kg_ha": 268.0,
+      "phosphorus_kg_ha": 20.0,
+      "potassium_kg_ha": 269.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 643.0,
+      "season_rainfall_mm": 129.0,
+      "avg_temp_c": 21.7,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "GROUNDNUT",
+      "name": "Groundnut",
+      "variety_suggested": "GG-20",
+      "score": 0.5783,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.0 sits inside groundnut's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "temperature",
+          "impact": "negative",
+          "detail": "Average 21.7 C is cooler than the ideal 25.0-32.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 371 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-20"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-12"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 2.0,
+        "input_cost_per_ha": 104229,
+        "expected_price_per_quintal": 7517,
+        "gross_revenue": 150340,
+        "net_margin": 46111,
+        "margin_per_ha": 46111,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Tikka leaf spot",
+          "severity": "medium"
+        },
+        {
+          "type": "quality",
+          "name": "Aflatoxin in wet harvest conditions",
+          "severity": "medium"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

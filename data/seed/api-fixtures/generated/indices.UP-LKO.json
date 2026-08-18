@@ -1,0 +1,152 @@
+{
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-LKO",
+    "district_name": "Lucknow",
+    "centroid": [
+      80.94,
+      26.84
+    ],
+    "area_ha": 1.0
+  },
+  "observed_on": "2026-08-12",
+  "cloud_cover_pct": 13.5,
+  "indices": [
+    {
+      "key": "ndvi",
+      "name": "Vegetation vigour (NDVI)",
+      "value": 0.42,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Moderate growth — an established crop mid-season.",
+      "formula": "(B8 - B4) / (B8 + B4)"
+    },
+    {
+      "key": "savi",
+      "name": "Soil-adjusted vigour (SAVI)",
+      "value": 0.357,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Moderate growth — an established crop mid-season.",
+      "formula": "((B8 - B4) / (B8 + B4 + 0.5)) * 1.5"
+    },
+    {
+      "key": "ndmi",
+      "name": "Canopy moisture (NDMI)",
+      "value": 0.256,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Adequate moisture for most crops.",
+      "formula": "(B8 - B11) / (B8 + B11)"
+    },
+    {
+      "key": "evi",
+      "name": "Enhanced vegetation (EVI)",
+      "value": 0.328,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "Moderate biomass.",
+      "formula": "2.5 * (B8 - B4) / (B8 + 6*B4 - 7.5*B2 + 1)"
+    }
+  ],
+  "history": [
+    {
+      "date": "2024-09-27",
+      "ndvi": 0.664
+    },
+    {
+      "date": "2024-10-27",
+      "ndvi": 0.548
+    },
+    {
+      "date": "2024-11-26",
+      "ndvi": 0.457
+    },
+    {
+      "date": "2024-12-26",
+      "ndvi": 0.353
+    },
+    {
+      "date": "2025-01-25",
+      "ndvi": 0.311
+    },
+    {
+      "date": "2025-02-24",
+      "ndvi": 0.341
+    },
+    {
+      "date": "2025-03-26",
+      "ndvi": 0.426
+    },
+    {
+      "date": "2025-04-25",
+      "ndvi": 0.532
+    },
+    {
+      "date": "2025-05-25",
+      "ndvi": 0.664
+    },
+    {
+      "date": "2025-06-24",
+      "ndvi": 0.79
+    },
+    {
+      "date": "2025-07-24",
+      "ndvi": 0.877
+    },
+    {
+      "date": "2025-08-23",
+      "ndvi": 0.837
+    },
+    {
+      "date": "2025-09-22",
+      "ndvi": 0.731
+    },
+    {
+      "date": "2025-10-22",
+      "ndvi": 0.583
+    },
+    {
+      "date": "2025-11-21",
+      "ndvi": 0.426
+    },
+    {
+      "date": "2025-12-21",
+      "ndvi": 0.29
+    },
+    {
+      "date": "2026-01-20",
+      "ndvi": 0.244
+    },
+    {
+      "date": "2026-02-19",
+      "ndvi": 0.306
+    },
+    {
+      "date": "2026-03-21",
+      "ndvi": 0.457
+    },
+    {
+      "date": "2026-04-20",
+      "ndvi": 0.595
+    },
+    {
+      "date": "2026-05-20",
+      "ndvi": 0.731
+    },
+    {
+      "date": "2026-06-19",
+      "ndvi": 0.825
+    },
+    {
+      "date": "2026-07-19",
+      "ndvi": 0.846
+    },
+    {
+      "date": "2026-08-18",
+      "ndvi": 0.774
+    }
+  ],
+  "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured",
+  "tile_url_template": null
+}

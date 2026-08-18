@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-AMR",
+    "district_name": "Amritsar",
+    "centroid": [
+      74.87,
+      31.63
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay",
+      "ph": 7.8,
+      "organic_carbon_pct": 0.6,
+      "nitrogen_kg_ha": 311.0,
+      "phosphorus_kg_ha": 17.0,
+      "potassium_kg_ha": 147.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 1167.0,
+      "season_rainfall_mm": 92.0,
+      "avg_temp_c": 19.8,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

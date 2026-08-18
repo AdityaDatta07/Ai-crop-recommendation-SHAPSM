@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-MYS",
+    "district_name": "Mysuru",
+    "centroid": [
+      76.64,
+      12.3
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "loam",
+      "ph": 8.2,
+      "organic_carbon_pct": 0.47,
+      "nitrogen_kg_ha": 264.0,
+      "phosphorus_kg_ha": 31.0,
+      "potassium_kg_ha": 279.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 849.0,
+      "season_rainfall_mm": 109.0,
+      "avg_temp_c": 28.5,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-LKO",
+    "district_name": "Lucknow",
+    "centroid": [
+      80.94,
+      26.84
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "loam",
+      "ph": 7.2,
+      "organic_carbon_pct": 0.54,
+      "nitrogen_kg_ha": 240.0,
+      "phosphorus_kg_ha": 18.0,
+      "potassium_kg_ha": 190.0,
+      "source": "SoilGrids250m + Soil Health Card (mocked)"
+    },
+    "weather": {
+      "annual_rainfall_mm": 940.0,
+      "season_rainfall_mm": 110.0,
+      "avg_temp_c": 22.4,
+      "source": "IMD gridded 1991-2020 normals (mocked)"
+    },
+    "ndvi_current": 0.42,
+    "data_completeness": 0.92
+  }
+}

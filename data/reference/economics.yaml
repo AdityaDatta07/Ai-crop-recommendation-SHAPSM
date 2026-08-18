@@ -1,0 +1,183 @@
+# Economic reference data — CITED.
+#
+# Every number here is traceable to a government publication. See sources.yaml
+# for the full citation of each source key. Nothing in this file is invented.
+#
+# Two deliberate properties:
+#  - `price_per_quintal` is the Minimum Support Price, which is a FLOOR price,
+#    not a market price. It is what the farmer is guaranteed, not what they will
+#    necessarily get. The UI must say so. Live mandi prices from Agmarknet
+#    override this when available; this is the fallback.
+#  - Crops with no MSP and no published yield carry nulls. The orchestrator turns
+#    those into null economics plus a warning rather than a guess.
+#
+# Cost is A2+FL per quintal as published alongside MSP: all paid-out costs plus
+# imputed family labour. Cost per hectare is DERIVED in apps/api economics.py as
+# cost_per_quintal * yield_quintal_per_ha — the derivation is not baked in here
+# so the raw sourced figures stay auditable.
+
+version: 1
+updated: 2026-08-17
+
+crops:
+  WHEAT:
+    price_per_quintal: 2585
+    price_source: msp_rabi_2026_27
+    cost_a2fl_per_quintal: 1239
+    cost_source: msp_rabi_2026_27
+    yield_kg_per_ha: 3595
+    yield_source: econ_survey_2025_26_t117
+    yield_note: All-India average, 2024-25.
+
+  BARLEY:
+    price_per_quintal: 2150
+    price_source: msp_rabi_2026_27
+    cost_a2fl_per_quintal: 1361
+    cost_source: msp_rabi_2026_27
+    yield_kg_per_ha: 3363
+    yield_source: econ_survey_2025_26_t117
+    yield_note: >-
+      PROXY. Barley is not reported separately; this is the nutri/coarse cereals
+      rabi average for 2024-25 and will overstate barley on poor soils.
+
+  CHICKPEA:
+    price_per_quintal: 5875
+    price_source: msp_rabi_2026_27
+    cost_a2fl_per_quintal: 3699
+    cost_source: msp_rabi_2026_27
+    yield_kg_per_ha: 1218
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Reported as "Gram", 2024-25.
+
+  LENTIL:
+    price_per_quintal: 7000
+    price_source: msp_rabi_2026_27
+    cost_a2fl_per_quintal: 3705
+    cost_source: msp_rabi_2026_27
+    yield_kg_per_ha: 1136
+    yield_source: econ_survey_2025_26_t117
+    yield_note: >-
+      PROXY. Lentil is not reported separately; this is the rabi pulses average
+      for 2024-25.
+
+  MUSTARD:
+    price_per_quintal: 6200
+    price_source: msp_rabi_2026_27
+    cost_a2fl_per_quintal: 3210
+    cost_source: msp_rabi_2026_27
+    yield_kg_per_ha: 1463
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Reported as "Rapeseed and Mustard", 2024-25.
+
+  RICE:
+    price_per_quintal: 2441
+    price_source: msp_kharif_2026_27
+    price_note: Common paddy. Grade A is 2461.
+    cost_a2fl_per_quintal: 1627
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 2825
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Kharif rice, 2024-25.
+
+  MAIZE:
+    price_per_quintal: 2410
+    price_source: msp_kharif_2026_27
+    cost_a2fl_per_quintal: 1544
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 2932
+    yield_source: econ_survey_2025_26_t117
+    yield_note: >-
+      Kharif maize, 2024-25. Rabi maize averages 5306 kg/ha; this table does not
+      yet vary yield by season.
+
+  SORGHUM:
+    price_per_quintal: 4023
+    price_source: msp_kharif_2026_27
+    price_note: Jowar hybrid. Maldandi is 4073.
+    cost_a2fl_per_quintal: 2682
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 1240
+    yield_source: econ_survey_2025_26_t117
+
+  PEARLMLT:
+    price_per_quintal: 2900
+    price_source: msp_kharif_2026_27
+    cost_a2fl_per_quintal: 1858
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 1523
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Reported as "Bajra", 2024-25.
+
+  PIGEONPEA:
+    price_per_quintal: 8450
+    price_source: msp_kharif_2026_27
+    cost_a2fl_per_quintal: 5496
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 836
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Reported as "Tur", 2024-25.
+
+  GROUNDNUT:
+    price_per_quintal: 7517
+    price_source: msp_kharif_2026_27
+    cost_a2fl_per_quintal: 5011
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 2080
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Kharif groundnut, 2024-25.
+
+  SOYBEAN:
+    price_per_quintal: 5708
+    price_source: msp_kharif_2026_27
+    price_note: Yellow soybean.
+    cost_a2fl_per_quintal: 3805
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 1391
+    yield_source: econ_survey_2025_26_t117
+    yield_note: >-
+      PROXY. Soybean is not reported separately; this is the kharif oilseeds
+      average for 2024-25.
+
+  COTTON:
+    price_per_quintal: 8267
+    price_source: msp_kharif_2026_27
+    price_note: Medium staple. Long staple is 8667.
+    cost_a2fl_per_quintal: 5511
+    cost_source: msp_kharif_2026_27
+    yield_kg_per_ha: 440
+    yield_source: econ_survey_2025_26_t117
+    yield_note: Lint yield, 2024-25.
+
+  # ---- No MSP is notified for these. Economics degrade to null on purpose. ----
+
+  SUGARCANE:
+    price_per_quintal: null
+    price_source: null
+    price_note: >-
+      Sugarcane has a Fair and Remunerative Price (FRP), not an MSP, and it is
+      quoted per tonne against a recovery rate. Not yet sourced.
+    cost_a2fl_per_quintal: null
+    cost_source: null
+    yield_kg_per_ha: 83000
+    yield_source: econ_survey_2025_26_t117
+    yield_note: 83 tonnes/ha, 2024-25.
+
+  POTATO:
+    price_per_quintal: null
+    price_source: null
+    price_note: No MSP. Needs live Agmarknet data to price at all.
+    cost_a2fl_per_quintal: null
+    cost_source: null
+    yield_kg_per_ha: 25000
+    yield_source: econ_survey_2025_26_t117
+    yield_note: 25 tonnes/ha, 2024-25.
+
+  ONION:
+    price_per_quintal: null
+    price_source: null
+    price_note: No MSP. Needs live Agmarknet data to price at all.
+    cost_a2fl_per_quintal: null
+    cost_source: null
+    yield_kg_per_ha: null
+    yield_source: null
+    yield_note: Not reported in the Economic Survey yield table.

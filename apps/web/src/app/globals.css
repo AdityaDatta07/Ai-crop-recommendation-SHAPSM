@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 150 12% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 12% 12%;
+
+    --primary: 142 55% 28%;
+    --primary-foreground: 140 40% 98%;
+
+    --secondary: 140 20% 95%;
+    --secondary-foreground: 150 12% 18%;
+
+    --muted: 140 16% 96%;
+    --muted-foreground: 150 8% 42%;
+
+    --accent: 140 20% 94%;
+    --accent-foreground: 150 12% 18%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 145 14% 88%;
+    --input: 145 14% 86%;
+    --ring: 142 55% 32%;
+
+    --radius: 0.6rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Rural users are often on small, bright screens held at arm's length. */
+    font-size: 16px;
+  }
+}

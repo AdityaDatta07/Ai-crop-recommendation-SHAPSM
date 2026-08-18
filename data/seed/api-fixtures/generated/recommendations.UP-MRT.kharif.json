@@ -1,0 +1,335 @@
+{
+  "request_id": "req_MOCKUPMRTKHARIF",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-MRT",
+    "district_name": "Meerut",
+    "centroid": [
+      77.71,
+      28.98
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "silt loam",
+      "ph": 7.5,
+      "organic_carbon_pct": 0.6,
+      "nitrogen_kg_ha": 162.0,
+      "phosphorus_kg_ha": 12.0,
+      "potassium_kg_ha": 263.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 1239.0,
+      "season_rainfall_mm": 67.0,
+      "avg_temp_c": 20.9,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "PIGEONPEA",
+      "name": "Pigeon pea",
+      "variety_suggested": "ICPL-87119",
+      "score": 0.6912,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.9 C is within the ideal 20.0-30.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside pigeon pea's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 533 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-12-12",
+          "end": "2028-01-11"
+        },
+        "duration_days": 180
+      },
+      "economics": {
+        "expected_yield_t_ha": 0.85,
+        "input_cost_per_ha": 45947,
+        "expected_price_per_quintal": 8450,
+        "gross_revenue": 71825,
+        "net_margin": 25878,
+        "margin_per_ha": 25878,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "PEARLMLT",
+      "name": "Pearl millet",
+      "variety_suggested": "HHB-67 Improved",
+      "score": 0.6287,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside pearl millet's preferred 6.5-8.0 band."
+        },
+        {
+          "factor": "nitrogen",
+          "impact": "positive",
+          "detail": "Available nitrogen (162 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "temperature",
+          "impact": "negative",
+          "detail": "Average 20.9 C is cooler than the ideal 25.0-35.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 233 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-20",
+          "end": "2027-07-25"
+        },
+        "harvest_window": {
+          "start": "2027-09-13",
+          "end": "2027-10-18"
+        },
+        "duration_days": 85
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.5,
+        "input_cost_per_ha": 28297,
+        "expected_price_per_quintal": 2900,
+        "gross_revenue": 43500,
+        "net_margin": 15203,
+        "margin_per_ha": 15203,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Downy mildew",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "MAIZE",
+      "name": "Maize",
+      "variety_suggested": "HQPM-1",
+      "score": 0.6223,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside maize's preferred 5.8-7.5 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.9 C is cooler than the ideal 21.0-30.0 C range."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 433 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-03",
+          "end": "2027-11-02"
+        },
+        "duration_days": 110
+      },
+      "economics": {
+        "expected_yield_t_ha": 2.87,
+        "input_cost_per_ha": 45270,
+        "expected_price_per_quintal": 2410,
+        "gross_revenue": 69167,
+        "net_margin": 23897,
+        "margin_per_ha": 23897,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Fall armyworm",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "SORGHUM",
+      "name": "Sorghum",
+      "variety_suggested": "M-35-1",
+      "score": 0.6222,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside sorghum's preferred 6.0-8.0 band."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 333 mm short of the 400 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-07"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.22,
+        "input_cost_per_ha": 33257,
+        "expected_price_per_quintal": 4023,
+        "gross_revenue": 49081,
+        "net_margin": 15824,
+        "margin_per_ha": 15824,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Shoot fly",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "ONION",
+      "name": "Onion",
+      "variety_suggested": "Agrifound Light Red",
+      "score": 0.6047,
+      "confidence": "medium",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.9 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside onion's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 283 mm short of the 350 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-11-01",
+          "end": "2026-12-15"
+        },
+        "harvest_window": {
+          "start": "2027-03-11",
+          "end": "2027-04-24"
+        },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": null,
+        "input_cost_per_ha": null,
+        "expected_price_per_quintal": null,
+        "gross_revenue": null,
+        "net_margin": null,
+        "margin_per_ha": null,
+        "price_source": null,
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Purple blotch",
+          "severity": "medium"
+        },
+        {
+          "type": "market",
+          "name": "Extreme price volatility",
+          "severity": "high"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PRICE_UNAVAILABLE",
+      "message": "No published price for Onion. Their revenue figures are left blank rather than guessed."
+    },
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

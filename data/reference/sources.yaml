@@ -1,0 +1,72 @@
+# Provenance register.
+#
+# architecture.md principle 5: "Every number has a source." This file is where
+# that promise is kept. Every `*_source` key in the reference tables resolves to
+# an entry here, and the API surfaces the resulting citation string in the
+# response so it reaches the farmer's screen.
+#
+# `tier` is the honesty dial:
+#   cited       - traceable to a named government or peer-reviewed publication
+#   provisional - plausible, drawn from general agronomic literature, NOT yet
+#                 verified against a citable Indian source. Must be reviewed by
+#                 a domain expert before this is presented as advice.
+
+version: 1
+updated: 2026-08-17
+
+sources:
+  msp_rabi_2026_27:
+    tier: cited
+    title: Cabinet approves Minimum Support Prices (MSP) for Rabi Crops for Marketing Season 2026-27
+    publisher: Press Information Bureau, Ministry of Agriculture & Farmers Welfare, Government of India
+    published: 2025-10-01
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2173567
+    citation: MSP, Rabi 2026-27 (CACP/PIB)
+    covers: [price_per_quintal, cost_a2fl_per_quintal]
+    caveat: >-
+      MSP is a guaranteed floor price, not a market price, and procurement is not
+      universal. Cost is A2+FL: paid-out costs plus imputed family labour. It
+      excludes imputed land rent, so it understates the full economic cost.
+
+  msp_kharif_2026_27:
+    tier: cited
+    title: Cabinet approves Minimum Support Prices (MSP) for Kharif Crops for Marketing Season 2026-27
+    publisher: Press Information Bureau, Cabinet Committee on Economic Affairs, Government of India
+    published: 2026-05-13
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2260617
+    citation: MSP, Kharif 2026-27 (CACP/PIB)
+    covers: [price_per_quintal, cost_a2fl_per_quintal]
+    caveat: Same A2+FL caveat as the rabi release.
+
+  econ_survey_2025_26_t117:
+    tier: cited
+    title: "Economic Survey 2025-26, Statistical Appendix, Table 1.17: Yield Per Hectare of Major Crops"
+    publisher: Economics, Statistics & Evaluation Division, Department of Agriculture and Farmers Welfare, Government of India
+    published: 2026
+    url: https://www.indiabudget.gov.in/economicsurvey/doc/stat/tab1.17.pdf
+    citation: All-India average yield 2024-25 (Economic Survey 2025-26, Table 1.17)
+    covers: [yield_kg_per_ha]
+    caveat: >-
+      All-India averages. A specific district can differ from these by a wide
+      margin, and this is the single largest source of error in the economics.
+      District-level yields would be a material improvement.
+
+  agronomic_provisional_v1:
+    tier: provisional
+    title: Provisional agronomic thresholds compiled from general crop-science literature
+    publisher: Compiled for this project; NOT independently verified
+    published: 2026-08-17
+    url: null
+    citation: Provisional agronomic thresholds — pending expert review
+    covers: [ph_optimal, ph_absolute, temp_optimal_c, rainfall_mm, duration_days, calendar, risks]
+    caveat: >-
+      READ THIS BEFORE DEMOING. These pH bands, temperature ranges, sowing
+      windows and durations are plausible values drawn from general agronomic
+      literature, not from a citable ICAR or state agricultural university
+      publication. They drive the ranking, so the ranking inherits their
+      uncertainty.
+
+      Every crop scored using them is returned with confidence capped and the
+      citation string above attached, so the UI never presents them as settled
+      fact. Replacing this source with a real ICAR package-of-practices
+      reference is the highest-value single task remaining on this project.

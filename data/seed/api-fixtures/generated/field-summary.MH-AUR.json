@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "MH",
+    "district_code": "MH-AUR",
+    "district_name": "Chhatrapati Sambhajinagar",
+    "centroid": [
+      75.34,
+      19.88
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "silt loam",
+      "ph": 6.0,
+      "organic_carbon_pct": 0.47,
+      "nitrogen_kg_ha": 179.0,
+      "phosphorus_kg_ha": 9.0,
+      "potassium_kg_ha": 160.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 575.0,
+      "season_rainfall_mm": 209.0,
+      "avg_temp_c": 24.8,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

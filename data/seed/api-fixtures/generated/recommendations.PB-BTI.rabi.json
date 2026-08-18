@@ -1,0 +1,296 @@
+{
+  "request_id": "req_MOCKPBBTIRABI",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-BTI",
+    "district_name": "Bathinda",
+    "centroid": [
+      74.95,
+      30.21
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 6.3,
+      "organic_carbon_pct": 0.48,
+      "nitrogen_kg_ha": 201.0,
+      "phosphorus_kg_ha": 27.0,
+      "potassium_kg_ha": 196.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 697.0,
+      "season_rainfall_mm": 186.0,
+      "avg_temp_c": 20.6,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "LENTIL",
+      "name": "Lentil",
+      "variety_suggested": "PL-8",
+      "score": 0.8733,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.3 sits inside lentil's preferred 6.0-7.5 band."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-20",
+          "end": "2026-11-25"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 120
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.24,
+        "input_cost_per_ha": 42089,
+        "expected_price_per_quintal": 7000,
+        "gross_revenue": 86800,
+        "net_margin": 44711,
+        "margin_per_ha": 44711,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "low"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "CHICKPEA",
+      "name": "Chickpea",
+      "variety_suggested": "JG-14",
+      "score": 0.8688,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.3 sits inside chickpea's preferred 6.0-7.5 band."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-15",
+          "end": "2026-11-20"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.33,
+        "input_cost_per_ha": 45054,
+        "expected_price_per_quintal": 5875,
+        "gross_revenue": 78138,
+        "net_margin": 33084,
+        "margin_per_ha": 33084,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Fusarium wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "MUSTARD",
+      "name": "Mustard",
+      "variety_suggested": "Pusa Bold",
+      "score": 0.86,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.6 C is within the ideal 10.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.3 sits inside mustard's preferred 6.0-7.5 band."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-10",
+          "end": "2026-11-10"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-20"
+        },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.59,
+        "input_cost_per_ha": 46962,
+        "expected_price_per_quintal": 6200,
+        "gross_revenue": 98580,
+        "net_margin": 51618,
+        "margin_per_ha": 51618,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Mustard aphid",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "WHEAT",
+      "name": "Wheat",
+      "variety_suggested": "HD-3086",
+      "score": 0.775,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.6 C is within the ideal 18.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 6.3 sits inside wheat's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-11-05",
+          "end": "2026-12-10"
+        },
+        "harvest_window": {
+          "start": "2027-03-20",
+          "end": "2027-04-24"
+        },
+        "duration_days": 135
+      },
+      "economics": {
+        "expected_yield_t_ha": 3.77,
+        "input_cost_per_ha": 44542,
+        "expected_price_per_quintal": 2585,
+        "gross_revenue": 97455,
+        "net_margin": 52913,
+        "margin_per_ha": 52913,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Yellow rust",
+          "severity": "medium"
+        },
+        {
+          "type": "weather",
+          "name": "Terminal heat stress at grain filling",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "BARLEY",
+      "name": "Barley",
+      "variety_suggested": "RD-2035",
+      "score": 0.7653,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 20.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "irrigation",
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-25",
+          "end": "2026-11-30"
+        },
+        "harvest_window": {
+          "start": "2027-02-27",
+          "end": "2027-04-04"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 3.51,
+        "input_cost_per_ha": 45770,
+        "expected_price_per_quintal": 2150,
+        "gross_revenue": 75465,
+        "net_margin": 29695,
+        "margin_per_ha": 29695,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Powdery mildew",
+          "severity": "low"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

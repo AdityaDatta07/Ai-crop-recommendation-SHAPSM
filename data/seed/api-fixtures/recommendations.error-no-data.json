@@ -1,0 +1,8 @@
+{
+  "error": {
+    "code": "NO_DATA_FOR_LOCATION",
+    "message": "No soil or weather coverage for this location. Try a point inside a supported district.",
+    "field": "location",
+    "request_id": "req_01J8XA9MOCK0NODATA"
+  }
+}

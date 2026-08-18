@@ -1,0 +1,326 @@
+{
+  "request_id": "req_MOCKUPVNSRABI",
+  "generated_at": "2026-08-17T12:00:00Z",
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-VNS",
+    "district_name": "Varanasi",
+    "centroid": [
+      82.97,
+      25.32
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay",
+      "ph": 7.2,
+      "organic_carbon_pct": 0.81,
+      "nitrogen_kg_ha": 212.0,
+      "phosphorus_kg_ha": 13.0,
+      "potassium_kg_ha": 203.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 902.0,
+      "season_rainfall_mm": 83.0,
+      "avg_temp_c": 22.6,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "LENTIL",
+      "name": "Lentil",
+      "variety_suggested": "PL-8",
+      "score": 0.7571,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 22.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.2 sits inside lentil's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 167 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "negative",
+          "detail": "Clay soil is workable but this crop prefers loam, sandy loam."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-20",
+          "end": "2026-11-25"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 120
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.18,
+        "input_cost_per_ha": 42089,
+        "expected_price_per_quintal": 7000,
+        "gross_revenue": 82600,
+        "net_margin": 40511,
+        "margin_per_ha": 40511,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "low"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "MUSTARD",
+      "name": "Mustard",
+      "variety_suggested": "Pusa Bold",
+      "score": 0.7529,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.2 sits inside mustard's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 22.6 C is within the ideal 10.0-25.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 167 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "negative",
+          "detail": "Clay soil is workable but this crop prefers loam, sandy loam."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-10",
+          "end": "2026-11-10"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-20"
+        },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.52,
+        "input_cost_per_ha": 46962,
+        "expected_price_per_quintal": 6200,
+        "gross_revenue": 94240,
+        "net_margin": 47278,
+        "margin_per_ha": 47278,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Mustard aphid",
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "CHICKPEA",
+      "name": "Chickpea",
+      "variety_suggested": "JG-14",
+      "score": 0.747,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 22.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.2 sits inside chickpea's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 217 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-15",
+          "end": "2026-11-20"
+        },
+        "harvest_window": {
+          "start": "2027-02-17",
+          "end": "2027-03-25"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.26,
+        "input_cost_per_ha": 45054,
+        "expected_price_per_quintal": 5875,
+        "gross_revenue": 74025,
+        "net_margin": 28971,
+        "margin_per_ha": 28971,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Fusarium wilt",
+          "severity": "medium"
+        },
+        {
+          "type": "pest",
+          "name": "Pod borer",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "SORGHUM",
+      "name": "Sorghum",
+      "variety_suggested": "M-35-1",
+      "score": 0.7413,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.2 sits inside sorghum's preferred 6.0-8.0 band."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "positive",
+          "detail": "Clay soil is well suited; this crop prefers clay, clay loam, loam."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 317 mm short of the 400 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2027-06-15",
+          "end": "2027-07-15"
+        },
+        "harvest_window": {
+          "start": "2027-10-08",
+          "end": "2027-11-07"
+        },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.28,
+        "input_cost_per_ha": 33257,
+        "expected_price_per_quintal": 4023,
+        "gross_revenue": 51494,
+        "net_margin": 18237,
+        "margin_per_ha": 18237,
+        "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "pest",
+          "name": "Shoot fly",
+          "severity": "medium"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "BARLEY",
+      "name": "Barley",
+      "variety_suggested": "RD-2035",
+      "score": 0.7285,
+      "confidence": "high",
+      "reasons": [
+        {
+          "factor": "soil_ph",
+          "impact": "positive",
+          "detail": "pH 7.2 sits inside barley's preferred 6.5-8.0 band."
+        },
+        {
+          "factor": "temperature",
+          "impact": "positive",
+          "detail": "Average 22.6 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "impact": "negative",
+          "detail": "Rainfall is about 217 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_texture",
+          "impact": "negative",
+          "detail": "Clay soil is workable but this crop prefers loam, sandy loam."
+        }
+      ],
+      "calendar": {
+        "sowing_window": {
+          "start": "2026-10-25",
+          "end": "2026-11-30"
+        },
+        "harvest_window": {
+          "start": "2027-02-27",
+          "end": "2027-04-04"
+        },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 3.46,
+        "input_cost_per_ha": 45770,
+        "expected_price_per_quintal": 2150,
+        "gross_revenue": 74390,
+        "net_margin": 28620,
+        "margin_per_ha": 28620,
+        "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
+        "price_as_of": null
+      },
+      "risks": [
+        {
+          "type": "disease",
+          "name": "Powdery mildew",
+          "severity": "low"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "PROVISIONAL_AGRONOMY",
+      "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."
+    }
+  ]
+}

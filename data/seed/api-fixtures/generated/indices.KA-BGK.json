@@ -1,0 +1,55 @@
+{
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-BGK",
+    "district_name": "Bagalkot",
+    "centroid": [
+      75.7,
+      16.18
+    ],
+    "area_ha": 1.0
+  },
+  "observed_on": null,
+  "cloud_cover_pct": null,
+  "indices": [
+    {
+      "key": "ndvi",
+      "name": "Vegetation vigour (NDVI)",
+      "value": null,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "No clear satellite image available for this period.",
+      "formula": "(B8 - B4) / (B8 + B4)"
+    },
+    {
+      "key": "savi",
+      "name": "Soil-adjusted vigour (SAVI)",
+      "value": null,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "No clear satellite image available for this period.",
+      "formula": "((B8 - B4) / (B8 + B4 + 0.5)) * 1.5"
+    },
+    {
+      "key": "ndmi",
+      "name": "Canopy moisture (NDMI)",
+      "value": null,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "No clear satellite image available for this period.",
+      "formula": "(B8 - B11) / (B8 + B11)"
+    },
+    {
+      "key": "evi",
+      "name": "Enhanced vegetation (EVI)",
+      "value": null,
+      "range_min": -1.0,
+      "range_max": 1.0,
+      "interpretation": "No clear satellite image available for this period.",
+      "formula": "2.5 * (B8 - B4) / (B8 + 6*B4 - 7.5*B2 + 1)"
+    }
+  ],
+  "history": [],
+  "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured",
+  "tile_url_template": null
+}

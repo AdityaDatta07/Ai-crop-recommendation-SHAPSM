@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-BLR",
+    "district_name": "Bengaluru Rural",
+    "centroid": [
+      77.51,
+      13.22
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 6.7,
+      "organic_carbon_pct": 0.35,
+      "nitrogen_kg_ha": 175.0,
+      "phosphorus_kg_ha": 9.0,
+      "potassium_kg_ha": 220.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 1012.0,
+      "season_rainfall_mm": 59.0,
+      "avg_temp_c": 27.5,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.18,
+    "data_completeness": 0.85
+  }
+}

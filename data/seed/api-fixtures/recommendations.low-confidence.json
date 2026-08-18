@@ -1,0 +1,98 @@
+{
+  "request_id": "req_01J8XA9MOCK0LOWCONF",
+  "generated_at": "2026-08-16T12:34:00Z",
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-BGK",
+    "district_name": "Bagalkot",
+    "centroid": [75.70, 16.18],
+    "area_ha": 0.8
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay",
+      "ph": 8.1,
+      "organic_carbon_pct": null,
+      "nitrogen_kg_ha": null,
+      "phosphorus_kg_ha": null,
+      "potassium_kg_ha": null,
+      "source": "SoilGrids250m (Soil Health Card unavailable for this district)"
+    },
+    "weather": {
+      "annual_rainfall_mm": 560,
+      "season_rainfall_mm": 45,
+      "avg_temp_c": 26.9,
+      "source": "IMD gridded 1991-2020 normals"
+    },
+    "ndvi_current": null,
+    "data_completeness": 0.41
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "SORGHUM",
+      "name": "Sorghum",
+      "variety_suggested": "M-35-1",
+      "score": 0.69,
+      "confidence": "low",
+      "reasons": [
+        { "factor": "rainfall", "impact": "positive", "detail": "Drought tolerant; suited to 560 mm annual rainfall." },
+        { "factor": "soil_texture", "impact": "positive", "detail": "Deep clay soils hold moisture through the rabi season." },
+        { "factor": "soil_ph", "impact": "negative", "detail": "pH 8.1 is alkaline and may limit micronutrient uptake." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-09-15", "end": "2026-10-15" },
+        "harvest_window": { "start": "2027-01-10", "end": "2027-02-05" },
+        "duration_days": 115
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.2,
+        "input_cost_per_ha": 18000,
+        "expected_price_per_quintal": null,
+        "gross_revenue": null,
+        "net_margin": null,
+        "margin_per_ha": null,
+        "price_source": null,
+        "price_as_of": null
+      },
+      "risks": [
+        { "type": "pest", "name": "Shoot fly", "severity": "medium" }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "CHICKPEA",
+      "name": "Chickpea",
+      "variety_suggested": "JAKI-9218",
+      "score": 0.61,
+      "confidence": "low",
+      "reasons": [
+        { "factor": "rainfall", "impact": "neutral", "detail": "Relies on residual moisture; a dry spell would cut yield sharply." },
+        { "factor": "nitrogen", "impact": "positive", "detail": "Nitrogen fixation is valuable where soil test data is missing." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-10-01", "end": "2026-11-05" },
+        "harvest_window": { "start": "2027-02-01", "end": "2027-03-01" },
+        "duration_days": 110
+      },
+      "economics": {
+        "expected_yield_t_ha": 0.9,
+        "input_cost_per_ha": 22000,
+        "expected_price_per_quintal": null,
+        "gross_revenue": null,
+        "net_margin": null,
+        "margin_per_ha": null,
+        "price_source": null,
+        "price_as_of": null
+      },
+      "risks": [
+        { "type": "disease", "name": "Wilt complex", "severity": "medium" }
+      ]
+    }
+  ],
+  "warnings": [
+    { "code": "PARTIAL_SOIL_DATA", "message": "Soil nutrient values unavailable for this district. Scores use texture and pH only." },
+    { "code": "PRICE_UNAVAILABLE", "message": "Agmarknet returned no recent prices for this mandi. Economics are incomplete." },
+    { "code": "LOW_DATA_COMPLETENESS", "message": "Only 41% of expected inputs were available. Treat this ranking as indicative." }
+  ]
+}

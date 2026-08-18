@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-MRT",
+    "district_name": "Meerut",
+    "centroid": [
+      77.71,
+      28.98
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "silt loam",
+      "ph": 7.5,
+      "organic_carbon_pct": 0.6,
+      "nitrogen_kg_ha": 162.0,
+      "phosphorus_kg_ha": 12.0,
+      "potassium_kg_ha": 263.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 1239.0,
+      "season_rainfall_mm": 67.0,
+      "avg_temp_c": 20.9,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

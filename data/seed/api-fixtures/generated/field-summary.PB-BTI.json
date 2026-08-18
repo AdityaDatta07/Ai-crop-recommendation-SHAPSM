@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "PB",
+    "district_code": "PB-BTI",
+    "district_name": "Bathinda",
+    "centroid": [
+      74.95,
+      30.21
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay loam",
+      "ph": 6.3,
+      "organic_carbon_pct": 0.48,
+      "nitrogen_kg_ha": 201.0,
+      "phosphorus_kg_ha": 27.0,
+      "potassium_kg_ha": 196.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 697.0,
+      "season_rainfall_mm": 186.0,
+      "avg_temp_c": 20.6,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

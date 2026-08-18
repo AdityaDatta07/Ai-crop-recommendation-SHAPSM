@@ -1,0 +1,192 @@
+{
+  "request_id": "req_01J8XA9MOCK0SUCCESS",
+  "generated_at": "2026-08-16T12:30:00Z",
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-LKO",
+    "district_name": "Lucknow",
+    "centroid": [80.94, 26.84],
+    "area_ha": 1.5
+  },
+  "conditions": {
+    "soil": {
+      "texture": "loam",
+      "ph": 7.2,
+      "organic_carbon_pct": 0.54,
+      "nitrogen_kg_ha": 240,
+      "phosphorus_kg_ha": 18,
+      "potassium_kg_ha": 190,
+      "source": "SoilGrids250m + Soil Health Card"
+    },
+    "weather": {
+      "annual_rainfall_mm": 940,
+      "season_rainfall_mm": 110,
+      "avg_temp_c": 22.4,
+      "source": "IMD gridded 1991-2020 normals"
+    },
+    "ndvi_current": 0.42,
+    "data_completeness": 0.92
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "crop_code": "WHEAT",
+      "name": "Wheat",
+      "variety_suggested": "HD-3086",
+      "score": 0.87,
+      "confidence": "high",
+      "reasons": [
+        { "factor": "soil_ph", "impact": "positive", "detail": "pH 7.2 is within wheat's optimal 6.0-7.5 band." },
+        { "factor": "temperature", "impact": "positive", "detail": "Mean 22.4 C suits the grain-filling stage." },
+        { "factor": "rainfall", "impact": "neutral", "detail": "Requires 2-3 supplemental irrigations beyond rabi rainfall." },
+        { "factor": "market_price", "impact": "positive", "detail": "Assured procurement at MSP reduces price risk." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-11-05", "end": "2026-12-10" },
+        "harvest_window": { "start": "2027-03-25", "end": "2027-04-20" },
+        "duration_days": 135
+      },
+      "economics": {
+        "expected_yield_t_ha": 4.2,
+        "input_cost_per_ha": 38500,
+        "expected_price_per_quintal": 2400,
+        "gross_revenue": 151200,
+        "net_margin": 93450,
+        "margin_per_ha": 62300,
+        "price_source": "Agmarknet, Lucknow mandi, 90-day avg",
+        "price_as_of": "2026-08-10"
+      },
+      "risks": [
+        { "type": "pest", "name": "Yellow rust", "severity": "medium" },
+        { "type": "weather", "name": "Terminal heat stress in March", "severity": "medium" }
+      ]
+    },
+    {
+      "rank": 2,
+      "crop_code": "MUSTARD",
+      "name": "Mustard",
+      "variety_suggested": "Pusa Bold",
+      "score": 0.82,
+      "confidence": "high",
+      "reasons": [
+        { "factor": "rainfall", "impact": "positive", "detail": "Low season rainfall of 110 mm favours mustard over wheat." },
+        { "factor": "irrigation", "impact": "positive", "detail": "Needs only 1-2 irrigations; tolerant of limited water." },
+        { "factor": "soil_texture", "impact": "positive", "detail": "Loam gives the drainage mustard requires." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-10-10", "end": "2026-11-10" },
+        "harvest_window": { "start": "2027-02-20", "end": "2027-03-15" },
+        "duration_days": 130
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.8,
+        "input_cost_per_ha": 26000,
+        "expected_price_per_quintal": 5650,
+        "gross_revenue": 152550,
+        "net_margin": 113550,
+        "margin_per_ha": 75700,
+        "price_source": "Agmarknet, Lucknow mandi, 90-day avg",
+        "price_as_of": "2026-08-10"
+      },
+      "risks": [
+        { "type": "pest", "name": "Mustard aphid", "severity": "high" }
+      ]
+    },
+    {
+      "rank": 3,
+      "crop_code": "CHICKPEA",
+      "name": "Chickpea",
+      "variety_suggested": "JG-14",
+      "score": 0.78,
+      "confidence": "high",
+      "reasons": [
+        { "factor": "nitrogen", "impact": "positive", "detail": "Fixes nitrogen; improves soil for the following kharif crop." },
+        { "factor": "rotation", "impact": "positive", "detail": "Breaks the cereal-cereal cycle common in this district." },
+        { "factor": "soil_ph", "impact": "neutral", "detail": "pH 7.2 is at the upper edge of the preferred 6.0-7.5 range." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-10-15", "end": "2026-11-20" },
+        "harvest_window": { "start": "2027-03-01", "end": "2027-03-30" },
+        "duration_days": 125
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.6,
+        "input_cost_per_ha": 24500,
+        "expected_price_per_quintal": 5440,
+        "gross_revenue": 130560,
+        "net_margin": 93810,
+        "margin_per_ha": 62540,
+        "price_source": "Agmarknet, Lucknow mandi, 90-day avg",
+        "price_as_of": "2026-08-10"
+      },
+      "risks": [
+        { "type": "disease", "name": "Fusarium wilt", "severity": "medium" }
+      ]
+    },
+    {
+      "rank": 4,
+      "crop_code": "POTATO",
+      "name": "Potato",
+      "variety_suggested": "Kufri Bahar",
+      "score": 0.71,
+      "confidence": "medium",
+      "reasons": [
+        { "factor": "soil_texture", "impact": "positive", "detail": "Loam is ideal for tuber development." },
+        { "factor": "market_price", "impact": "negative", "detail": "Prices are volatile and cold-storage capacity is a constraint." },
+        { "factor": "irrigation", "impact": "neutral", "detail": "Canal supply is adequate but timing-sensitive." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-10-01", "end": "2026-11-15" },
+        "harvest_window": { "start": "2027-01-15", "end": "2027-02-28" },
+        "duration_days": 100
+      },
+      "economics": {
+        "expected_yield_t_ha": 24.0,
+        "input_cost_per_ha": 145000,
+        "expected_price_per_quintal": 1150,
+        "gross_revenue": 414000,
+        "net_margin": 196500,
+        "margin_per_ha": 131000,
+        "price_source": "Agmarknet, Lucknow mandi, 90-day avg",
+        "price_as_of": "2026-08-10"
+      },
+      "risks": [
+        { "type": "disease", "name": "Late blight", "severity": "high" },
+        { "type": "market", "name": "Post-harvest price crash", "severity": "high" }
+      ]
+    },
+    {
+      "rank": 5,
+      "crop_code": "LENTIL",
+      "name": "Lentil",
+      "variety_suggested": "PL-8",
+      "score": 0.66,
+      "confidence": "medium",
+      "reasons": [
+        { "factor": "rainfall", "impact": "positive", "detail": "Performs on residual soil moisture with minimal irrigation." },
+        { "factor": "season_fit", "impact": "neutral", "detail": "Duration fits rabi but yields lag other pulses here." }
+      ],
+      "calendar": {
+        "sowing_window": { "start": "2026-10-20", "end": "2026-11-25" },
+        "harvest_window": { "start": "2027-03-05", "end": "2027-03-31" },
+        "duration_days": 120
+      },
+      "economics": {
+        "expected_yield_t_ha": 1.1,
+        "input_cost_per_ha": 21000,
+        "expected_price_per_quintal": 6400,
+        "gross_revenue": 105600,
+        "net_margin": 74100,
+        "margin_per_ha": 49400,
+        "price_source": "Agmarknet, Lucknow mandi, 90-day avg",
+        "price_as_of": "2026-08-10"
+      },
+      "risks": [
+        { "type": "pest", "name": "Pod borer", "severity": "low" }
+      ]
+    }
+  ],
+  "warnings": [
+    { "code": "STALE_PRICE_DATA", "message": "Market prices are 6 days old." }
+  ]
+}

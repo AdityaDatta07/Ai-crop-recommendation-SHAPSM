@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "UP",
+    "district_code": "UP-VNS",
+    "district_name": "Varanasi",
+    "centroid": [
+      82.97,
+      25.32
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay",
+      "ph": 7.2,
+      "organic_carbon_pct": 0.81,
+      "nitrogen_kg_ha": 212.0,
+      "phosphorus_kg_ha": 13.0,
+      "potassium_kg_ha": 203.0,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "weather": {
+      "annual_rainfall_mm": 902.0,
+      "season_rainfall_mm": 83.0,
+      "avg_temp_c": 22.6,
+      "source": "Synthetic mock data (USE_MOCK_GEO=true) — not measured"
+    },
+    "ndvi_current": 0.19,
+    "data_completeness": 0.85
+  }
+}

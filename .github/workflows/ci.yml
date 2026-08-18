@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api:
+    name: API · lint, types, tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install
+        # --only-binary=:all: forbids source builds. If a dependency ever stops
+        # shipping a wheel for this Python, CI fails in seconds with the package
+        # name instead of dying in a Rust build nobody can read.
+        run: pip install --only-binary=:all: -r apps/api/requirements.txt
+
+      - name: Tests
+        # Includes the contract tests, which validate both the frozen fixtures
+        # and live API responses against the same Pydantic models. If apps/web
+        # and apps/api drift apart, this is where it surfaces.
+        run: pytest -q
+
+  web:
+    name: Web · lint, types, build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Type check
+        # Also checks src/contract/fixtures.check.ts, which asserts the fixtures
+        # still match the TypeScript mirror of the API contract.
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build

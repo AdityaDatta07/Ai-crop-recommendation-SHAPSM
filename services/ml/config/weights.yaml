@@ -1,0 +1,37 @@
+# Ranking weights.
+#
+# Declared here rather than hardcoded so they can be tuned and, more importantly,
+# defended out loud. If someone asks "why does pH matter more than texture?",
+# the answer should be a line in a file with a rationale next to it, not a
+# constant buried in a function.
+#
+# Weights are relative, not required to sum to 1. When a factor cannot be
+# computed - a null soil reading, a crop with no price - its weight is dropped
+# and the remaining weights are renormalised, so a missing input never silently
+# scores as zero. The share of weight that survived is reported as
+# `weight_coverage` and feeds the confidence level.
+#
+# These are expert-set, not empirically validated. Fitting them against
+# historical district yields is item 1 in architecture.md section 11.
+
+version: 1
+
+weights:
+  soil_ph: 0.20        # Directly limits nutrient availability; well-defined optimum bands.
+  temperature: 0.20    # The hardest constraint to work around. No input fixes wrong temperature.
+  rainfall: 0.18       # Large effect, but partly correctable by irrigation, hence below temperature.
+  soil_texture: 0.12   # Drainage and root development. Coarser signal than pH.
+  nitrogen: 0.10       # Correctable with fertiliser, so weighted below the climatic factors.
+  irrigation: 0.10     # Whether the farmer's water source can meet the crop's need.
+  market_price: 0.10   # Deliberately small: this tool is agronomic first. Margin is shown
+                       # in full on the results screen and the farmer weighs it themselves.
+
+# Factors defined in the API contract but not scored in v1. Listed so the gap is
+# explicit rather than looking like an oversight.
+unscored:
+  season_fit: >-
+    Applied as a hard filter before ranking rather than a weighted score. A crop
+    that does not fit the season is excluded, not penalised.
+  rotation: >-
+    Needs the field's cropping history, which requires saved fields and therefore
+    auth. Out of scope for v1 - see architecture.md section 11 item 5.

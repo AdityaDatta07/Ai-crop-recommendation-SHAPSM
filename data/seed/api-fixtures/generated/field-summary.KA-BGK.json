@@ -1,0 +1,31 @@
+{
+  "location_resolved": {
+    "state_code": "KA",
+    "district_code": "KA-BGK",
+    "district_name": "Bagalkot",
+    "centroid": [
+      75.7,
+      16.18
+    ],
+    "area_ha": 1.0
+  },
+  "conditions": {
+    "soil": {
+      "texture": "clay",
+      "ph": 8.1,
+      "organic_carbon_pct": null,
+      "nitrogen_kg_ha": null,
+      "phosphorus_kg_ha": null,
+      "potassium_kg_ha": null,
+      "source": "SoilGrids250m (Soil Health Card unavailable for this district, mocked)"
+    },
+    "weather": {
+      "annual_rainfall_mm": 560.0,
+      "season_rainfall_mm": 45.0,
+      "avg_temp_c": 26.9,
+      "source": "IMD gridded 1991-2020 normals (mocked)"
+    },
+    "ndvi_current": null,
+    "data_completeness": 0.41
+  }
+}
