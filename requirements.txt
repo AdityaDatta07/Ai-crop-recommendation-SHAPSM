@@ -1,0 +1,37 @@
+# Runtime dependencies for apps/api.
+#
+# Pinned to the versions this was developed and tested against. A deploy that
+# silently picks up a newer FastAPI or Pydantic is a deploy that can fail in a
+# way the local test suite never sees — and the first time you would find out
+# is on demo day.
+#
+# Install:  pip install -r requirements.txt
+# Run:      uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT
+#
+# NOTE ON THE RUN COMMAND: it must be executed from the REPOSITORY ROOT, not
+# from apps/api. The API imports `services.geo`, `services.ml` and reads
+# `data/reference/*.yaml`, all of which live at the root. Setting a host's
+# "root directory" to apps/api will produce ModuleNotFoundError: services.
+
+fastapi==0.141.1
+uvicorn[standard]==0.52.3
+pydantic==2.13.4
+pydantic-settings==2.15.0
+httpx==0.28.1
+PyYAML==6.0.3
+python-ulid==4.0.1
+python-dotenv==1.2.2
+
+# ---------------------------------------------------------------- optional
+#
+# Both are optional by design and the app runs without them:
+#   - No Supabase -> falls back to SQLite on local disk. Fine for a demo,
+#     but see docs/deployment.md: most hosts have an ephemeral filesystem, so
+#     every shareable /r/<id> link dies on restart.
+#   - No Earth Engine -> USE_MOCK_GEO=true serves recorded conditions and the
+#     UI says so rather than pretending the readings are live.
+#
+# Uncomment whichever you are actually configuring.
+
+# supabase==2.9.1
+# earthengine-api==1.4.3

@@ -57,15 +57,48 @@ Copy `.env.example`. The ones that actually change behaviour:
 Prefer `GEE_SERVICE_ACCOUNT_KEY_B64` over `GEE_PRIVATE_KEY_PATH` on a host with
 no filesystem you would want to leave a private key on.
 
+## 3a. Docker, or not?
+
+**Not for this.** Recommendation: Vercel for the web app, Render for the API.
+
+Docker's value is reproducibility and portability across hosts that do not
+understand your stack. Neither applies here:
+
+- Vercel runs Next.js natively and better than any container you would write —
+  it handles the build cache, image optimisation and CDN without configuration.
+- Render and Railway build Python straight from `requirements.txt`.
+- Reproducibility is already handled: every version in `requirements.txt` is
+  pinned, and a clean-virtualenv install was verified to boot the whole API.
+
+A Dockerfile would add a file to maintain, a slower build loop, and a new class
+of failure (image layers, registry auth) in exchange for nothing you need this
+week.
+
+**Use Docker instead if** you are deploying to a college VM, a VPS, or any
+single machine you control — then one `docker compose up` beats configuring two
+services by hand. In that case the API image must be built from the
+REPOSITORY ROOT, not `apps/api`, because the API imports `services/` and reads
+`data/`. No Dockerfile is committed here: an untested Dockerfile is worse than
+none, and this environment has no Docker to test one in.
+
 ## 4. Deploy the API
 
 Any host that runs a Python process. Render, Railway, Fly.io and Google Cloud
 Run all work. Two things to get right:
 
-```bash
-pip install -r requirements.txt
-uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT
-```
+**Render, step by step:**
+
+1. render.com -> New -> Web Service -> connect the GitHub repo.
+2. **Root Directory: leave BLANK.** This is the one setting people get wrong.
+   The API imports `services.geo` and reads `data/reference/*.yaml`, both at
+   the repository root. Setting it to `apps/api` produces
+   `ModuleNotFoundError: services` and the log does not explain why.
+3. Runtime: Python 3. `runtime.txt` pins 3.11.
+4. Build command: `pip install -r requirements.txt`
+5. Start command: `uvicorn apps.api.main:app --host 0.0.0.0 --port $PORT`
+6. Add the environment variables from §3. At minimum set
+   `CORS_ALLOWED_ORIGINS` to your Vercel URL once you have it.
+7. Deploy, then open `/health` and check each backend.
 
 - **Earth Engine cold starts are slow.** The first request after a scale-to-zero
   can exceed the client's 15-second timeout, and the app then serves a recorded
@@ -84,8 +117,20 @@ npm run build      # runs sync:fixtures first, then next build
 npm start
 ```
 
-On Vercel, set the root directory to `apps/web` and add
-`NEXT_PUBLIC_API_BASE_URL`. Everything else is static.
+**Vercel, step by step:**
+
+1. vercel.com -> Add New -> Project -> import the repo.
+2. **Root Directory: `apps/web`.**
+3. **Turn ON "Include source files outside of the Root Directory".** The
+   `prebuild` step runs `scripts/sync-fixtures.mjs`, which reads
+   `../../../data/seed/api-fixtures` at the repository root. Without this the
+   build fails on a missing directory.
+4. Environment variable: `NEXT_PUBLIC_API_BASE_URL` = your Render URL, with no
+   trailing slash.
+5. Deploy. Vercel gives you `https://<project>.vercel.app` — that is your URL.
+6. Go back to Render and set `CORS_ALLOWED_ORIGINS` to that exact origin, then
+   redeploy the API. Until you do, every request from the browser is blocked
+   and the site looks broken with no visible error except in the console.
 
 **I could not run `next build` end to end** — the Linux sandbox has no SWC
 binary for this platform and no network to fetch one. `tsc --noEmit` and
