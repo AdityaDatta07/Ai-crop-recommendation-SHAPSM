@@ -7,7 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { ConfidenceBadge } from './confidence-badge';
 import { formatMoney, formatNumber, NOT_AVAILABLE } from '@/lib/format';
 import type { Recommendation } from '@/types/api';
-import { useTranslation } from '@/i18n/provider';
+import { useI18n } from '@/i18n/provider';
+import { useCropName } from '@/i18n/use-crop-name';
+import { useServerText } from '@/i18n/use-server-text';
 
 const IMPACT_VARIANT = {
   positive: 'positive',
@@ -22,11 +24,13 @@ export function CropCard({
   recommendation: Recommendation;
   requestId: string;
 }) {
-  const t = useTranslation();
+  const cropName = useCropName();
+  const { t } = useI18n();
+  const serverText = useServerText();
   const { economics } = recommendation;
 
   return (
-    <Card className="transition-colors hover:border-primary/40">
+    <Card data-print-card className="transition-colors hover:border-primary/40">
       <CardContent className="p-5">
         <Link
           href={`/r/${requestId}/${recommendation.crop_code}`}
@@ -37,7 +41,9 @@ export function CropCard({
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
                 {recommendation.rank}
               </span>
-              <h2 className="text-lg font-semibold">{recommendation.name}</h2>
+              <h2 className="text-lg font-semibold">
+                {cropName(recommendation.crop_code, recommendation.name)}
+              </h2>
             </div>
             {recommendation.variety_suggested && (
               <p className="mt-1 text-sm text-muted-foreground">
@@ -82,7 +88,9 @@ export function CropCard({
               <Badge variant={IMPACT_VARIANT[reason.impact as keyof typeof IMPACT_VARIANT] ?? 'neutral'}>
                 {t(`factors.${reason.factor}`)}
               </Badge>
-              <span className="text-muted-foreground">{reason.detail}</span>
+              <span className="text-muted-foreground">
+                {serverText('reason', reason.code, reason.params, reason.detail)}
+              </span>
             </li>
           ))}
         </ul>

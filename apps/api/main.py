@@ -17,7 +17,7 @@ from apps.api.core.config import get_settings
 from apps.api.core.errors import register_exception_handlers
 from apps.api.core.reference import load_reference
 from apps.api.core.repository import build_repository, resolve_repository
-from apps.api.routers import geo, meta, prices, recommendations
+from apps.api.routers import chat, geo, meta, prices, recommendations
 from apps.api.schemas import contract as api
 from apps.api.services.recommendation_service import new_request_id
 from services.geo import geo_backend_name
@@ -107,6 +107,7 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
 
     app.include_router(recommendations.router)
+    app.include_router(chat.router)
     app.include_router(geo.router)
     app.include_router(meta.router)
     app.include_router(prices.router)

@@ -65,6 +65,37 @@ class Settings(BaseSettings):
     gee_private_key_path: str = ""
     gee_service_account_key_b64: str = ""
 
+    # ---------------------------------------------------------------- LLM
+    #
+    # The chat degrades to a deterministic answerer when these are absent, so
+    # an unconfigured clone still answers the common questions. See
+    # apps/api/services/chat.py.
+    llm_provider: str = "gemini"
+    llm_model: str = "gemini-3.7-flash"
+    llm_max_tokens: int = 2048
+    gemini_api_key: str = ""
+    anthropic_api_key: str = ""
+    openai_api_key: str = ""
+
+    #: Cap on chat turns per advisory. ai-design.md §6 asks for a session cap;
+    #: this is the enforcement point. Generous enough that a curious farmer is
+    #: never cut off mid-conversation, tight enough that a scripted client
+    #: cannot run up a bill against one stored result.
+    chat_max_turns: int = 20
+
+    @property
+    def llm_api_key(self) -> str:
+        """The key for whichever provider is configured."""
+        return {
+            "gemini": self.gemini_api_key,
+            "anthropic": self.anthropic_api_key,
+            "openai": self.openai_api_key,
+        }.get(self.llm_provider.lower().strip(), "")
+
+    @property
+    def llm_configured(self) -> bool:
+        return bool(self.llm_api_key and self.llm_model)
+
     @property
     def earth_engine_configured(self) -> bool:
         return bool(self.gee_project_id) and bool(

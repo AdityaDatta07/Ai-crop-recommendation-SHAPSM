@@ -37,6 +37,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
+from services.geo.types import ProductivitySample
 from services.geo.indices import (
     DEFINITIONS,
     HistoryPoint,
@@ -112,8 +113,41 @@ NORMALS_END = "2024-01-01"
 UNSOURCED_FIELDS = 3
 
 
-def _season_window(today: date) -> tuple[int, int]:
-    """(start_month, end_month) of the season currently being planned for."""
+#: Exceptions that mean OUR code is wrong, not that Earth Engine is unwell.
+#:
+#: The sampling blocks below catch broadly on purpose — a satellite service
+#: being unreachable must degrade, never crash, per architecture.md principle 2.
+#: But that same net caught a NameError from a parameter I forgot to thread
+#: through, and reported it to farmers as "no rainfall reading for this field".
+#: A bug that presents as missing data is a bug you ship.
+#:
+#: These re-raise so they fail where they can be seen.
+BUGS_NOT_OUTAGES = (NameError, AttributeError, TypeError, KeyError, IndexError)
+
+
+SEASON_MONTHS = {
+    "kharif": (6, 9),    # June-September, the monsoon
+    "rabi": (10, 2),     # October-February, the dry winter
+    "zaid": (3, 5),      # March-May, the hot short season
+}
+
+
+def _season_window(today: date, season: str | None = None) -> tuple[int, int]:
+    """(start_month, end_month) for the season being planned for.
+
+    `season` is what the FARMER selected and must win. Falling back to the
+    calendar was a real bug: asking for rabi in August returned the monsoon
+    window, so a rabi plan was costed against 859 mm of kharif rain instead of
+    the ~60 mm that actually falls between October and February. Every rabi
+    rainfall score was inflated and the water budget told wheat growers they
+    needed no irrigation at all.
+
+    The calendar remains the fallback for callers with no season to offer,
+    such as the field-summary endpoint.
+    """
+    if season and season.lower() in SEASON_MONTHS:
+        return SEASON_MONTHS[season.lower()]
+
     month = today.month
     if 6 <= month <= 9:
         return 6, 9      # kharif
@@ -248,6 +282,105 @@ def _masked_s2(ee, geometry, start: date, end: date):
     )
 
 
+#: How far around the plot counts as "the land around you". Large enough to
+#: contain a few hundred fields, small enough to share this plot's soil,
+#: rainfall and market. The district would be better in principle, but the
+#: reference data holds centroids and no district polygons.
+NEIGHBOURHOOD_RADIUS_M = 10_000
+
+#: Coarser than the plot scale: 10 km of 10 m pixels is 1e6 pixels and Earth
+#: Engine will refuse or silently downsample. 60 m still resolves a field.
+NEIGHBOURHOOD_SCALE_M = 60
+
+#: A pixel only enters the comparison if it ever looked like a growing crop.
+#: Without this the distribution fills with roads, roofs and water, the median
+#: collapses, and every real field is flattered into the top decile.
+CROPLAND_PEAK_NDVI = 0.35
+
+
+def _season_dates(today: date, start_month: int, end_month: int) -> tuple[date, date]:
+    """The most recent complete run of the season's months, as real dates.
+
+    Rabi straddles the new year, so the window has to step back a year rather
+    than produce a start later than its end.
+    """
+    year = today.year
+    start = date(year if start_month <= today.month else year - 1, start_month, 1)
+    end_year = start.year + (1 if end_month < start_month else 0)
+    last_day = 28 if end_month == 2 else 30 if end_month in (4, 6, 9, 11) else 31
+    end = date(end_year, end_month, last_day)
+
+    # A window that has not finished yet is fine — we compare what has grown so
+    # far — but one entirely in the future is not.
+    if start > today:
+        start = date(start.year - 1, start_month, 1)
+        end = date(end.year - 1, end_month, last_day)
+    return start, min(end, today)
+
+
+def _seasonal_amplitude(ee, geometry, start: date, end: date):
+    """Per-pixel NDVI swing across a season: peak minus trough.
+
+    Amplitude, not peak. An orchard or a patch of scrub sits high all year and
+    would top a peak-NDVI ranking without growing anything; a sown crop is
+    defined by the swing between bare ground and canopy.
+    """
+    collection = _masked_s2(ee, geometry, start, end).map(
+        lambda image: image.normalizedDifference(["B8", "B4"]).rename("ndvi")
+    )
+    peak = collection.max()
+    trough = collection.min()
+    return peak.subtract(trough).rename("amplitude"), peak
+
+
+def _productivity(ee, plot_geometry, centroid, start: date, end: date) -> dict:
+    """This plot's amplitude, and the distribution of it around the plot.
+
+    BOTH SIDES COME FROM THE SAME IMAGERY, ON PURPOSE
+    -------------------------------------------------
+    The plot figure could have been taken from the monthly NDVI series already
+    fetched for the history chart. It must not be: monthly means smooth the
+    peaks away, so a plot measured that way and a neighbourhood measured from
+    individual scenes would differ by the compositing alone. Every field would
+    have looked less vigorous than its surroundings, for arithmetic reasons.
+    """
+    lon, lat = centroid
+    neighbourhood = ee.Geometry.Point([lon, lat]).buffer(NEIGHBOURHOOD_RADIUS_M)
+
+    amplitude, peak = _seasonal_amplitude(ee, neighbourhood, start, end)
+    cropland = amplitude.updateMask(peak.gte(CROPLAND_PEAK_NDVI))
+
+    reducer = (
+        ee.Reducer.percentile([10, 25, 50, 75, 90])
+        .combine(reducer2=ee.Reducer.count(), sharedInputs=True)
+    )
+
+    stats = cropland.reduceRegion(
+        reducer=reducer,
+        geometry=neighbourhood,
+        scale=NEIGHBOURHOOD_SCALE_M,
+        maxPixels=1e9,
+        bestEffort=True,
+    ).getInfo()
+
+    plot = amplitude.reduceRegion(
+        reducer=ee.Reducer.mean(),
+        geometry=plot_geometry,
+        scale=SAMPLE_SCALE_M,
+        maxPixels=1e9,
+        bestEffort=True,
+    ).getInfo()
+
+    return {
+        "plot_amplitude": plot.get("amplitude"),
+        "percentiles": {
+            p: stats.get(f"amplitude_p{p}") for p in (10, 25, 50, 75, 90)
+        },
+        "sample_pixels": int(stats.get("amplitude_count") or 0),
+        "neighbourhood_km": NEIGHBOURHOOD_RADIUS_M / 1000,
+    }
+
+
 def _index_bands(ee, image):
     """NDVI, SAVI, NDMI and EVI as one multi-band image."""
     ndvi = image.normalizedDifference(["B8", "B4"]).rename("ndvi")
@@ -270,7 +403,11 @@ def _index_bands(ee, image):
     return ndvi.addBands([savi, ndmi, evi])
 
 
-def get_indices(place: ResolvedLocation, today: date) -> IndicesResult:
+def get_indices(
+    place: ResolvedLocation,
+    today: date,
+    season: str | None = None,
+) -> IndicesResult:
     """Current indices plus a 24-month NDVI series for the plot."""
     ee = initialise()
     geometry = _geometry(ee, place)
@@ -336,11 +473,35 @@ def get_indices(place: ResolvedLocation, today: date) -> IndicesResult:
         for key, spec in DEFINITIONS.items()
     )
 
+    # One extra reduction, guarded. A failed comparison must cost the farmer
+    # the comparison and nothing else — the indices and the history are already
+    # computed and useful on their own.
+    productivity = None
+    try:
+        start_month, end_month = _season_window(today, season)
+        raw = _productivity(
+            ee,
+            geometry,
+            place.centroid,
+            *_season_dates(today, start_month, end_month),
+        )
+        productivity = ProductivitySample(
+            plot_amplitude=raw["plot_amplitude"],
+            percentiles=raw["percentiles"],
+            sample_pixels=raw["sample_pixels"],
+            neighbourhood_km=raw["neighbourhood_km"],
+        )
+    except BUGS_NOT_OUTAGES:
+        raise
+    except Exception:
+        logger.warning("Productivity comparison failed; omitting it", exc_info=True)
+
     return IndicesResult(
         observed_on=observed_on,
         cloud_cover_pct=properties.get("CLOUDY_PIXEL_PERCENTAGE"),
         indices=indices,
         history=_ndvi_history(ee, geometry, today),
+        productivity=productivity,
         source="Copernicus Sentinel-2 (ESA), cloud-masked, via Google Earth Engine",
         tile_url_template=_tile_url(ee, latest),
     )
@@ -438,7 +599,7 @@ def _tile_url(ee, image) -> str | None:
         return None
 
 
-def get_conditions(place: ResolvedLocation) -> Conditions:
+def get_conditions(place: ResolvedLocation, season: str | None = None) -> Conditions:
     """Soil from SoilGrids, vegetation from Sentinel-2, weather from reference.
 
     TODO: when the request carries a drawn polygon, sample that geometry rather
@@ -528,7 +689,7 @@ def get_conditions(place: ResolvedLocation) -> Conditions:
     if texture is None:
         texture = _texture_from(clay, sand)
 
-    weather = _sample_climate(ee, place, radius_m)
+    weather = _sample_climate(ee, place, radius_m, season)
     for value in (weather.annual_rainfall_mm, weather.season_rainfall_mm, weather.avg_temp_c):
         total += 1
         if value is not None:
@@ -559,7 +720,12 @@ def get_conditions(place: ResolvedLocation) -> Conditions:
     )
 
 
-def _sample_climate(ee, place: ResolvedLocation, radius_m: float) -> WeatherConditions:
+def _sample_climate(
+    ee,
+    place: ResolvedLocation,
+    radius_m: float,
+    season: str | None = None,
+) -> WeatherConditions:
     """Rainfall and temperature normals for the plot.
 
     Normals, not current weather: a crop recommendation is about what this place
@@ -587,11 +753,16 @@ def _sample_climate(ee, place: ResolvedLocation, radius_m: float) -> WeatherCond
         )
         if total_mm is not None:
             annual = round(float(total_mm) / years)
+    except BUGS_NOT_OUTAGES:
+        raise
     except Exception:
         logger.warning("CHIRPS annual rainfall failed", exc_info=True)
 
+    # Hoisted out of the rainfall block: temperature needs the same window, and
+    # a rainfall failure must not silently leave temperature unfiltered.
+    start_month, end_month = _season_window(date.today(), season)
+
     try:
-        start_month, end_month = _season_window(date.today())
         months = (
             ee.Filter.calendarRange(start_month, end_month, "month")
             if start_month <= end_month
@@ -612,13 +783,33 @@ def _sample_climate(ee, place: ResolvedLocation, radius_m: float) -> WeatherCond
         )
         if season_mm is not None:
             seasonal = round(float(season_mm) / 30)
+    except BUGS_NOT_OUTAGES:
+        raise
     except Exception:
         logger.warning("CHIRPS seasonal rainfall failed", exc_info=True)
 
     try:
+        # Temperature must be filtered to the SAME season as the rainfall.
+        #
+        # This was an annual mean, which is the wrong number for every crop
+        # that does not grow all year. Lucknow averages about 25 C over the
+        # year, 29 C in kharif and 18 C in rabi. Feeding 25 C to a rabi
+        # ranking scored maize (ideal 21-30 C) at 0.98 and wheat (18-25 C) at
+        # 0.85 on the joint-highest-weighted factor — so a summer crop
+        # outranked wheat for a winter field. Temperature carries 20% of the
+        # score and no input a farmer can buy will fix a wrong one.
+        temperature_months = (
+            ee.Filter.calendarRange(start_month, end_month, "month")
+            if start_month <= end_month
+            else ee.Filter.Or(
+                ee.Filter.calendarRange(start_month, 12, "month"),
+                ee.Filter.calendarRange(1, end_month, "month"),
+            )
+        )
         kelvin = (
             ee.ImageCollection(ERA5_LAND_MONTHLY)
             .filterDate(NORMALS_START, NORMALS_END)
+            .filter(temperature_months)
             .select("temperature_2m")
             .mean()
             .reduceRegion(ee.Reducer.mean(), geometry, 11000, maxPixels=1e9, bestEffort=True)
@@ -627,6 +818,8 @@ def _sample_climate(ee, place: ResolvedLocation, radius_m: float) -> WeatherCond
         )
         if kelvin is not None:
             temperature = round(float(kelvin) - 273.15, 1)
+    except BUGS_NOT_OUTAGES:
+        raise
     except Exception:
         logger.warning("ERA5-Land temperature failed", exc_info=True)
 
@@ -634,7 +827,10 @@ def _sample_climate(ee, place: ResolvedLocation, radius_m: float) -> WeatherCond
         annual_rainfall_mm=annual,
         season_rainfall_mm=seasonal,
         avg_temp_c=temperature,
-        source="CHIRPS 1994-2023 rainfall normals, ERA5-Land temperature, via Earth Engine",
+        source=(
+            "CHIRPS 1994-2023 rainfall normals and ERA5-Land temperature, "
+            "both for this crop season, via Earth Engine"
+        ),
     )
 
 

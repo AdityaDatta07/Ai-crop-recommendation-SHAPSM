@@ -37,9 +37,274 @@
   * {
     @apply border-border;
   }
+
+  /*
+   * THE CANVAS IS DARK; THE CONTENT IS NOT.
+   *
+   * The earlier version put dark text on a pale green wash and had to veil its
+   * own artwork at 70% to stay readable — so the decoration was always fighting
+   * the text and always losing.
+   *
+   * Inverting that solves both problems at once. The page field is deep green,
+   * the cards are white and float on it, and body text is dark-on-white at
+   * roughly 15:1. Decoration now lives on the dark field where there is nothing
+   * to read, so shapes can be bold and obvious without touching a single
+   * number.
+   *
+   * This is also the better answer for the actual reading conditions: a cheap
+   * phone outdoors in daylight. A bright white page is glare; a dark surround
+   * with white content panels is what every map and camera app does outside for
+   * the same reason.
+   */
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
     /* Rural users are often on small, bright screens held at arm's length. */
     font-size: 16px;
+
+    background-color: hsl(155 42% 12%);
+    background-image:
+      radial-gradient(70rem 40rem at 8% -10%, hsl(150 45% 22% / 0.95), transparent 62%),
+      radial-gradient(55rem 34rem at 96% 4%, hsl(162 48% 18% / 0.9), transparent 60%),
+      linear-gradient(hsl(155 42% 12%), hsl(158 44% 9%));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100dvh;
   }
+
+  /*
+   * Layer 1 — the photograph, now used as texture rather than as a picture.
+   *
+   * `soft-light` lets the field read as grain and tonal variation in the green
+   * instead of as a recognisable image, which is what stops it competing with
+   * the cards on top. Small screens get the 18 KB copy: a phone never resolves
+   * the wide one, and the people this is built for are often paying for the
+   * bytes.
+   */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.22;
+    mix-blend-mode: soft-light;
+    background-image: image-set(url('/img/field-bg-sm.webp') 1x);
+    background-size: cover;
+    background-position: center top;
+  }
+
+  @media (min-width: 768px) {
+    body::before {
+      background-image: image-set(url('/img/field-bg.webp') 1x);
+    }
+  }
+
+  /*
+   * Layer 2 — the decorative geometry.
+   *
+   * Inline SVG in a data URI rather than a file: it is under 1 KB, it needs no
+   * second request, and it cannot fail to load and leave the page looking
+   * broken. Contour rings and seed-shaped leaves, in lighter greens that are
+   * only visible because the field behind them is dark.
+   *
+   * `fixed` so the pattern stays put while content scrolls over it — the
+   * shapes read as a backdrop the app sits on rather than as part of the
+   * document.
+   */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-image:
+      /* Faint grid, for a sense of surveyed land. */
+      linear-gradient(hsl(140 40% 60% / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(140 40% 60% / 0.045) 1px, transparent 1px),
+      /* Contour rings, top right. */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='%2359d9a4' stroke-opacity='0.16'%3E%3Ccircle cx='210' cy='210' r='60' stroke-width='1.5'/%3E%3Ccircle cx='210' cy='210' r='105' stroke-width='1.5'/%3E%3Ccircle cx='210' cy='210' r='150' stroke-width='1.5'/%3E%3Ccircle cx='210' cy='210' r='195' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E"),
+      /* A sprouting seed, bottom left. */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%236ee7b7' stroke-opacity='0.15' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M60 104V52'/%3E%3Cpath d='M60 66c0-14 10-26 24-30 2 16-8 30-24 34z'/%3E%3Cpath d='M60 78c0-12-9-22-21-25-2 14 7 26 21 29z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:
+      44px 44px,
+      44px 44px,
+      420px 420px,
+      360px 360px;
+    background-position:
+      0 0,
+      0 0,
+      right -90px top -70px,
+      left -60px bottom -40px;
+  }
+
+  /*
+   * Cards are the reading surface, so they stay white and gain real elevation.
+   * On a dark field a flat white box looks pasted on; the shadow is what makes
+   * it look placed.
+   */
+  [data-print-card],
+  .surface-card {
+    box-shadow:
+      0 1px 2px hsl(155 40% 6% / 0.28),
+      0 12px 28px -12px hsl(155 40% 6% / 0.45);
+  }
+}
+
+/*
+ * Text that sits directly on the dark field rather than inside a card —
+ * page headings, the shell header, the footer disclaimer.
+ */
+@layer components {
+  .on-canvas {
+    color: hsl(140 45% 96%);
+  }
+  .on-canvas-muted {
+    color: hsl(140 25% 82%);
+  }
+}
+
+/* ==========================================================================
+   Print / PDF advisory
+   ==========================================================================
+   A farmer takes this to a KVK or a bank, so it has to survive being printed
+   in black and white on someone else's printer. Three rules follow from that:
+
+     1. No colour carries meaning on its own. Backgrounds are dropped and
+        borders do the work instead, because a beige "warning" panel prints as
+        an indistinguishable grey box.
+     2. Nothing interactive appears. Buttons and toggles are dead ink on paper.
+     3. Every figure keeps its source line. The point of a printed advisory is
+        that someone else can check it.
+   ========================================================================== */
+
+@media print {
+  /* Let backgrounds drop out; borders carry the structure. */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  html,
+  /*
+   * Reveal every tab.
+   *
+   * The results page hides inactive sections with the `hidden` attribute. On
+   * paper there are no tabs to press, so all of them must come back — without
+   * this, whichever tab the farmer happened to have open would decide what
+   * their advisory contained.
+   */
+  [data-result-section][hidden] {
+    display: block !important;
+  }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.4;
+    /* Ink is expensive and a tinted page prints as grey wash. */
+    background-image: none !important;
+    background-color: #fff !important;
+  }
+
+  /* Neither decorative layer must ever reach paper. The photograph would
+     print as a grey wash and the shapes as stray marks over the figures. */
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  /* On screen these sit on the dark field and are near-white. On paper the
+     field is gone, so without this they would print white on white. */
+  .on-canvas,
+  .on-canvas-muted {
+    color: #000 !important;
+  }
+
+  /* Anything the reader cannot use on paper. */
+  header nav,
+  .no-print,
+  button,
+  [role='group'],
+  [role='tablist'] {
+    display: none !important;
+  }
+
+  /* Keep the identifying header — it is what makes the sheet traceable. */
+  .print-header {
+    display: block !important;
+    border-bottom: 2px solid #000;
+    padding-bottom: 6pt;
+    margin-bottom: 10pt;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Cards become plain bordered blocks that do not split across pages. */
+  [data-print-card] {
+    border: 1px solid #666 !important;
+    border-radius: 0 !important;
+    padding: 8pt !important;
+    margin-bottom: 8pt !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1 {
+    font-size: 16pt;
+  }
+  h2,
+  h3 {
+    font-size: 12pt;
+    break-after: avoid;
+  }
+
+  /* A crop and its reasoning must not be separated by a page break. */
+  [data-print-crop] {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Badges lose their fill, so give them an outline or they vanish. */
+  [data-print-badge] {
+    border: 1px solid #000 !important;
+    padding: 0 3pt !important;
+  }
+
+  /* Warnings must stay visible without their amber background. */
+  [data-print-warning] {
+    border: 2px solid #000 !important;
+    padding: 6pt !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Repeat the disclaimer on every page: a printed sheet gets separated. */
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #666;
+    padding-top: 4pt;
+    font-size: 8pt;
+  }
+}
+
+/* Print-only content stays hidden on screen. */
+.print-only,
+.print-header,
+.print-footer {
+  display: none;
 }

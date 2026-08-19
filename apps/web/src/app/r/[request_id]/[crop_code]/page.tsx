@@ -18,7 +18,17 @@ import {
   NOT_AVAILABLE,
 } from '@/lib/format';
 import type { Economics } from '@/types/api';
-import { useTranslation } from '@/i18n/provider';
+import { useI18n } from '@/i18n/provider';
+import { useCropName } from '@/i18n/use-crop-name';
+import { useServerText } from '@/i18n/use-server-text';
+import { PriceOutlookCard } from '@/components/recommendation/price-outlook-card';
+import { SowingWindowNote } from '@/components/recommendation/sowing-window-note';
+import { CounterfactualPanel } from '@/components/recommendation/counterfactual-panel';
+import {
+  UnitProvider,
+  UnitToggle,
+  useAreaUnit,
+} from '@/components/recommendation/unit-toggle';
 
 const IMPACT_VARIANT = {
   positive: 'positive',
@@ -50,30 +60,53 @@ function EconomicsRow({ label, value, note }: { label: string; value: string; no
   );
 }
 
-function EconomicsCard({ economics, areaHa }: { economics: Economics; areaHa: number }) {
-  const t = useTranslation();
+function EconomicsCard({
+  economics,
+  areaHa,
+  areaAcres,
+}: {
+  economics: Economics;
+  areaHa: number;
+  areaAcres?: number | null;
+}) {
+  const { t } = useI18n();
+  const serverText = useServerText();
+  const { unit } = useAreaUnit();
   const incomplete = economics.net_margin === null;
+
+  // Pick which pre-computed figure to show. Never convert here.
+  const perUnitCost =
+    unit === 'acre' ? economics.input_cost_per_acre : economics.input_cost_per_ha;
+  const perUnitMargin = unit === 'acre' ? economics.margin_per_acre : economics.margin_per_ha;
+  // The yield row used to stay in t/ha while the rows around it switched to
+  // acres — three figures in two units, stacked.
+  const perUnitYield =
+    unit === 'acre' ? economics.expected_yield_t_acre : economics.expected_yield_t_ha;
+  const unitSuffix = unit === 'acre' ? '/acre' : '/ha';
+  const plotSize =
+    unit === 'acre' && areaAcres != null
+      ? `${formatNumber(areaAcres)} acres`
+      : formatNumber(areaHa, 'ha');
 
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base">
-          {t('crop.money', { area: formatNumber(areaHa, 'ha') })}
-        </CardTitle>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <CardTitle className="text-base">{t('crop.money', { area: plotSize })}</CardTitle>
+          <UnitToggle />
+        </div>
       </CardHeader>
       <CardContent>
         <dl>
           <EconomicsRow
             label={t('crop.expectedYield')}
-            value={formatNumber(economics.expected_yield_t_ha, 't/ha')}
+            value={formatNumber(perUnitYield, unit === 'acre' ? 't/acre' : 't/ha')}
             note={t('crop.yieldNote')}
           />
           <EconomicsRow
             label={t('crop.inputCost')}
             value={
-              economics.input_cost_per_ha === null
-                ? NOT_AVAILABLE
-                : `${formatMoney(economics.input_cost_per_ha)}/ha`
+              perUnitCost == null ? NOT_AVAILABLE : `${formatMoney(perUnitCost)}${unitSuffix}`
             }
           />
           <EconomicsRow
@@ -87,8 +120,8 @@ function EconomicsCard({ economics, areaHa }: { economics: Economics; areaHa: nu
           <EconomicsRow label={t('crop.grossRevenue')} value={formatMoney(economics.gross_revenue)} />
           <EconomicsRow label={t('crop.netMargin')} value={formatMoney(economics.net_margin)} />
           <EconomicsRow
-            label={t('crop.netMarginPerHa')}
-            value={formatMoney(economics.margin_per_ha)}
+            label={unit === 'acre' ? t('crop.marginPerAcre') : t('crop.netMarginPerHa')}
+            value={formatMoney(perUnitMargin)}
           />
         </dl>
 
@@ -114,14 +147,16 @@ export default function CropDetailPage({
 }: {
   params: Promise<{ request_id: string; crop_code: string }>;
 }) {
-  const t = useTranslation();
+  const cropName = useCropName();
+  const { t } = useI18n();
+  const serverText = useServerText();
   const { request_id: requestId, crop_code: cropCode } = use(params);
   const { data, isLoading, isError, error } = useRecommendationById(requestId);
 
   if (isLoading) {
     return (
       <div className="mx-auto max-w-3xl space-y-4">
-        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+        <p className="on-canvas-muted flex items-center gap-2 text-sm">
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
           {t('results.loading')}
         </p>
@@ -147,24 +182,27 @@ export default function CropDetailPage({
   if (!crop) notFound();
 
   return (
+    <UnitProvider>
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <Link
           href={`/r/${requestId}`}
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+          className="on-canvas-muted inline-flex items-center gap-1.5 text-sm transition-colors hover:text-white"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           {t('actions.allRecommendations')}
         </Link>
 
         <div className="mt-3 flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold tracking-tight">{crop.name}</h1>
+          <h1 className="on-canvas text-2xl font-semibold tracking-tight">
+            {cropName(crop.crop_code, crop.name)}
+          </h1>
           <Badge variant="secondary">Rank {crop.rank}</Badge>
           <ConfidenceBadge confidence={crop.confidence} />
         </div>
 
         {crop.variety_suggested && (
-          <p className="mt-1 text-muted-foreground">
+          <p className="on-canvas-muted mt-1">
             {t('crop.variety', { variety: crop.variety_suggested })}
           </p>
         )}
@@ -181,12 +219,19 @@ export default function CropDetailPage({
                 <Badge variant={IMPACT_VARIANT[reason.impact as keyof typeof IMPACT_VARIANT] ?? 'neutral'}>
                   {t(`factors.${reason.factor}`)}
                 </Badge>
-                <p className="text-sm">{reason.detail}</p>
+                <p className="text-sm">
+                  {serverText('reason', reason.code, reason.params, reason.detail)}
+                </p>
               </li>
             ))}
           </ul>
         </CardContent>
       </Card>
+
+      <CounterfactualPanel
+        counterfactuals={crop.counterfactuals ?? []}
+        attribution={crop.attribution ?? []}
+      />
 
       <Card>
         <CardHeader className="pb-2">
@@ -216,10 +261,17 @@ export default function CropDetailPage({
               </dd>
             </div>
           </dl>
+          <SowingWindowNote calendar={crop.calendar} />
         </CardContent>
       </Card>
 
-      <EconomicsCard economics={crop.economics} areaHa={data.location_resolved.area_ha} />
+      {crop.price_outlook && <PriceOutlookCard outlook={crop.price_outlook} />}
+
+      <EconomicsCard
+        economics={crop.economics}
+        areaHa={data.location_resolved.area_ha}
+        areaAcres={data.location_resolved.area_acres}
+      />
 
       {crop.risks.length > 0 && (
         <Card>
@@ -245,5 +297,6 @@ export default function CropDetailPage({
         </Card>
       )}
     </div>
+    </UnitProvider>
   );
 }

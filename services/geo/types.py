@@ -69,6 +69,29 @@ class ResolvedLocation:
     centroid: tuple[float, float]  # [lon, lat], GeoJSON order
     area_ha: float
 
+    precision: str = "field"
+    """How the sample point was arrived at: "field", "point" or "district".
+
+    Every satellite figure in this app is read from a buffer around `centroid`.
+    When the farmer picks a district from a dropdown that centroid is the
+    district's own — which for Lucknow is the middle of Lucknow city. The soil,
+    the NDVI, the crop history and the productivity comparison are then all
+    accurate readings of a town, presented in exactly the same way as a reading
+    of somebody's field.
+
+    Recording the precision is what lets the UI say which one it is showing.
+    """
+
+
+@dataclass(frozen=True)
+class ProductivitySample:
+    """Raw amplitude figures. Interpretation lives in services/ml."""
+
+    plot_amplitude: float | None = None
+    percentiles: dict | None = None
+    sample_pixels: int = 0
+    neighbourhood_km: float = 0.0
+
 
 class GeoUnavailable(Exception):
     """Raised only when a location cannot be resolved at all.

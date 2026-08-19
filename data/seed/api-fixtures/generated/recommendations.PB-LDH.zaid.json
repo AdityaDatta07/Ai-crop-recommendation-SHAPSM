@@ -9,7 +9,8 @@
       75.85,
       30.9
     ],
-    "area_ha": 1.0
+    "area_ha": 1.0,
+    "area_acres": 2.47
   },
   "conditions": {
     "soil": {
@@ -69,7 +70,9 @@
           "start": "2027-10-08",
           "end": "2027-11-12"
         },
-        "duration_days": 115
+        "duration_days": 115,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 1.97,
@@ -79,8 +82,92 @@
         "net_margin": 43856,
         "margin_per_ha": 43856,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 42180,
+        "margin_per_acre": 17748,
+        "expected_yield_t_acre": 0.797
       },
+      "price_outlook": {
+        "harvest_month": "2027-10",
+        "expected_per_quintal": null,
+        "low_per_quintal": 7517,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 7517,
+        "current_per_quintal": 7517,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project October. What is certain: the support price is Rs 7517/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "soil_ph",
+          "contribution": 0.17,
+          "headroom": 0.03,
+          "score": 0.85,
+          "impact": "positive",
+          "detail": "pH 7.5 sits inside groundnut's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.12,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Sandy loam soil is well suited; this crop prefers sandy loam, loam, sandy."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "temperature",
+          "contribution": 0.0607,
+          "headroom": 0.1393,
+          "score": 0.304,
+          "impact": "negative",
+          "detail": "Average 20.5 C is cooler than the ideal 25.0-32.0 C range."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.05,
+          "headroom": 0.05,
+          "score": 0.5,
+          "impact": "neutral",
+          "detail": "MSP of Rs 7517/quintal against a published cost of Rs 5011/quintal leaves about Rs 2506/quintal."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.03,
+          "headroom": 0.07,
+          "score": 0.3,
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.0144,
+          "headroom": 0.1656,
+          "score": 0.08,
+          "impact": "negative",
+          "detail": "Rainfall is about 460 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "rainfall",
+          "kind": "limiting",
+          "current_value": "",
+          "target_value": null,
+          "score_gain": 0.166,
+          "rank_gain": 0,
+          "message": "Nothing you can realistically change moves this crop up the list. Its biggest limit is rainfall, costing about 0.17 of its score."
+        }
+      ],
       "risks": [
         {
           "type": "disease",
@@ -96,6 +183,10 @@
     }
   ],
   "warnings": [
+    {
+      "code": "SOWING_WINDOW_CLOSED",
+      "message": "The zaid sowing window has already closed this year. The dates below are for next season, so treat this as planning ahead rather than something to act on now."
+    },
     {
       "code": "PROVISIONAL_AGRONOMY",
       "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."

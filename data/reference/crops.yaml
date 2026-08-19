@@ -31,6 +31,7 @@ crops:
     texture_preferred: [loam, clay loam, silt loam]
     nitrogen_demand: high
     legume: false
+    family: poaceae
     duration_days: 135
     sowing_window: {start: "11-05", end: "12-10"}
     varieties: [HD-3086, HD-2967, DBW-187]
@@ -49,6 +50,7 @@ crops:
     texture_preferred: [loam, sandy loam]
     nitrogen_demand: medium
     legume: false
+    family: poaceae
     duration_days: 125
     sowing_window: {start: "10-25", end: "11-30"}
     varieties: [RD-2035, DWRB-101]
@@ -66,6 +68,7 @@ crops:
     texture_preferred: [loam, clay loam, sandy loam]
     nitrogen_demand: low
     legume: true
+    family: fabaceae
     duration_days: 125
     sowing_window: {start: "10-15", end: "11-20"}
     varieties: [JG-14, JAKI-9218, Pusa-372]
@@ -84,6 +87,7 @@ crops:
     texture_preferred: [loam, sandy loam]
     nitrogen_demand: low
     legume: true
+    family: fabaceae
     duration_days: 120
     sowing_window: {start: "10-20", end: "11-25"}
     varieties: [PL-8, HUL-57]
@@ -101,6 +105,7 @@ crops:
     texture_preferred: [loam, sandy loam]
     nitrogen_demand: medium
     legume: false
+    family: brassicaceae
     duration_days: 130
     sowing_window: {start: "10-10", end: "11-10"}
     varieties: [Pusa Bold, Varuna, RH-30]
@@ -118,6 +123,7 @@ crops:
     texture_preferred: [clay, clay loam, silty clay]
     nitrogen_demand: high
     legume: false
+    family: poaceae
     duration_days: 130
     sowing_window: {start: "06-10", end: "07-20"}
     varieties: [Pusa Basmati-1509, Swarna, MTU-7029]
@@ -136,6 +142,7 @@ crops:
     texture_preferred: [loam, sandy loam, silt loam]
     nitrogen_demand: high
     legume: false
+    family: poaceae
     duration_days: 110
     sowing_window: {start: "06-15", end: "07-15"}
     varieties: [HQPM-1, PMH-1]
@@ -153,6 +160,7 @@ crops:
     texture_preferred: [clay, clay loam, loam]
     nitrogen_demand: medium
     legume: false
+    family: poaceae
     duration_days: 115
     sowing_window: {start: "06-15", end: "07-15"}
     varieties: [M-35-1, CSH-16]
@@ -170,6 +178,7 @@ crops:
     texture_preferred: [sandy, sandy loam, loam]
     nitrogen_demand: low
     legume: false
+    family: poaceae
     duration_days: 85
     sowing_window: {start: "06-20", end: "07-25"}
     varieties: [HHB-67 Improved, Pusa Composite-383]
@@ -187,6 +196,7 @@ crops:
     texture_preferred: [loam, sandy loam, clay loam]
     nitrogen_demand: low
     legume: true
+    family: fabaceae
     duration_days: 180
     sowing_window: {start: "06-15", end: "07-15"}
     varieties: [ICPL-87119, UPAS-120]
@@ -205,6 +215,7 @@ crops:
     texture_preferred: [sandy loam, loam, sandy]
     nitrogen_demand: low
     legume: true
+    family: fabaceae
     duration_days: 115
     sowing_window: {start: "06-15", end: "07-20"}
     varieties: [GG-20, TAG-24]
@@ -223,6 +234,7 @@ crops:
     texture_preferred: [loam, clay loam]
     nitrogen_demand: low
     legume: true
+    family: fabaceae
     duration_days: 100
     sowing_window: {start: "06-15", end: "07-10"}
     varieties: [JS-9560, JS-2034]
@@ -241,6 +253,7 @@ crops:
     texture_preferred: [clay, clay loam, loam]
     nitrogen_demand: high
     legume: false
+    family: malvaceae
     duration_days: 165
     sowing_window: {start: "05-15", end: "06-30"}
     varieties: [Bt hybrids as locally approved]
@@ -259,6 +272,7 @@ crops:
     texture_preferred: [loam, clay loam]
     nitrogen_demand: high
     legume: false
+    family: poaceae
     duration_days: 330
     sowing_window: {start: "02-01", end: "03-31"}
     varieties: [Co-0238]
@@ -277,6 +291,7 @@ crops:
     texture_preferred: [sandy loam, loam]
     nitrogen_demand: high
     legume: false
+    family: solanaceae
     duration_days: 100
     sowing_window: {start: "10-01", end: "11-15"}
     varieties: [Kufri Bahar, Kufri Jyoti]
@@ -295,6 +310,7 @@ crops:
     texture_preferred: [loam, sandy loam]
     nitrogen_demand: medium
     legume: false
+    family: amaryllidaceae
     duration_days: 130
     sowing_window: {start: "11-01", end: "12-15"}
     varieties: [Agrifound Light Red, N-53]

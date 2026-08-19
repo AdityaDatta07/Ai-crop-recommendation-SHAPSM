@@ -26,24 +26,42 @@ logger = logging.getLogger(__name__)
 REFERENCE_DIR = Path(__file__).resolve().parents[3] / "data" / "reference"
 
 # Display names. crop_code is the stable join key and is never shown.
-CROP_NAMES: dict[str, tuple[str, str, str]] = {
-    # code: (English name, Hindi name, category)
-    "WHEAT": ("Wheat", "गेहूँ", "cereal"),
-    "RICE": ("Rice", "चावल", "cereal"),
-    "MAIZE": ("Maize", "मक्का", "cereal"),
-    "BARLEY": ("Barley", "जौ", "cereal"),
-    "SORGHUM": ("Sorghum", "ज्वार", "millet"),
-    "PEARLMLT": ("Pearl millet", "बाजरा", "millet"),
-    "CHICKPEA": ("Chickpea", "चना", "pulse"),
-    "PIGEONPEA": ("Pigeon pea", "अरहर", "pulse"),
-    "LENTIL": ("Lentil", "मसूर", "pulse"),
-    "MUSTARD": ("Mustard", "सरसों", "oilseed"),
-    "GROUNDNUT": ("Groundnut", "मूंगफली", "oilseed"),
-    "SOYBEAN": ("Soybean", "सोयाबीन", "oilseed"),
-    "COTTON": ("Cotton", "कपास", "fibre"),
-    "SUGARCANE": ("Sugarcane", "गन्ना", "cash"),
-    "POTATO": ("Potato", "आलू", "vegetable"),
-    "ONION": ("Onion", "प्याज", "vegetable"),
+#: Crop names in every language the app speaks.
+#
+# Kept here rather than in the frontend dictionaries because these come from
+# the same reference data the ranker uses — one list of crops, not two. The
+# API serves the whole `names` map and the client picks its locale, so adding
+# a language never means touching two places and getting one of them wrong.
+#
+# NOT REVIEWED BY NATIVE SPEAKERS. Crop names are the easiest thing here to
+# get subtly wrong: several have regional variants, and the common name in one
+# district is a different plant in another. Flagged in docs/handover.md.
+CROP_NAMES: dict[str, dict[str, str]] = {
+    "WHEAT":     {"en": "Wheat",        "hi": "गेहूँ",     "mr": "गहू",       "bn": "গম",        "gu": "ઘઉં",       "ta": "கோதுமை",   "te": "గోధుమ"},
+    "RICE":      {"en": "Rice",         "hi": "चावल",      "mr": "भात",       "bn": "ধান",       "gu": "ડાંગર",     "ta": "நெல்",     "te": "వరి"},
+    "MAIZE":     {"en": "Maize",        "hi": "मक्का",     "mr": "मका",       "bn": "ভুট্টা",     "gu": "મકાઈ",      "ta": "மக்காச்சோளம்", "te": "మొక్కజొన్న"},
+    "BARLEY":    {"en": "Barley",       "hi": "जौ",        "mr": "सातू",      "bn": "যব",        "gu": "જવ",        "ta": "பார்லி",   "te": "బార్లీ"},
+    "SORGHUM":   {"en": "Sorghum",      "hi": "ज्वार",     "mr": "ज्वारी",    "bn": "জোয়ার",    "gu": "જુવાર",     "ta": "சோளம்",    "te": "జొన్న"},
+    "PEARLMLT":  {"en": "Pearl millet", "hi": "बाजरा",     "mr": "बाजरी",     "bn": "বাজরা",     "gu": "બાજરી",     "ta": "கம்பு",    "te": "సజ్జ"},
+    "CHICKPEA":  {"en": "Chickpea",     "hi": "चना",       "mr": "हरभरा",     "bn": "ছোলা",      "gu": "ચણા",       "ta": "கொண்டைக்கடலை", "te": "శనగ"},
+    "PIGEONPEA": {"en": "Pigeon pea",   "hi": "अरहर",      "mr": "तूर",       "bn": "অড়হর",     "gu": "તુવેર",     "ta": "துவரை",    "te": "కంది"},
+    "LENTIL":    {"en": "Lentil",       "hi": "मसूर",      "mr": "मसूर",      "bn": "মসুর",      "gu": "મસૂર",      "ta": "மைசூர் பருப்பு", "te": "మసూర్"},
+    "MUSTARD":   {"en": "Mustard",      "hi": "सरसों",     "mr": "मोहरी",     "bn": "সরিষা",     "gu": "રાઈ",       "ta": "கடுகு",    "te": "ఆవాలు"},
+    "GROUNDNUT": {"en": "Groundnut",    "hi": "मूंगफली",   "mr": "भुईमूग",    "bn": "চিনাবাদাম", "gu": "મગફળી",     "ta": "நிலக்கடலை", "te": "వేరుశనగ"},
+    "SOYBEAN":   {"en": "Soybean",      "hi": "सोयाबीन",   "mr": "सोयाबीन",   "bn": "সয়াবিন",   "gu": "સોયાબીન",   "ta": "சோயாபீன்", "te": "సోయాబీన్"},
+    "COTTON":    {"en": "Cotton",       "hi": "कपास",      "mr": "कापूस",     "bn": "তুলা",      "gu": "કપાસ",      "ta": "பருத்தி",  "te": "పత్తి"},
+    "SUGARCANE": {"en": "Sugarcane",    "hi": "गन्ना",     "mr": "ऊस",        "bn": "আখ",        "gu": "શેરડી",     "ta": "கரும்பு",  "te": "చెరకు"},
+    "POTATO":    {"en": "Potato",       "hi": "आलू",       "mr": "बटाटा",     "bn": "আলু",       "gu": "બટાટા",     "ta": "உருளைக்கிழங்கு", "te": "బంగాళదుంప"},
+    "ONION":     {"en": "Onion",        "hi": "प्याज",     "mr": "कांदा",     "bn": "পেঁয়াজ",    "gu": "ડુંગળી",    "ta": "வெங்காயம்", "te": "ఉల్లిపాయ"},
+}
+
+CROP_CATEGORIES: dict[str, str] = {
+    "WHEAT": "cereal", "RICE": "cereal", "MAIZE": "cereal", "BARLEY": "cereal",
+    "SORGHUM": "millet", "PEARLMLT": "millet",
+    "CHICKPEA": "pulse", "PIGEONPEA": "pulse", "LENTIL": "pulse",
+    "MUSTARD": "oilseed", "GROUNDNUT": "oilseed", "SOYBEAN": "oilseed",
+    "COTTON": "fibre", "SUGARCANE": "cash",
+    "POTATO": "vegetable", "ONION": "vegetable",
 }
 
 
@@ -140,12 +158,15 @@ def load_reference() -> ReferenceData:
                     f"(got {econ.get(source_key)!r})"
                 )
 
-        name, name_hi, category = CROP_NAMES.get(code, (code.title(), "", "other"))
+        names = CROP_NAMES.get(code, {"en": code.title()})
+        name = names.get("en", code.title())
+        category = CROP_CATEGORIES.get(code, "other")
 
         crops[code] = CropSpec(
             crop_code=code,
             name=name,
-            name_hi=name_hi or None,
+            name_hi=names.get("hi") or None,
+            names=names,
             category=category,
             seasons=tuple(spec["seasons"]),
             ph_optimal=tuple(spec["ph_optimal"]),
@@ -156,6 +177,7 @@ def load_reference() -> ReferenceData:
             irrigation_need=spec["irrigation_need"],
             texture_preferred=tuple(spec["texture_preferred"]),
             nitrogen_demand=spec["nitrogen_demand"],
+            family=str(spec.get("family", "")),
             legume=bool(spec["legume"]),
             duration_days=int(spec["duration_days"]),
             sowing_window=DateWindow(**spec["sowing_window"]),

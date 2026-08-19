@@ -5,7 +5,13 @@ const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElemen
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('rounded-lg border border-border bg-card text-card-foreground shadow-sm', className)}
+      // `surface-card` carries the elevation defined in globals.css. On a dark
+      // field a flat white box looks pasted on rather than placed, and the
+      // shadow is the whole difference.
+      className={cn(
+        'surface-card rounded-xl border border-black/5 bg-card text-card-foreground',
+        className,
+      )}
       {...props}
     />
   ),

@@ -102,3 +102,21 @@ export function validateRing(ring: LonLat[]): string | null {
   }
   return null;
 }
+
+
+/**
+ * 1 hectare = 2.4710538147 acres (international acre).
+ *
+ * Kept here beside the other geometry so there is one definition; the API uses
+ * the same constant server-side. This converts an INPUT the farmer typed, not
+ * a derived money figure — those stay server-side.
+ */
+export const ACRES_PER_HECTARE = 2.4710538147;
+
+export function acresToHectares(acres: number): number {
+  return acres / ACRES_PER_HECTARE;
+}
+
+export function hectaresToAcres(hectares: number): number {
+  return hectares * ACRES_PER_HECTARE;
+}

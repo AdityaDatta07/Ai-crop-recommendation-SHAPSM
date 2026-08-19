@@ -7,7 +7,8 @@
       74.95,
       30.21
     ],
-    "area_ha": 1.0
+    "area_ha": 1.0,
+    "area_acres": null
   },
   "observed_on": "2026-08-11",
   "cloud_cover_pct": 22.0,

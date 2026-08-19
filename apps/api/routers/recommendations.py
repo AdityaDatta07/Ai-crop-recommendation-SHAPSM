@@ -25,7 +25,11 @@ def create(
     repository: ResultRepository = Depends(get_repository),
     request_id: str = Depends(get_request_id),
 ) -> api.RecommendationResponse:
-    result = recommend(request, reference, request_id=request_id)
+    # The repository is passed in, not built here: the crowding panel counts
+    # advisories out of it, and it must be the SAME store the router is about
+    # to save into. Two stores would mean the advisory a farmer is reading is
+    # missing from the totals shown beside it.
+    result = recommend(request, reference, request_id=request_id, repository=repository)
 
     # Persist for the replay window. A failure here is logged, not raised - the
     # answer is already computed and the farmer should still get it.

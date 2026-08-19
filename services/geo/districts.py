@@ -180,7 +180,25 @@ def polygon_area_ha(rings: list[list[list[float]]]) -> float:
 
 
 def resolve(location: Location, area_ha: float) -> ResolvedLocation:
-    """Normalise any of the three location forms to a district and centroid."""
+    """Normalise any of the three location forms to a district and centroid.
+
+    THE CENTROID IS WHERE WE SAMPLE, SO IT MUST BE THE FARMER'S FIELD
+    -----------------------------------------------------------------
+    Every satellite reading in this app is taken from a buffer around
+    `centroid`. This function used to return the DISTRICT record's centroid for
+    all three location types, which meant a dropped pin and a carefully drawn
+    boundary were both thrown away and replaced with the middle of the
+    district — usually its main town.
+
+    The symptom was a plot in Lucknow reporting flat, low NDVI and "no crop
+    grown", with high confidence. The reading was accurate. It was a reading of
+    the city.
+
+    So: the district record names the place, and only supplies the sample point
+    when the farmer picked a district and gave us nothing more precise.
+    """
+    sample_point: tuple[float, float] | None = None
+
     if location.type == "admin":
         record = find_by_code(location.district_code or "")
         if record is None:
@@ -190,6 +208,7 @@ def resolve(location: Location, area_ha: float) -> ResolvedLocation:
         if location.lat is None or location.lon is None:
             raise GeoUnavailable("Point location is missing coordinates.")
         record = nearest_district(location.lon, location.lat)
+        sample_point = (location.lon, location.lat)
 
     elif location.type == "polygon":
         if not location.coordinates:
@@ -210,6 +229,7 @@ def resolve(location: Location, area_ha: float) -> ResolvedLocation:
             )
         lon, lat = polygon_centroid(rings)
         record = nearest_district(lon, lat)
+        sample_point = (lon, lat)
 
     else:  # pragma: no cover - Pydantic rejects this at the edge
         raise GeoUnavailable(f"Unsupported location type: {location.type!r}")
@@ -218,6 +238,15 @@ def resolve(location: Location, area_ha: float) -> ResolvedLocation:
         state_code=record.state_code,
         district_code=record.district_code,
         district_name=record.district_name,
-        centroid=(record.lon, record.lat),
+        # The farmer's own point wins. The district centroid is the fallback
+        # for an administrative selection, where it is genuinely all we have.
+        centroid=sample_point or (record.lon, record.lat),
         area_ha=round(area_ha, 4),
+        precision=(
+            "field"
+            if location.type == "polygon"
+            else "point"
+            if location.type == "point"
+            else "district"
+        ),
     )

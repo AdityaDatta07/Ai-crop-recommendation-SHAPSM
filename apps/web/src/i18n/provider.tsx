@@ -37,7 +37,12 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     }
     // No stored preference: follow the browser, which on an Indian handset set
     // to Hindi is a better first guess than English.
-    if (navigator.language?.toLowerCase().startsWith('hi')) setLocaleState('hi');
+    // Match the browser's language against everything we speak, not just
+    // Hindi. A Tamil phone landing on an English page when we have Tamil is a
+    // failure the user has no reason to suspect is fixable.
+    const preferred = navigator.language?.toLowerCase().split('-')[0];
+    const match = LOCALES.find((code) => code === preferred);
+    if (match && match !== DEFAULT_LOCALE) setLocaleState(match);
   }, []);
 
   useEffect(() => {

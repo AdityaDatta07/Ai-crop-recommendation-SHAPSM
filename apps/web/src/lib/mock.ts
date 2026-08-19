@@ -104,15 +104,30 @@ function forcedScenario(): MockScenario | null {
   return MOCK_SCENARIO === 'success' ? null : MOCK_SCENARIO;
 }
 
-/** Says plainly that these numbers are a recording, not a live calculation. */
-function mockWarnings(requestedAreaHa: number) {
+/** Says plainly that these numbers are a recording, not a live calculation.
+ *
+ * Two callers, two different things to say. In mock MODE a developer chose to
+ * replay fixtures. In offline FALLBACK a farmer lost signal and we replayed one
+ * on their behalf, which is a different situation and deserves different words.
+ */
+function mockWarnings(requestedAreaHa: number, offline = false) {
   const warnings = [
-    {
-      code: 'MOCK_DATA',
-      message:
-        'Offline sample data — a recording of a real result for this district and season, ' +
-        'not a live calculation. Connect the API for current figures.',
-    },
+    offline
+      ? {
+          code: 'OFFLINE_RECORDING',
+          params: {},
+          message:
+            'You are offline. This is a recorded result for this district and season, ' +
+            'not a live calculation — prices in particular may have moved. Reconnect for ' +
+            'current figures.',
+        }
+      : {
+          code: 'MOCK_DATA',
+          params: {},
+          message:
+            'Offline sample data — a recording of a real result for this district and season, ' +
+            'not a live calculation. Connect the API for current figures.',
+        },
   ];
 
   // The recording is for a 1 ha plot. Rescaling it here would mean doing
@@ -121,6 +136,7 @@ function mockWarnings(requestedAreaHa: number) {
   if (Math.abs(requestedAreaHa - AREA_RECORDED_HA) > 0.001) {
     warnings.push({
       code: 'MOCK_FIXED_AREA',
+      params: { recorded: AREA_RECORDED_HA, requested: requestedAreaHa },
       message:
         `Sample figures are for a ${AREA_RECORDED_HA} ha plot, not the ` +
         `${requestedAreaHa} ha you entered. Connect the API to size them to your field.`,
@@ -181,8 +197,13 @@ export const mockApi = {
     );
   },
 
-  async recommendations(request: RecommendationRequest): Promise<RecommendationResponse> {
-    await delay(1600);
+  async recommendations(
+    request: RecommendationRequest,
+    offline = false,
+  ): Promise<RecommendationResponse> {
+    // No artificial latency when standing in for a dead network: the farmer has
+    // already waited for the request to time out.
+    await delay(offline ? 0 : 1600);
 
     const scenario = forcedScenario();
     if (scenario === 'error-no-data') {
@@ -234,7 +255,7 @@ export const mockApi = {
     return {
       ...recorded,
       recommendations,
-      warnings: [...recorded.warnings, ...mockWarnings(request.area_ha)],
+      warnings: [...recorded.warnings, ...mockWarnings(request.area_ha, offline)],
     };
   },
 

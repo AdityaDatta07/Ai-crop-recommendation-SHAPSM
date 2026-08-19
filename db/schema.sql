@@ -18,6 +18,19 @@ create table if not exists public.recommendation_results (
     request_id      text primary key,
     payload         jsonb       not null,
     district_code   text,
+
+    -- Denormalised out of `payload` for the district crowding panel. Both are
+    -- derivable from the JSON, but counting a crop across thousands of jsonb
+    -- blobs to draw one panel is a query that behaves very differently at 50
+    -- rows and at 50,000.
+    season          text,
+    top_crop_code   text,
+
+    -- True when scripts/seed_advisories.py generated this rather than a person
+    -- asking for it. Real output of the real recommender, but a total that
+    -- silently mixed the two would overstate how much this tool is consulted.
+    seeded          boolean     not null default false,
+
     created_at      timestamptz not null default now(),
     expires_at      timestamptz not null default now() + interval '30 days',
 
@@ -34,6 +47,13 @@ comment on column public.recommendation_results.request_id is
 
 create index if not exists recommendation_results_expires_at_idx
     on public.recommendation_results (expires_at);
+
+-- Serves the crowding panel: every read is district + season + unexpired.
+create index if not exists recommendation_results_district_season_idx
+    on public.recommendation_results (district_code, season);
+
+comment on column public.recommendation_results.top_crop_code is
+    'Crop ranked first in this advisory. Counts of this column describe ADVISORIES THIS TOOL ISSUED, never farmers or sown area - see apps/api/services/crowding.py.';
 
 create index if not exists recommendation_results_district_idx
     on public.recommendation_results (district_code, created_at desc);

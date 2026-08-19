@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown, FlaskConical } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/i18n/provider';
 import type { SoilTest } from '@/types/api';
@@ -63,7 +64,15 @@ export function SoilTestFields({
   }
 
   return (
-    <div className="rounded-lg border border-border">
+    // A Card, not a bare bordered div.
+    //
+    // Every other section on this form is a Card, which carries `bg-card`.
+    // This one was the exception, so after the theme inverted it had no
+    // background at all: dark labels sitting directly on the dark canvas,
+    // legible only where the decorative layer happened to be light. The bug
+    // was invisible in the old light theme because the page behind it was
+    // white anyway.
+    <Card className="overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
@@ -116,6 +125,6 @@ export function SoilTestFields({
           <p className="mt-3 text-xs text-muted-foreground">{t('soil.partialOk')}</p>
         </div>
       )}
-    </div>
+    </Card>
   );
 }

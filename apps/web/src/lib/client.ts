@@ -7,7 +7,10 @@ import {
 } from './config';
 import { ApiError } from './api-error';
 import { mockApi } from './mock';
+import { withOfflineFallback } from './offline';
 import type {
+  MspResponse,
+  ChatResponse,
   CropsResponse,
   DistrictsResponse,
   FieldSummaryRequest,
@@ -79,23 +82,53 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
 }
 
 export const api = {
+  /** The MSP lookup table. Static reference data; safe to cache forever. */
+  getMsp(): Promise<MspResponse> {
+    return request<MspResponse>('/api/v1/meta/msp');
+  },
+
+  /**
+   * Ask about one stored advisory.
+   *
+   * Deliberately NOT wrapped in withOfflineFallback: there is no offline
+   * answer to fall back to, and a mock reply here would be a fabricated
+   * answer to a question about real money. Offline, this throws and the chat
+   * box says it could not reach the assistant.
+   */
+  askAboutAdvisory(requestId: string, message: string, turn: number): Promise<ChatResponse> {
+    return request<ChatResponse>(`/api/v1/recommendations/${requestId}/chat`, {
+      method: 'POST',
+      body: { message, turn },
+    });
+  },
+
   getDistricts(): Promise<DistrictsResponse> {
     if (USE_MOCK_API) return mockApi.districts();
-    return request<DistrictsResponse>('/api/v1/meta/districts');
+    return withOfflineFallback(
+      () => request<DistrictsResponse>('/api/v1/meta/districts'),
+      () => mockApi.districts(),
+    );
   },
 
   getCrops(lang?: Lang): Promise<CropsResponse> {
     if (USE_MOCK_API) return mockApi.crops();
-    return request<CropsResponse>('/api/v1/meta/crops', { lang });
+    return withOfflineFallback(
+      () => request<CropsResponse>('/api/v1/meta/crops', { lang }),
+      () => mockApi.crops(),
+    );
   },
 
   getFieldSummary(body: FieldSummaryRequest): Promise<FieldSummaryResponse> {
     if (USE_MOCK_API) return mockApi.fieldSummary(body.location);
-    return request<FieldSummaryResponse>('/api/v1/geo/field-summary', {
-      method: 'POST',
-      body,
-      timeoutMs: FIELD_SUMMARY_TIMEOUT_MS,
-    });
+    return withOfflineFallback(
+      () =>
+        request<FieldSummaryResponse>('/api/v1/geo/field-summary', {
+          method: 'POST',
+          body,
+          timeoutMs: FIELD_SUMMARY_TIMEOUT_MS,
+        }),
+      () => mockApi.fieldSummary(body.location),
+    );
   },
 
   getIndices(body: IndicesRequest): Promise<IndicesResponse> {
@@ -109,13 +142,23 @@ export const api = {
 
   postRecommendations(body: RecommendationRequest, lang?: Lang): Promise<RecommendationResponse> {
     if (USE_MOCK_API) return mockApi.recommendations(body);
-    return request<RecommendationResponse>('/api/v1/recommendations', {
-      method: 'POST',
-      body,
-      lang,
-    });
+    // The one call that matters offline. `true` selects the OFFLINE_RECORDING
+    // warning rather than the developer-facing mock one.
+    return withOfflineFallback(
+      () =>
+        request<RecommendationResponse>('/api/v1/recommendations', {
+          method: 'POST',
+          body,
+          lang,
+        }),
+      () => mockApi.recommendations(body, true),
+    );
   },
 
+  // Deliberately NOT wrapped in withOfflineFallback. useRecommendationById
+  // already reads the local cache first, so a saved result opens offline on its
+  // own. Serving a district recording under someone else's request_id would
+  // attach a stranger's advice to their link.
   getRecommendationById(requestId: string): Promise<RecommendationResponse> {
     if (USE_MOCK_API) return mockApi.recommendationById(requestId);
     return request<RecommendationResponse>(

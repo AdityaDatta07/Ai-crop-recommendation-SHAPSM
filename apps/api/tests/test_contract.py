@@ -111,19 +111,40 @@ class TestLiveResponsesMatchTheContract:
         for item in body["recommendations"]:
             assert 2 <= len(item["reasons"]) <= 4, item["crop_code"]
 
+    # Top-level fields added since the freeze, same reasoning as the per-crop list.
+    ADDITIVE_TOP_LEVEL = {"comparison", "request_echo", "risk", "water", "crowding"}
+
     def test_live_response_has_the_same_top_level_keys_as_the_fixture(
         self, client, lucknow_request, fixture_json
     ):
         """Structural parity, checked directly rather than inferred."""
         live = client.post("/api/v1/recommendations", json=lucknow_request).json()
-        assert set(live) == set(fixture_json("recommendations.success"))
+        expected = set(fixture_json("recommendations.success"))
+        actual = set(live)
+
+        assert expected - actual == set(), "live output dropped a contract field"
+        assert actual - expected <= self.ADDITIVE_TOP_LEVEL
+
+    # Fields added since the v1 freeze. Additive only: older clients ignore
+    # them, and the frozen fixtures predate them. Anything NOT on this list
+    # appearing in live output but missing from the fixture is real drift.
+    ADDITIVE_SINCE_FREEZE = {"price_outlook", "counterfactuals", "attribution", "rotation", "rank_by_return"}
+
+    # Same for nested objects that gained fields.
+    ADDITIVE_ECONOMICS = {"input_cost_per_acre", "margin_per_acre"}
 
     def test_live_recommendation_has_the_same_keys_as_the_fixture(
         self, client, lucknow_request, fixture_json
     ):
         live = client.post("/api/v1/recommendations", json=lucknow_request).json()
         expected = set(fixture_json("recommendations.success")["recommendations"][0])
-        assert set(live["recommendations"][0]) == expected
+        actual = set(live["recommendations"][0])
+
+        assert expected - actual == set(), "live output dropped a contract field"
+        assert actual - expected <= self.ADDITIVE_SINCE_FREEZE, (
+            "live output gained a field not declared additive — update the "
+            "contract document and this list together"
+        )
 
     def test_live_economics_reconcile(self, client, lucknow_request):
         """The same arithmetic check as the fixtures, against real output."""

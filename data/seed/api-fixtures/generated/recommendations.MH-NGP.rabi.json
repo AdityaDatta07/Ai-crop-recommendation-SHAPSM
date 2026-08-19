@@ -9,7 +9,8 @@
       79.09,
       21.15
     ],
-    "area_ha": 1.0
+    "area_ha": 1.0,
+    "area_acres": 2.47
   },
   "conditions": {
     "soil": {
@@ -59,7 +60,9 @@
           "start": "2027-02-27",
           "end": "2027-04-04"
         },
-        "duration_days": 125
+        "duration_days": 125,
+        "days_until_sowing": 68,
+        "window_status": "upcoming"
       },
       "economics": {
         "expected_yield_t_ha": 3.47,
@@ -69,8 +72,101 @@
         "net_margin": 28835,
         "margin_per_ha": 28835,
         "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 18522,
+        "margin_per_acre": 11669,
+        "expected_yield_t_acre": 1.404
       },
+      "price_outlook": {
+        "harvest_month": "2027-02",
+        "expected_per_quintal": null,
+        "low_per_quintal": 2150,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 2150,
+        "current_per_quintal": 2150,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project February. What is certain: the support price is Rs 2150/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1748,
+          "headroom": 0.0252,
+          "score": 0.874,
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.119,
+          "headroom": 0.081,
+          "score": 0.595,
+          "impact": "neutral",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.5-8.0 band, which can limit nutrient uptake."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.1158,
+          "headroom": 0.0642,
+          "score": 0.643,
+          "impact": "neutral",
+          "detail": "Rainfall is about 107 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, sandy loam."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.058,
+          "headroom": 0.042,
+          "score": 0.58,
+          "impact": "neutral",
+          "detail": "MSP of Rs 2150/quintal against a published cost of Rs 1361/quintal leaves about Rs 789/quintal."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "8.3",
+          "target_value": "8.7",
+          "score_gain": 0.0,
+          "rank_gain": -2,
+          "message": "This depends on your soil pH. At 8.7 instead of 8.3, it would drop 2 places."
+        },
+        {
+          "factor": "soil_ph",
+          "kind": "limiting",
+          "current_value": "",
+          "target_value": null,
+          "score_gain": 0.081,
+          "rank_gain": 0,
+          "message": "Nothing you can realistically change moves this crop up the list. Its biggest limit is soil ph, costing about 0.08 of its score."
+        }
+      ],
       "risks": [
         {
           "type": "disease",
@@ -112,7 +208,9 @@
           "start": "2027-02-17",
           "end": "2027-03-20"
         },
-        "duration_days": 130
+        "duration_days": 130,
+        "days_until_sowing": 53,
+        "window_status": "upcoming"
       },
       "economics": {
         "expected_yield_t_ha": 1.49,
@@ -122,8 +220,101 @@
         "net_margin": 45418,
         "margin_per_ha": 45418,
         "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 19005,
+        "margin_per_acre": 18380,
+        "expected_yield_t_acre": 0.603
       },
+      "price_outlook": {
+        "harvest_month": "2027-02",
+        "expected_per_quintal": null,
+        "low_per_quintal": 6200,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 6200,
+        "current_per_quintal": 6200,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project February. What is certain: the support price is Rs 6200/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1732,
+          "headroom": 0.0268,
+          "score": 0.866,
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 10.0-25.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.139,
+          "headroom": 0.041,
+          "score": 0.772,
+          "impact": "positive",
+          "detail": "Rainfall is about 57 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0931,
+          "headroom": 0.0069,
+          "score": 0.931,
+          "impact": "positive",
+          "detail": "MSP of Rs 6200/quintal against a published cost of Rs 3210/quintal leaves about Rs 2990/quintal."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, sandy loam."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.034,
+          "headroom": 0.166,
+          "score": 0.17,
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-7.5 band, which can limit nutrient uptake."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "threshold",
+          "current_value": "8.3",
+          "target_value": "7.7",
+          "score_gain": 0.102,
+          "rank_gain": 1,
+          "message": "At soil pH 7.7 instead of 8.3, this moves up 1 place."
+        },
+        {
+          "factor": "nitrogen",
+          "kind": "fragility",
+          "current_value": "285 kg/ha",
+          "target_value": "205 kg/ha",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your available nitrogen. At 205 kg/ha instead of 285 kg/ha, it would drop 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "pest",
@@ -165,7 +356,9 @@
           "start": "2027-02-17",
           "end": "2027-03-25"
         },
-        "duration_days": 120
+        "duration_days": 120,
+        "days_until_sowing": 63,
+        "window_status": "upcoming"
       },
       "economics": {
         "expected_yield_t_ha": 1.16,
@@ -175,8 +368,92 @@
         "net_margin": 39111,
         "margin_per_ha": 39111,
         "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 17033,
+        "margin_per_acre": 15828,
+        "expected_yield_t_acre": 0.469
       },
+      "price_outlook": {
+        "harvest_month": "2027-02",
+        "expected_per_quintal": null,
+        "low_per_quintal": 7000,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 7000,
+        "current_per_quintal": 7000,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project February. What is certain: the support price is Rs 7000/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1748,
+          "headroom": 0.0252,
+          "score": 0.874,
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.139,
+          "headroom": 0.041,
+          "score": 0.772,
+          "impact": "positive",
+          "detail": "Rainfall is about 57 mm short of the 250 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0889,
+          "headroom": 0.0111,
+          "score": 0.889,
+          "impact": "positive",
+          "detail": "MSP of Rs 7000/quintal against a published cost of Rs 3705/quintal leaves about Rs 3295/quintal."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, sandy loam."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.034,
+          "headroom": 0.166,
+          "score": 0.17,
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-7.5 band, which can limit nutrient uptake."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "threshold",
+          "current_value": "8.3",
+          "target_value": "7.7",
+          "score_gain": 0.102,
+          "rank_gain": 1,
+          "message": "At soil pH 7.7 instead of 8.3, this moves up 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "pest",
@@ -218,7 +495,9 @@
           "start": "2027-02-17",
           "end": "2027-03-25"
         },
-        "duration_days": 125
+        "duration_days": 125,
+        "days_until_sowing": 58,
+        "window_status": "upcoming"
       },
       "economics": {
         "expected_yield_t_ha": 1.21,
@@ -228,8 +507,101 @@
         "net_margin": 26034,
         "margin_per_ha": 26034,
         "price_source": "MSP, Rabi 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 18233,
+        "margin_per_acre": 10536,
+        "expected_yield_t_acre": 0.49
       },
+      "price_outlook": {
+        "harvest_month": "2027-02",
+        "expected_per_quintal": null,
+        "low_per_quintal": 5875,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 5875,
+        "current_per_quintal": 5875,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project February. What is certain: the support price is Rs 5875/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1748,
+          "headroom": 0.0252,
+          "score": 0.874,
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 15.0-25.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.1158,
+          "headroom": 0.0642,
+          "score": 0.643,
+          "impact": "neutral",
+          "detail": "Rainfall is about 107 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, clay loam, sandy loam."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0588,
+          "headroom": 0.0412,
+          "score": 0.588,
+          "impact": "neutral",
+          "detail": "MSP of Rs 5875/quintal against a published cost of Rs 3699/quintal leaves about Rs 2176/quintal."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.034,
+          "headroom": 0.166,
+          "score": 0.17,
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-7.5 band, which can limit nutrient uptake."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "8.3",
+          "target_value": "8.2",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 8.2 instead of 8.3, it would drop 1 place."
+        },
+        {
+          "factor": "soil_ph",
+          "kind": "limiting",
+          "current_value": "",
+          "target_value": null,
+          "score_gain": 0.166,
+          "rank_gain": 0,
+          "message": "Nothing you can realistically change moves this crop up the list. Its biggest limit is soil ph, costing about 0.17 of its score."
+        }
+      ],
       "risks": [
         {
           "type": "disease",
@@ -276,7 +648,9 @@
           "start": "2027-10-08",
           "end": "2027-11-07"
         },
-        "duration_days": 115
+        "duration_days": 115,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 1.23,
@@ -286,8 +660,101 @@
         "net_margin": 16226,
         "margin_per_ha": 16226,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 13459,
+        "margin_per_acre": 6566,
+        "expected_yield_t_acre": 0.498
       },
+      "price_outlook": {
+        "harvest_month": "2027-10",
+        "expected_per_quintal": null,
+        "low_per_quintal": 4023,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 4023,
+        "current_per_quintal": 4023,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project October. What is certain: the support price is Rs 4023/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1715,
+          "headroom": 0.0285,
+          "score": 0.857,
+          "impact": "positive",
+          "detail": "Average 24.2 C is within the ideal 24.0-32.0 C range."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Available nitrogen (285 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.0868,
+          "headroom": 0.0932,
+          "score": 0.482,
+          "impact": "neutral",
+          "detail": "Rainfall is about 207 mm short of the 400 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers clay, clay loam, loam."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.068,
+          "headroom": 0.132,
+          "score": 0.34,
+          "impact": "negative",
+          "detail": "pH 8.3 is more alkaline than the preferred 6.0-8.0 band, which can limit nutrient uptake."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.05,
+          "headroom": 0.05,
+          "score": 0.5,
+          "impact": "neutral",
+          "detail": "MSP of Rs 4023/quintal against a published cost of Rs 2682/quintal leaves about Rs 1341/quintal."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "threshold",
+          "current_value": "8.3",
+          "target_value": "8.2",
+          "score_gain": 0.034,
+          "rank_gain": 1,
+          "message": "At soil pH 8.2 instead of 8.3, this moves up 1 place."
+        },
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "8.3",
+          "target_value": "8.4",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 8.4 instead of 8.3, it would drop 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "pest",

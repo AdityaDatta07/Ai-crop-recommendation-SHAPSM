@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Crop Advisor",
+    "name": "Beej Nirnay",
     "disclaimer": "Advisory only. Every figure carries its source — check it against local extension advice before sowing."
   },
   "home": {
@@ -44,7 +44,11 @@
     "drip": "Drip",
     "areaNotNumber": "Enter a number.",
     "areaTooSmall": "Area must be greater than zero.",
-    "areaTooLarge": "This tool covers plots up to 100 hectares."
+    "areaTooLarge": "This tool covers plots up to 100 hectares.",
+    "areaUnitHa": "hectares",
+    "areaUnitAcre": "acres",
+    "areaEquals": "= {value} {unit}",
+    "areaUnitHaOne": "hectare"
   },
   "actions": {
     "submit": "Show me what to grow",
@@ -53,7 +57,8 @@
     "changeField": "Change field or season",
     "allRecommendations": "All recommendations",
     "startAgain": "Start again",
-    "goBack": "Go back"
+    "goBack": "Go back",
+    "cancel": "Cancel"
   },
   "conditions": {
     "heading": "Field conditions",
@@ -72,7 +77,8 @@
     "avgTemp": "Average temperature",
     "ndvi": "Current NDVI",
     "source": "Source: {source}",
-    "reading": "Reading soil and weather data…"
+    "reading": "Reading soil and weather data…",
+    "recorded": "These are stored sample figures, not a live reading. The satellite service could not be reached in time — check your connection, or try again in a moment. Do not sow on these numbers."
   },
   "results": {
     "title": "Best options for {district}",
@@ -100,14 +106,22 @@
     "timeInField": "Time in the field",
     "days": "{count} days",
     "money": "Money, for your {area} plot",
-    "expectedPrice": "Expected price",
+    "expectedPrice": "Expected price (used below)",
     "grossRevenue": "Gross revenue",
     "netMarginPerHa": "Net margin per hectare",
     "yieldNote": "Historical district average, not a prediction for this plot",
     "priceUnavailable": "Market prices were unavailable for this crop, so the revenue figures cannot be shown. The agronomic advice above still stands.",
     "priceSource": "Price source: {source}",
     "risks": "What to watch for",
-    "risksNote": "These are the risks typical for this crop in this region, not a live pest alert."
+    "risksNote": "These are the risks typical for this crop in this region, not a live pest alert.",
+    "unitHectare": "Hectare",
+    "unitAcre": "Acre",
+    "unitLabel": "Show money per",
+    "windowOpen": "Sowing window is open now",
+    "windowUpcoming": "Sowing starts in {days} days",
+    "windowClosed": "This year's sowing window has passed — dates shown are for next season",
+    "costPerAcre": "Input cost",
+    "marginPerAcre": "Net margin per acre"
   },
   "factors": {
     "soil_ph": "Soil pH",
@@ -118,7 +132,7 @@
     "irrigation": "Irrigation",
     "market_price": "Market price",
     "season_fit": "Season fit",
-    "rotation": "Crop rotation"
+    "rotation": "Rotation"
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
@@ -166,5 +180,627 @@
     "partialOk": "Enter whichever values you have — one is better than none.",
     "invalid": "Enter a positive number.",
     "tooHigh": "That looks too high (max {max}). Check the decimal point."
+  },
+  "outlook": {
+    "title": "Price when you sell",
+    "titleMonth": "Price when you sell — {month}",
+    "expected": "Expected",
+    "range": "Usual range",
+    "floor": "Guaranteed floor (MSP)",
+    "today": "Today's mandi price",
+    "perQuintal": "/quintal",
+    "basisHistory": "from {count} recorded prices",
+    "basisFloor": "floor price, not a forecast"
+  },
+  "counterfactual": {
+    "title": "What would have to change",
+    "rankGain": "+{places} place",
+    "note": "Worked out by re-running the ranking with one value altered — not an estimate of the model, but the model run again.",
+    "attributionTitle": "How the score was built",
+    "attributionHelp": "Each factor's exact share of this crop's score. They add up to the total — nothing is hidden.",
+    "contributes": "contributes",
+    "headroom": "{value} left on the table",
+    "totalScore": "Total score",
+    "fragilityTitle": "What this depends on"
+  },
+  "comparison": {
+    "title": "Compared with last season",
+    "lastSeason": "You grew",
+    "thisSeason": "We suggest",
+    "rank": "Rank {rank}",
+    "notSuited": "Not suited this season",
+    "margin": "Net margin",
+    "yield": "Expected yield",
+    "difference": "Difference on this plot",
+    "note": "Both crops valued by the same method on the same field, so the gap is down to the crop — not what either would have actually sold for.",
+    "prompt": "What did you grow here last season?",
+    "promptHelp": "Optional. We will value it the same way and show them side by side.",
+    "none": "Not sure / did not grow",
+    "earnsMore": "{crop} earns more than {previous} on this plot",
+    "earnsLess": "{crop} earns less than {previous} on this plot — the cost of the better agronomic fit"
+  },
+  "print": {
+    "download": "Download advisory",
+    "title": "Beej Nirnay — Crop Advisory",
+    "reference": "Reference: {id}",
+    "generated": "Generated {date}",
+    "hint": "Opens your browser's print dialog — choose \"Save as PDF\" to keep a copy."
+  },
+  "server": {
+    "term": {
+      "rainfed": "rainfed",
+      "canal": "canal",
+      "tubewell": "tubewell",
+      "drip": "drip",
+      "low": "low",
+      "medium": "medium",
+      "high": "high",
+      "kharif": "kharif",
+      "rabi": "rabi",
+      "zaid": "zaid",
+      "sand": "sand",
+      "loam": "loam",
+      "clay": "clay",
+      "silt": "silt",
+      "sandy loam": "sandy loam",
+      "clay loam": "clay loam",
+      "silty clay": "silty clay",
+      "silt loam": "silt loam",
+      "sandy clay loam": "sandy clay loam",
+      "silty clay loam": "silty clay loam",
+      "soil_ph": "soil pH",
+      "temperature": "temperature",
+      "rainfall": "rainfall",
+      "soil_texture": "soil texture",
+      "nitrogen": "nitrogen",
+      "irrigation": "irrigation",
+      "market_price": "market price",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "reason": {
+      "ph_unavailable": "Soil pH unavailable.",
+      "ph_inside_band": "pH {ph} sits inside this crop's preferred {low}–{high} band.",
+      "ph_too_acidic": "pH {ph} is more acidic than the preferred {low}–{high} band, which can limit nutrient uptake.",
+      "ph_too_alkaline": "pH {ph} is more alkaline than the preferred {low}–{high} band, which can limit nutrient uptake.",
+      "temp_unavailable": "Temperature data unavailable.",
+      "temp_ideal": "Average {temp} °C is within the ideal {low}–{high} °C range.",
+      "temp_cooler": "Average {temp} °C is cooler than the ideal {low}–{high} °C range.",
+      "temp_warmer": "Average {temp} °C is warmer than the ideal {low}–{high} °C range.",
+      "rain_unavailable": "Seasonal rainfall data unavailable.",
+      "rain_sufficient": "Seasonal rainfall of {rain} mm meets the {low}–{high} mm need.",
+      "rain_short_rainfed": "Rainfall is about {shortfall} mm short of the {needed} mm this crop needs, with no irrigation to make it up.",
+      "rain_short_irrigated": "Rainfall is about {shortfall} mm short; your {source} supply would need to cover the gap.",
+      "texture_unavailable": "Soil texture unavailable.",
+      "texture_suited": "{texture} soil is well suited; this crop prefers {preferred}.",
+      "texture_workable": "{texture} soil is workable but this crop prefers {preferred}.",
+      "nitrogen_legume": "Fixes its own nitrogen and leaves the soil better for the next crop.",
+      "nitrogen_unavailable": "Soil nitrogen unavailable.",
+      "nitrogen_sufficient": "Available nitrogen ({available} kg/ha) covers this crop's needs.",
+      "nitrogen_short": "Available nitrogen ({available} kg/ha) is below the {required} kg/ha this crop wants; expect to make it up with fertiliser.",
+      "irrigation_needs_more": "This crop needs reliable irrigation and you have reported rainfed land only.",
+      "irrigation_tolerant": "Tolerates limited water, so it suits a season with little to spare.",
+      "irrigation_adequate": "Water requirement is {need}; your {source} supply is adequate.",
+      "market_no_msp": "No support price published for this crop; margin depends entirely on the mandi.",
+      "market_msp_margin": "MSP of ₹{price}/quintal against a published cost of ₹{cost}/quintal leaves about ₹{margin}/quintal.",
+      "rotation_same_crop": "Growing {crop} again in the same ground builds up its own pests and diseases.",
+      "rotation_after_legume": "Follows {previous}, a legume, which leaves nitrogen in the soil for {crop}.",
+      "rotation_same_family": "Same plant family as {previous}, so the two share diseases.",
+      "rotation_same_family_pest": "Same plant family as {previous}, and both carry {pest}.",
+      "rotation_shared_pest": "Both this crop and {previous} carry {pest}, which can carry over in the soil.",
+      "rotation_legume_next": "A legume after {previous}: it breaks the disease cycle and fixes its own nitrogen.",
+      "rotation_both_hungry": "Both this crop and {previous} are hungry for nitrogen, one straight after the other.",
+      "rotation_clean_break": "A clean break from {previous}: different family, no shared pests.",
+      "rotation_unknown": "No previous crop given."
+    },
+    "warning": {
+      "SOWING_WINDOW_CLOSED": "The {season} sowing window has already closed this year. The dates below are for next season, so treat this as planning ahead rather than something to act on now.",
+      "LOW_DATA_COMPLETENESS": "Only {percent}% of the expected soil and weather inputs were available. Treat this ranking as indicative.",
+      "PARTIAL_SOIL_DATA": "No soil nutrient values for this field. No satellite can measure nitrogen, phosphorus or potassium — enter them from your Soil Health Card for a sharper recommendation.",
+      "PRICE_UNAVAILABLE": "No published price for {crops}. Their revenue figures are left blank rather than guessed.",
+      "PROVISIONAL_AGRONOMY": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing.",
+      "MOCK_DATA": "Offline sample data — a recording of a real result for this district and season, not a live calculation. Connect the API for current figures.",
+      "MOCK_FIXED_AREA": "Sample figures are for a {recorded} ha plot, not the {requested} ha you entered. Connect the API to size them to your field.",
+      "OFFLINE_RECORDING": "You are offline. This is a recorded result for this district and season, not a live calculation — prices in particular may have moved. Reconnect for current figures."
+    },
+    "verdict": {
+      "same_crop": "{crop} is what you grew last season and it is still the best fit for this field. No change needed.",
+      "previous_unsuited": "{previous} is not suited to this field this season, so there is nothing to compare against. {crop} is the better choice.",
+      "better_fit_unpriced": "{crop} scores better than {previous} on this field, but one of them has no published price so the earnings cannot be compared.",
+      "switch_pays_more": "Switching from {previous} to {crop} is worth about ₹{amount} more on this plot, on our figures for both.",
+      "switch_pays_less": "{crop} suits this field better agronomically, but {previous} would earn about ₹{amount} more on current prices. Weigh the risk against the return.",
+      "level_on_money": "{crop} and {previous} come out about level on money. {crop} is the better agronomic fit."
+    },
+    "outlook": {
+      "seasonal_history": "Based on {count} recorded {month} prices for {crop}. The middle figure is the median; the range covers the middle half of what was seen.",
+      "msp_floor": "Not enough price history yet to project {month}. What is certain: the support price is ₹{msp}/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+      "msp_floor_below_market": "Not enough price history yet to project {month}. Note that {crop} is currently trading at ₹{price}/quintal, ₹{gap} BELOW its support price of ₹{msp}. The earnings below use the market price, because procurement does not reach every farmer.",
+      "current_only": "₹{price}/quintal is today's mandi price. This crop has no support price, and there is not enough history to project {month} — prices could move either way before you sell.",
+      "none": "No price information is available for this crop."
+    },
+    "counterfactual": {
+      "threshold": "At {label} {target} instead of {current}, this moves up {places} places.",
+      "threshold_one": "At {label} {target} instead of {current}, this moves up one place.",
+      "irrigation_threshold": "With {target} irrigation instead of {current}, this moves up {places} places.",
+      "irrigation_threshold_one": "With {target} irrigation instead of {current}, this moves up one place.",
+      "fragility": "This depends on your {label}. At {target} instead of {current}, it would drop {places} places.",
+      "fragility_one": "This depends on your {label}. At {target} instead of {current}, it would drop one place.",
+      "limiting": "Nothing you can realistically change moves this crop up the list. Its biggest limit is {factor}, costing about {shortfall} of its score."
+    },
+    "crowding": {
+      "advice_crowded": "Ranked first in {first} of the {advisories} advisories issued for this district this season ({percent}%).",
+      "advice_common": "Ranked first in {first} of the {advisories} advisories issued for this district this season ({percent}%).",
+      "advice_uncommon": "Ranked first in only {first} of the {advisories} advisories issued for this district this season ({percent}%).",
+      "too_few_advisories": "Only {advisories} advisories have been issued for this district and season so far. Below {needed} we cannot say anything useful, so we are not showing a figure.",
+      "dip_steep": "In past years this sold for about {percent}% less in its harvest month than in the rest of the year — around ₹{harvest_price} against ₹{other_price} a quintal, from {observations} recorded prices.",
+      "dip_mild": "In past years this sold for about {percent}% less in its harvest month than in the rest of the year — around ₹{harvest_price} against ₹{other_price} a quintal, from {observations} recorded prices.",
+      "dip_none": "In past years its harvest-month price held up against the rest of the year — around ₹{harvest_price} against ₹{other_price} a quintal, from {observations} recorded prices.",
+      "too_little_price_history": "We have {harvest_seen} recorded prices from the harvest month and {other_seen} from the rest of the year. Below {needed} on each side there is nothing to compare, so no figure is shown.",
+      "no_harvest_month": "No harvest window is known for this crop, so there is no month to compare prices against.",
+      "advisories_not_farmers": "These counts are of advisories this tool has issued — not of what anyone has actually sown. We have no way to see what is being planted across a district, and we would rather show you a smaller true number than a large invented one.",
+      "dip_is_backward_looking": "The harvest-month figures describe past seasons from recorded mandi prices. They are not a forecast for the coming harvest.",
+      "prices_not_local": "This district had too little price history, so these figures pool every district we have records for. Your local market may differ.",
+      "includes_seeded": "Of the advisories counted here, {seeded} were generated when this demo was set up rather than requested by anyone. They are real output of the same recommender, but they are not evidence that this tool is widely used yet.",
+      "advice_never": "Not ranked first in any of the {advisories} advisories issued for this district this season.",
+      "harvest_month_not_seen_yet": "We have {other_seen} recorded prices for this crop from other months, but none yet from the month it is harvested. The comparison appears once prices have been recorded during a harvest.",
+      "price_history_accrues": "Mandi prices are published only as today's snapshot — there is no archive to look up. This app records what it sees, so the harvest-time comparison fills in as it is used across a season. It will be empty on a new installation."
+    },
+    "chat": {
+      "refuse_chemicals": "I cannot advise on pesticide or fertiliser quantities. Getting a dose wrong can harm you, your soil and whoever eats the crop, and it depends on things only someone standing in your field can see. Please ask your Krishi Vigyan Kendra or district agriculture extension officer.",
+      "refuse_diagnosis": "I cannot identify a crop problem from a description. Even experts need to see the plant, and a wrong guess here costs a whole season. Your Krishi Vigyan Kendra can inspect the field and tell you properly.",
+      "refuse_finance": "I do not know anything about your loan, insurance or subsidy eligibility — that depends on your records and your bank, not on this advisory. The Priority Sector Lending and Government Schemes tabs list where to look.",
+      "refuse_medical": "I cannot help with health or animal health questions. If this is about chemical exposure, please contact a doctor or poison centre now. For livestock, your local veterinary hospital.",
+      "refuse_other_field": "I can only answer about the field in this advisory. For another plot, please run a new recommendation for it — the soil, rainfall and history will all be different.",
+      "empty": "Please type a question.",
+      "why_top": "{crop} came first mainly because of: {factors}. The full reasoning is on the Dashboard tab, with the figure behind each point.",
+      "when_sow": "For {crop}, the sowing window in this advisory is {start} to {end}. Local conditions can shift it — your extension officer will know the district's usual timing.",
+      "money": "The advisory estimates about ₹{amount} net on your {area} hectare plot for {crop}. That is average yields and recent prices, not a promise, and it moves with what you actually harvest and sell.",
+      "money_unavailable": "There is no reliable price for {crop} in this advisory, so no earnings figure is shown. The agronomic advice still stands.",
+      "water": "{crop} needs roughly {requirement} mm of water over the season. The Water budget tab shows what the rain is expected to give and what is left to irrigate.",
+      "confidence": "Confidence for {crop} is {level}. That comes from how much real data we had for your field — {completeness}% of the inputs were available. Less data means a wider margin for error, not a wrong answer.",
+      "price_source": "The price used for {crop} comes from {source}. Every figure in this advisory carries its source, so you can check it.",
+      "warnings": "There are {count} cautions above the tabs on this page. They apply to the whole advisory, so please read them before sowing.",
+      "warnings_none": "There are no cautions on this advisory.",
+      "no_model": "I can answer questions about this advisory — why a crop was chosen, when to sow, what it might earn, how much water it needs, and where the numbers came from. Try one of those.",
+      "model_error": "I could not reach the assistant just now. The answers about sowing dates, earnings, water and confidence still work — try asking one of those.",
+      "model_unverified": "I had an answer but it contained a figure I could not trace back to this advisory, so I have not shown it. That is deliberate — a made-up number is worse than no answer."
+    }
+  },
+  "impact": {
+    "title": "What if things were different?",
+    "help": "Change any input and see what it does to the recommendation. Nothing here is saved — your advisory stays as it is.",
+    "plotSize": "Plot size",
+    "irrigation": "Water source",
+    "nitrogen": "Nitrogen (N)",
+    "phosphorus": "Phosphorus (P)",
+    "potassium": "Potassium (K)",
+    "bestCrop": "Best crop",
+    "cropChanged": "different crop",
+    "noChange": "no change",
+    "comparedTo": "Compared against your original inputs. Recalculated by the same engine that produced the advisory, not estimated in your browser.",
+    "note": "Figures are indicative and depend on the same prices and thresholds as the advisory above.",
+    "reset": "Reset",
+    "failed": "Could not recalculate just now. Your advisory above is unaffected.",
+    "mockNotice": "Offline sample mode replays a recording for a fixed 1 ha plot, so the plot-size slider will not change the figures. Connect the API to use this properly.",
+    "netMarginPlot": "Net margin (whole plot)",
+    "netMarginRate": "per {unit}"
+  },
+  "risk": {
+    "title": "Risk and spreading it",
+    "help": "What could go wrong, and whether splitting the field would actually protect you.",
+    "exposureTitle": "Where each crop is exposed",
+    "agronomic": "Pest & disease",
+    "price": "Price",
+    "water": "Water",
+    "planTitle": "A way to split the field",
+    "ofField": "of the field",
+    "combined": "Combined margin",
+    "costsYou": "Putting the whole field into {crop} would earn about {amount} more. That gap is what spreading the risk costs you.",
+    "earnsMore": "This split earns about {amount} more than the best single crop would, because the two together use the field better than either alone.",
+    "aboutLevel": "About the same either way.",
+    "overlapLow": "These two fail for different reasons, so a bad season for one need not be a bad season for both.",
+    "rule": "The 60/40 style split is a rule of thumb, not an optimisation. We have no reliable season-to-season data on how these crops move together, so we do not pretend to compute an optimum.",
+    "severeNote": "Watch for: {risks}",
+    "level": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "driver": {
+      "severe_pest_or_disease": "Carries a serious pest or disease risk.",
+      "no_price_floor": "No support price, so the mandi sets your income entirely.",
+      "market_priced_only": "No support price; today's mandi rate is all there is to go on.",
+      "thirsty_and_rainfed": "Needs reliable water and you have reported rainfed land.",
+      "some_water_dependence": "Some water dependence on rainfed land.",
+      "nothing_notable": "Nothing standing out on these three.",
+      "moderate_pest_or_disease": "Some pest or disease pressure to plan for."
+    },
+    "verdict": {
+      "split_reduces_risk": "{crop} and {partner} fail for different reasons, so growing both spreads your exposure rather than doubling it.",
+      "plot_too_small": "At under {minimum} ha, splitting the field would cost more in seed, labour and attention than the risk it spreads. Plant one crop and plant it well.",
+      "no_suitable_partner": "No second crop this season both suits this field and improves your position. Splitting into a poorer crop, or one with no support price, would add risk rather than spread it — so {crop} alone is the honest answer.",
+      "everything_shares_the_risk": "Every crop that suits this field this season shares the same exposure ({shared}), so splitting would not protect you. Worth knowing before you spend on two lots of seed.",
+      "no_crops": "No crops to assess."
+    },
+    "type": {
+      "pest": "pest",
+      "disease": "disease",
+      "weather": "weather",
+      "resource": "water and inputs",
+      "market": "market",
+      "quality": "produce quality",
+      "cost": "input cost"
+    },
+    "bestSingle": "Best single crop ({crop})"
+  },
+  "water": {
+    "title": "Water budget",
+    "help": "What each crop needs, what the rain is likely to give, and the gap you would have to irrigate.",
+    "notAForecast": "Rainfall here is this district's thirty-year average, not a forecast for this year. Monsoon totals swing widely around their own average, so treat a budget that only just balances as tight rather than safe.",
+    "falls": "Rain that falls",
+    "usable": "Usable by the crop",
+    "usableNote": "Usable rainfall depends on how long each crop is in the ground, so it differs by row. It is always less than what falls: some runs off and some drains below the roots. The suitability scores above compare against total rainfall, so the two are different measures rather than a disagreement.",
+    "crop": "Crop",
+    "needs": "Needs",
+    "gap": "Gap to irrigate",
+    "waterings": "Waterings",
+    "volume": "Water needed",
+    "aboutN": "about {count}",
+    "noneNeeded": "none",
+    "status": {
+      "rain_sufficient": "Rain alone should cover this crop.",
+      "needs_irrigation": "Rain falls short; your {source} supply has to make up the gap.",
+      "cannot_meet": "Rain falls short and you have reported rainfed land, so there is no way to close the gap. Expect reduced yield, or choose a crop that needs less.",
+      "surplus": "More water than this crop wants. Make sure the field drains.",
+      "unknown": "No rainfall reading for this field, so the gap cannot be worked out."
+    },
+    "method": "Usable rainfall uses the USDA Soil Conservation Service method, applied month by month across the crop's season and assuming rain falls evenly through it — which it does not. Crop water needs come from the same provisional agronomy table as the suitability scores and are pending expert review.",
+    "perWatering": "Assumes about {depth} mm per watering.",
+    "needsLabel": "Needs (minimum–comfortable)",
+    "targetsMinimum": "The gap and watering count close the shortfall to the LOWER figure — the minimum the crop needs, not a comfortable level. For {crop}, reaching {comfortable} mm instead would take about {waterings} waterings."
+  },
+  "offline": {
+    "banner": "You are offline. Showing saved information — prices and satellite readings may be out of date.",
+    "title": "You are offline",
+    "body": "This page has not been saved to your phone yet. Any advisory you have already opened will still work — go back and choose it from the start screen.",
+    "retry": "Try again",
+    "home": "Go to the start screen"
+  },
+  "tabs": {
+    "label": "Sections",
+    "dashboard": "Dashboard",
+    "water": "Water budget",
+    "planning": "Risk & planning",
+    "crowding": "Market crowding",
+    "msp": "MSP",
+    "psl": "Farm credit",
+    "schemes": "Schemes",
+    "emandi": "E-mandi",
+    "inputs": "Inputs",
+    "rental": "Rent equipment",
+    "buyers": "Buyers",
+    "saved": "Saved plans"
+  },
+  "history": {
+    "title": "What this field has grown",
+    "help": "Read from two years of satellite greenness. It shows how often the plot is cropped and when — not which crop.",
+    "intensity": {
+      "single": "Single-cropped",
+      "double": "Double-cropped",
+      "triple": "Triple-cropped",
+      "fallow": "Mostly bare",
+      "unknown": "Not clear",
+      "uncropped": "No crop grown"
+    },
+    "intensityNote": {
+      "single": "One crop cycle a year, in {seasons}.",
+      "double": "Two crop cycles a year, in {seasons}.",
+      "triple": "Three crop cycles a year, in {seasons}.",
+      "fallow": "The ground has been bare or under stubble for most of the last two years.",
+      "unknown": "Too few clear satellite passes to tell how often this plot is cropped.",
+      "uncropped": "The satellite saw this plot clearly and never saw a crop canopy close over it in two years. It may be grazing land, scrub or orchard — or the boundary may not be over the field you meant."
+    },
+    "cycles": "Crop cycles seen",
+    "peak": "Greenest in {month}",
+    "observed": "{observed} of {total} months had a clear satellite view",
+    "coverage": "Clear views by season",
+    "notCropId": "This cannot tell you which crop was grown. Telling wheat from barley by satellite needs ground-truth data we do not have, so we do not guess.",
+    "caveat": {
+      "kharif_cloud_gap": "The monsoon months were largely cloud-covered, so a kharif crop could have been missed entirely.",
+      "patchy_coverage": "Cloud hid a large share of the two years, so this reading is partial.",
+      "short_baseline": "Less than two years of imagery — a single unusual year carries more weight than it should.",
+      "partial_cycles_seen": "Some crop cycles ran past the edge of the record, so their length could not be measured.",
+      "may_understate_intensity": "Because cloud hid the monsoon, this plot may be cropped more often than shown — never less.",
+      "too_few_observations": "Too few clear satellite passes to read a cropping pattern at all."
+    }
+  },
+  "rotation": {
+    "title": "Rotation",
+    "help": "You grew {previous} here last season. What that means for each option:",
+    "notAsked": "You have not told us what grew here last season. Rotation is one of the strongest things you can control — the same crop twice builds up its own pests, while following a legume leaves free nitrogen behind. Add last season's crop and it will be scored.",
+    "goAnswer": "Add last season's crop",
+    "note": "Rotation is one factor among several. A poor rotation is a cost to manage, not a reason a crop cannot grow — so a well-suited crop can still rank highly despite it.",
+    "band": {
+      "good": "Good rotation",
+      "fine": "No problem",
+      "poor": "Weak rotation",
+      "bad": "Avoid"
+    }
+  },
+  "orderings": {
+    "title": "Two ways to read this",
+    "help": "Suitability and earnings are different questions. Both lists are the same five crops, ordered differently.",
+    "byFit": "Best fit for your field",
+    "byFitHelp": "Soil, weather, water and rotation. Earnings are 9% of this score.",
+    "byReturn": "Best return this season",
+    "byReturnHelp": "Net margin on this plot, on our prices and yields.",
+    "unpriced": "Not shown here: {crops}. No published price, so their earnings cannot be ranked.",
+    "agree": "Both lists agree: {crop} is the best choice on this field either way. No trade-off to weigh.",
+    "disagree": "The lists disagree. {fit} suits the field best; {money} earns the most. Neither is wrong — which matters more depends on your soil, your season and what you can afford to risk.",
+    "inBoth": "In both",
+    "inBothHelp": "Near the top of both lists — a strong choice whichever question you are asking."
+  },
+  "productivity": {
+    "title": "How much this plot grows",
+    "help": "Compared with cropland within {km} km, using the swing between bare ground and peak canopy.",
+    "band": {
+      "well_above": "Well above the land around it",
+      "above": "Above the land around it",
+      "typical": "About the same as the land around it",
+      "below": "Below the land around it",
+      "well_below": "Well below the land around it",
+      "unknown": "No comparison available"
+    },
+    "percentile": "{percentile}th percentile",
+    "noComparison": "not enough to compare",
+    "lowEnd": "Lowest tenth",
+    "middle": "Middle",
+    "highEnd": "Highest tenth",
+    "amplitude": "Canopy swing on this plot: {value} NDVI",
+    "notYield": "This measures how much green cover the plot grows, not how much grain it produces — and your neighbours may be growing a different crop, which changes what a fair comparison would be. Read it as a question worth asking, not an answer.",
+    "sample": "Measured across {pixels} patches of cropland within {km} km. Roads, buildings and water are excluded.",
+    "caveat": {
+      "cloud_may_understate": "Cloud hid much of this season, which lowers the measured peak and can place the plot lower than it belongs.",
+      "neighbourhood_too_small": "Too little cropland nearby to compare against.",
+      "no_comparison_available": "The comparison could not be made for this plot.",
+      "not_a_yield_measure": "",
+      "no_crop_to_compare": "This plot shows no crop cycle in the satellite record, so there is nothing to compare against the fields around it. See what this field has grown, above."
+    }
+  },
+  "precision": {
+    "district": "You picked a district, so these satellite readings are for a point in the middle of {district} — usually the town, not farmland. Soil, rainfall, greenness and the comparisons below all describe that point, not your field.",
+    "action": "Drop a pin or draw your field instead"
+  },
+  "voice": {
+    "speak": "Speak",
+    "listening": "Listening…",
+    "stop": "Stop recording",
+    "sentAway": "Your voice is sent to Google to be turned into text.",
+    "sayDistrict": "Say your district",
+    "sayArea": "Say your plot size",
+    "districtMiss": "Heard “{heard}”, which does not match a district on the list. Try again, or choose it below.",
+    "listen": "Listen",
+    "stopReading": "Stop",
+    "error": {
+      "unsupported": "This browser cannot listen. Type instead.",
+      "denied": "The microphone is blocked. Allow it in your browser settings, or type instead.",
+      "offline": "Speech needs an internet connection. Type instead.",
+      "failed": "The microphone did not work that time. Try again, or type instead."
+    },
+    "area": {
+      "ambiguous_unit": "A bigha is a different size in every state, so we cannot turn it into a number. Please say acres or hectares, or type the size.",
+      "no_number": "Heard “{heard}”, with no size in it. Try saying, for example, “two and a half acres”."
+    },
+    "place": "Best options for {district}.",
+    "crop": "Number {rank}, {crop}. Confidence, {confidence}.",
+    "money": "For {crop}, the expected net return on your {area} hectare plot is about {amount} rupees. This is an estimate from average yields and recent prices, not a promise.",
+    "empty": "No crop cleared the suitability threshold for these inputs.",
+    "warningsOne": "There is one caution on the screen. Please read it, or ask someone to read it to you, before sowing.",
+    "warnings": "There are {count} cautions on the screen. Please read them, or ask someone to read them to you, before sowing."
+  },
+  "crowding": {
+    "heading": "How crowded is this choice?",
+    "intro": "Two things we can actually check. Left: how often this app has put each crop first for this district — a count of our own advice, not a survey of the district. Right: what each crop sold for in its harvest month, from mandi prices we have recorded.",
+    "adviceHeading": "How often we suggest it here",
+    "band_crowded": "Often suggested",
+    "band_common": "Sometimes suggested",
+    "band_uncommon": "Rarely suggested",
+    "band_unknown": "Too early to say",
+    "dipHeading": "Its price at harvest time",
+    "dipband_steep": "Sold cheap at harvest",
+    "dipband_mild": "Slightly cheaper at harvest",
+    "dipband_none": "Price held up",
+    "dipband_unknown": "No harvest-month prices yet",
+    "scopeDistrict": "District prices",
+    "scopeNational": "All districts pooled",
+    "empty": "No crowding information is available for these crops yet.",
+    "band_never": "Never ranked first"
+  },
+  "chat": {
+    "title": "Ask about this advisory",
+    "open": "Ask a question",
+    "close": "Close",
+    "placeholder": "Why this crop? When do I sow?",
+    "send": "Send",
+    "thinking": "Thinking…",
+    "intro": "I can explain this advisory — why a crop was chosen, sowing dates, expected earnings, water, and where each number came from. I cannot advise on pesticides, diagnose crop disease, or discuss loans.",
+    "suggestion1": "Why this crop?",
+    "suggestion2": "When should I sow?",
+    "suggestion3": "How much will I earn?",
+    "you": "You",
+    "assistant": "Beej Nirnay",
+    "unverifiedBadge": "Answer withheld",
+    "refusedBadge": "Outside what I can answer",
+    "modelBadge": "Generated answer — check figures against the page"
+  },
+  "msp": {
+    "heading": "Minimum Support Price",
+    "what": "MSP is a floor price the government undertakes to pay when it procures a crop. It is announced before each season by the Cabinet on the advice of the Commission for Agricultural Costs and Prices.",
+    "notGuarantee": "It is not a market price, and it is not a promise that somebody will buy. Procurement is extensive for wheat and paddy and reaches a minority of growers for most pulses and oilseeds. Away from a procurement centre, what you actually get is the mandi price.",
+    "costNote": "Cost shown is A2+FL — all paid-out costs plus the value of your family's own labour. It is the figure the 1.5× MSP formula is built on.",
+    "season": "Marketing season {season}",
+    "colCrop": "Crop",
+    "colMsp": "MSP (₹/quintal)",
+    "colCost": "Cost A2+FL (₹/quintal)",
+    "colSeason": "Season",
+    "groupCereals": "Cereals",
+    "groupPulses": "Pulses",
+    "groupOilseeds": "Oilseeds",
+    "groupCommercial": "Commercial",
+    "kharif": "Kharif",
+    "rabi": "Rabi",
+    "modelled": "This app ranks this crop",
+    "sourceHeading": "Where these figures come from",
+    "notListed": "Also supported, notified separately — we have not sourced a current figure, so none is shown here.",
+    "loading": "Loading the MSP table…",
+    "unavailable": "The MSP table could not be loaded."
+  },
+  "psl": {
+    "heading": "Priority Sector Lending",
+    "what": "Priority Sector Lending is a Reserve Bank of India rule requiring banks to direct a set share of their lending to sectors the market underserves. Agriculture is one of them, which is why crop loans exist at rates a commercial borrower would not get.",
+    "noRates": "Interest rates, limits and eligibility change by bank, by state and by year, so none are quoted here. Every link goes to the authority that publishes the current terms.",
+    "items": {
+      "masterDirections": "The RBI Master Directions that define Priority Sector Lending, including the agriculture sub-targets and what counts as a small or marginal farmer.",
+      "kcc": "Kisan Credit Card — the main short-term crop credit route, covering cultivation costs and post-harvest expenses.",
+      "nabard": "NABARD — refinances rural lending and runs long-term investment credit for irrigation, land development and farm machinery.",
+      "agriInfra": "Agriculture Infrastructure Fund — medium and long-term credit for storage, grading and processing at the farm gate.",
+      "jansamarth": "Jan Samarth — a single portal to check and apply across several government-linked credit schemes.",
+      "bankList": "RBI's index of every scheduled bank's own website, to find a branch and its current terms."
+    },
+    "openLink": "Open",
+    "disclaimer": "This page is a set of links. Beej Nirnay does not arrange loans, assess eligibility or take applications."
+  },
+  "schemes": {
+    "heading": "Government schemes",
+    "what": "Central schemes a farmer can look up and apply to directly. Each link goes to the official portal; nothing is submitted through this app.",
+    "items": {
+      "pmKisan": "PM-KISAN — income support paid directly to eligible landholding farmers.",
+      "pmfby": "Pradhan Mantri Fasal Bima Yojana — crop insurance against yield loss from weather and pests.",
+      "soilHealth": "Soil Health Card — free soil testing and a card with your field's nutrient status. The values it prints are the ones this app asks for.",
+      "kisanCallCentre": "mKisan — advisories and the Kisan Call Centre, for questions this app deliberately will not answer.",
+      "myScheme": "myScheme — search every central and state scheme by your own circumstances.",
+      "kvk": "Krishi Vigyan Kendras — your district's agricultural science centre. This is where the app sends you for anything needing eyes on the field."
+    },
+    "openLink": "Open",
+    "disclaimer": "Links only. Check eligibility and deadlines on the official portal — they change, and this page does not."
+  },
+  "emandi": {
+    "heading": "E-mandi and selling",
+    "what": "Where the crop actually gets sold. Electronic mandis let you see bids from buyers outside your local market, which for many crops moves the price more than any agronomic decision.",
+    "onlyOfficial": "Only government-run and government-backed platforms are listed. Several private buyer apps are genuinely useful, but naming some and not others on a page you read as neutral would be an endorsement we have not earned.",
+    "items": {
+      "enam": "e-NAM — the National Agriculture Market. One licence, one login, and bids from traders across participating mandis in other states.",
+      "enamRegister": "e-NAM farmer registration — what you need to sell through it, and where to enrol.",
+      "agmarknetPrices": "Agmarknet price trends — monthly arrivals and prices by commodity and market, for deciding when and where to sell rather than only what to sow.",
+      "karnatakaRms": "Karnataka Rashtriya e-Market Services — the state's own online tendering platform.",
+      "fciProcurement": "Food Corporation of India — where MSP procurement actually happens, and the centre list for your state."
+    },
+    "openLink": "Open",
+    "disclaimer": "Links only. Beej Nirnay does not broker sales, list produce or handle payments. Check registration requirements on each portal — they differ by state."
+  },
+  "inputs": {
+    "heading": "Buying inputs",
+    "what": "Seed, fertiliser and machinery — where to buy, and how to check what you are being sold.",
+    "neverSell": "Beej Nirnay will never sell you seed or fertiliser. If it did, you would have no way to tell whether a crop was recommended because your soil suits it or because we had stock to move. These are links to others; we take no commission and endorse no brand.",
+    "items": {
+      "seedPortal": "SEEDNET — the national seed portal. Variety details, certified seed producers and which agencies are licensed in your state.",
+      "onlineFertiliser": "DBT Fertiliser portal — subsidised fertiliser sales through registered retailers and how the subsidy reaches you.",
+      "inputQuality": "Ministry of Agriculture — how to report spurious seed or fertiliser, and what recourse you have."
+    },
+    "openLink": "Open",
+    "disclaimer": "Links only. Check the licence of any dealer before paying, and keep the receipt — it is what makes a complaint possible."
+  },
+  "rental": {
+    "heading": "Rent equipment",
+    "what": "A tractor costs more than many holdings earn in a decade. Custom Hiring Centres exist so it does not have to be bought.",
+    "notParty": "The booking, the deposit and any dispute are between you and the hiring centre. Beej Nirnay is not a party to it, holds no money and cannot intervene.",
+    "items": {
+      "farmsApp": "Custom Hiring Centre directory — registered centres near you and the machinery each one has.",
+      "chcDirectory": "Farm Machinery portal — the full CHC and hi-tech hub listing, by state and district.",
+      "smam": "Sub-Mission on Agricultural Mechanization — the scheme that funds these centres, including how to start one."
+    },
+    "openLink": "Open",
+    "disclaimer": "Agree the rate and the hours in writing before work starts. Most disputes at a hiring centre are about what was agreed, not about the machine."
+  },
+  "buyers": {
+    "heading": "Finding a buyer",
+    "what": "Beyond your local mandi. Farmer Producer Organisations, cooperative procurement and export routes.",
+    "officialOnly": "Only official and cooperative routes are listed. Several private buyer apps work well, but choosing between them on a page you read as neutral would be an endorsement we have not earned.",
+    "items": {
+      "fpoPortal": "Farmer Producer Organisations — find or join an FPO. Selling as a group is the single biggest change most smallholders can make to the price they get.",
+      "exportApeda": "APEDA — export registration and buyer contacts for horticulture and processed produce.",
+      "gemPortal": "Government e-Marketplace — government departments buy food here, including from FPOs."
+    },
+    "openLink": "Open",
+    "disclaimer": "Links only. Beej Nirnay does not broker sales, list produce, verify buyers or handle payments."
+  },
+  "credit": {
+    "applyHeading": "Applying for a crop loan",
+    "applyWhat": "The obstacle is usually not eligibility. It is walking to the branch and finding one document missing.",
+    "notAssessing": "This page does not check whether you qualify, score anything, or send an application anywhere. It lists what to carry and where to go. Only your bank can tell you whether you are eligible.",
+    "documentsHeading": "What to carry",
+    "documents": "Identity proof (Aadhaar). Address proof. Land records — khatauni, khasra or the equivalent in your state. Passport photographs. If you have one, your previous KCC number. If you are a tenant or sharecropper, the tenancy document — this is the one most often missing.",
+    "tenantNote": "Tenant farmers and sharecroppers are eligible for Kisan Credit Cards through Joint Liability Groups even without land in their own name. Banks do not always say so.",
+    "items": {
+      "kccApply": "Kisan Credit Card on Jan Samarth — the scheme terms and the online route.",
+      "pmKisanKcc": "The official KCC application form, as published. Fill it before you go rather than at the counter.",
+      "rbiGrievance": "RBI complaint portal — if a bank refuses to accept an application or will not give a reason in writing.",
+      "nabardSchemes": "NABARD refinance schemes — the longer-term credit lines behind irrigation and machinery loans."
+    },
+    "openLink": "Open"
+  },
+  "saved": {
+    "heading": "Saved plans",
+    "what": "Advisories you have kept, so you can come back to them.",
+    "deviceOnly": "Saved on this device only — this browser, this phone. There is no account, so clearing your browser data or switching phones loses these. Export a copy if they matter.",
+    "unavailable": "This browser will not let the app store anything, so plans cannot be saved here. Private browsing usually causes this.",
+    "empty": "Nothing saved yet. Open an advisory and press Save.",
+    "saveLabel": "Save",
+    "savedLabel": "Saved",
+    "remove": "Remove",
+    "open": "Open this plan",
+    "nameLabel": "Name for this field",
+    "summary": "{district} · {season} · {area} · suggested {crop}",
+    "savedOn": "Saved {date}",
+    "export": "Export a copy"
+  },
+  "reminders": {
+    "add": "Add reminders",
+    "sowSummary": "Sowing window opens — {crop}",
+    "harvestSummary": "Harvest expected — {crop}",
+    "description": "From your Beej Nirnay advisory for {crop} in {district}. Check conditions locally before acting; these dates are typical for the district, not a forecast for your field.",
+    "note": "Downloads a calendar file. Open it on your phone and the reminders are added to your own calendar — they work offline and keep working if you stop using this app. It reminds you a week ahead."
+  },
+  "diary": {
+    "heading": "Season diary",
+    "what": "Record what you actually sowed and what came of it.",
+    "why": "Every yield figure in this app is a district average, not a measurement of your field. What you record here is the only thing that could ever tell us we were wrong.",
+    "add": "Add an entry",
+    "save": "Save entry",
+    "remove": "Remove entry",
+    "cropSown": "What did you sow?",
+    "cropHint": "Your own words",
+    "sownDate": "Sown on",
+    "harvestDate": "Harvested on",
+    "yieldLabel": "Yield (quintal)",
+    "priceLabel": "Sold at (₹ per quintal)",
+    "notesLabel": "Notes",
+    "notesHint": "Anything worth remembering next year",
+    "sownOn": "Sown {date}",
+    "harvestedOn": "harvested {date}",
+    "yieldValue": "{value} quintal",
+    "priceValue": "₹{value}/quintal",
+    "laterOk": "Fill in what you know now. Harvest, yield and price can be added months later.",
+    "deviceOnly": "Kept on this device only. Nothing is sent anywhere, and nothing here changes the recommendation."
   }
 }

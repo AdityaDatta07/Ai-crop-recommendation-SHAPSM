@@ -194,7 +194,11 @@ data/tmp/
 *.zip
 
 # ---------- Next.js PWA generated service worker ----------
-apps/web/public/sw.js
+# NOT ignored: apps/web/public/sw.js is hand-written source, not generated.
+# The stock Next.js gitignore excludes it because next-pwa and workbox emit a
+# worker at build time. Ours is committed like any other file — ignoring it
+# would mean deploying with no service worker and no offline support, with
+# nothing failing to say so.
 apps/web/public/workbox-*.js
 
 # ---------- Supabase local dev ----------

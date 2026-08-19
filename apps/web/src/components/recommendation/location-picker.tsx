@@ -7,7 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
+import { MicButton } from '@/components/ui/mic-button';
 import { cn } from '@/lib/utils';
+import { matchDistrict, type DistrictOption } from '@/lib/voice-parse';
 import { useDistricts } from '@/lib/queries';
 import type { IndicesResponse, Location, LonLat } from '@/types/api';
 import { closedRing, validateRing } from '@/lib/geometry';
@@ -44,6 +46,8 @@ export function LocationPicker({
   const [locating, setLocating] = useState(false);
   const [ring, setRing] = useState<LonLat[]>([]);
   const [geoError, setGeoError] = useState<string | null>(null);
+  /** What the recogniser heard, when it matched no district on the list. */
+  const [heardMiss, setHeardMiss] = useState<string | null>(null);
 
   const { data, isLoading, isError } = useDistricts();
   const states = data?.states ?? [];
@@ -73,6 +77,42 @@ export function LocationPicker({
 
   function selectDistrict(districtCode: string) {
     onChange(districtCode ? { type: 'admin', state_code: stateCode, district_code: districtCode } : null);
+  }
+
+  /**
+   * Voice searches every state at once, and sets the state dropdown itself.
+   *
+   * A farmer says "Lucknow", not "Uttar Pradesh, then Lucknow". Requiring the
+   * state first would mean reading a dropdown, which is the thing the
+   * microphone exists to avoid.
+   */
+  const allDistricts = useMemo(
+    () =>
+      (data?.states ?? []).flatMap((state) =>
+        state.districts.map((district) => ({
+          district_code: district.district_code,
+          district_name: district.district_name,
+          state_code: state.state_code,
+        })),
+      ),
+    [data],
+  );
+
+  function heardDistrict(transcript: string) {
+    const match = matchDistrict(transcript, allDistricts);
+    if (!match) {
+      // Show what was heard. "Not found" alone leaves the farmer guessing
+      // whether they spoke unclearly or the district is simply missing.
+      setHeardMiss(transcript);
+      return;
+    }
+    setHeardMiss(null);
+    setStateCode(match.state_code);
+    onChange({
+      type: 'admin',
+      state_code: match.state_code,
+      district_code: match.district_code,
+    });
   }
 
   function commitPoint(nextLat: string, nextLon: string) {
@@ -163,7 +203,16 @@ export function LocationPicker({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="district">{t('location.district')}</Label>
+            <div className="flex items-center justify-between gap-2">
+              <Label htmlFor="district">{t('location.district')}</Label>
+              {/* Searches every state, so it is offered even before one is
+                  chosen — unlike the dropdown beside it. */}
+              <MicButton
+                label={t('voice.sayDistrict')}
+                onTranscript={heardDistrict}
+                disabled={isLoading || isError}
+              />
+            </div>
             <Select
               id="district"
               value={selectedDistrict}
@@ -180,6 +229,12 @@ export function LocationPicker({
               ))}
             </Select>
           </div>
+
+          {heardMiss && (
+            <p className="text-sm text-muted-foreground sm:col-span-2" role="status">
+              {t('voice.districtMiss', { heard: heardMiss })}
+            </p>
+          )}
 
           {isError && (
             <p className="text-sm text-destructive sm:col-span-2">

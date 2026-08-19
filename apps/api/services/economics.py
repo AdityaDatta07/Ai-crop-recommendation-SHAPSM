@@ -22,6 +22,9 @@ from datetime import date
 
 QUINTALS_PER_TONNE = 10
 
+# 1 hectare = 10,000 m^2; 1 acre = 4,046.8564224 m^2 (international acre).
+ACRES_PER_HECTARE = 2.4710538147
+
 
 @dataclass(frozen=True)
 class EconomicsResult:
@@ -33,6 +36,11 @@ class EconomicsResult:
     margin_per_ha: int | None
     price_source: str | None
     price_as_of: date | None
+
+    # Same figures, the unit most Indian farmers actually use.
+    input_cost_per_acre: int | None = None
+    margin_per_acre: int | None = None
+    expected_yield_t_acre: float | None = None
 
 
 def input_cost_per_ha(
@@ -83,6 +91,17 @@ def compute(
     return EconomicsResult(
         expected_yield_t_ha=expected_yield_t_ha,
         input_cost_per_ha=cost_per_ha,
+        input_cost_per_acre=(
+            round(cost_per_ha / ACRES_PER_HECTARE) if cost_per_ha is not None else None
+        ),
+        margin_per_acre=(
+            round(margin_per_ha / ACRES_PER_HECTARE) if margin_per_ha is not None else None
+        ),
+        expected_yield_t_acre=(
+            round(expected_yield_t_ha / ACRES_PER_HECTARE, 3)
+            if expected_yield_t_ha is not None
+            else None
+        ),
         expected_price_per_quintal=price_per_quintal,
         gross_revenue=gross,
         net_margin=net,

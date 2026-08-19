@@ -9,7 +9,8 @@
       75.34,
       19.88
     ],
-    "area_ha": 1.0
+    "area_ha": 1.0,
+    "area_acres": 2.47
   },
   "conditions": {
     "soil": {
@@ -64,7 +65,9 @@
           "start": "2027-12-12",
           "end": "2028-01-11"
         },
-        "duration_days": 180
+        "duration_days": 180,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 0.87,
@@ -74,8 +77,110 @@
         "net_margin": 27568,
         "margin_per_ha": 27568,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 18594,
+        "margin_per_acre": 11156,
+        "expected_yield_t_acre": 0.352
       },
+      "price_outlook": {
+        "harvest_month": "2027-12",
+        "expected_per_quintal": null,
+        "low_per_quintal": 8450,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 8450,
+        "current_per_quintal": 8450,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project December. What is certain: the support price is Rs 8450/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1988,
+          "headroom": 0.0012,
+          "score": 0.994,
+          "impact": "positive",
+          "detail": "Average 24.8 C is within the ideal 20.0-30.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.17,
+          "headroom": 0.03,
+          "score": 0.85,
+          "impact": "positive",
+          "detail": "pH 6.0 sits inside pigeon pea's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, sandy loam, clay loam."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.0627,
+          "headroom": 0.1173,
+          "score": 0.348,
+          "impact": "negative",
+          "detail": "Rainfall is about 391 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0537,
+          "headroom": 0.0463,
+          "score": 0.537,
+          "impact": "neutral",
+          "detail": "MSP of Rs 8450/quintal against a published cost of Rs 5496/quintal leaves about Rs 2954/quintal."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "6",
+          "target_value": "6.5",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 6.5 instead of 6, it would drop 1 place."
+        },
+        {
+          "factor": "nitrogen",
+          "kind": "fragility",
+          "current_value": "179 kg/ha",
+          "target_value": "219 kg/ha",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your available nitrogen. At 219 kg/ha instead of 179 kg/ha, it would drop 1 place."
+        },
+        {
+          "factor": "rainfall",
+          "kind": "limiting",
+          "current_value": "",
+          "target_value": null,
+          "score_gain": 0.117,
+          "rank_gain": 0,
+          "message": "Nothing you can realistically change moves this crop up the list. Its biggest limit is rainfall, costing about 0.12 of its score."
+        }
+      ],
       "risks": [
         {
           "type": "disease",
@@ -117,7 +222,9 @@
           "start": "2027-10-08",
           "end": "2027-11-07"
         },
-        "duration_days": 115
+        "duration_days": 115,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 1.28,
@@ -127,8 +234,101 @@
         "net_margin": 18237,
         "margin_per_ha": 18237,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 13459,
+        "margin_per_acre": 7380,
+        "expected_yield_t_acre": 0.518
       },
+      "price_outlook": {
+        "harvest_month": "2027-10",
+        "expected_per_quintal": null,
+        "low_per_quintal": 4023,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 4023,
+        "current_per_quintal": 4023,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project October. What is certain: the support price is Rs 4023/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.176,
+          "headroom": 0.024,
+          "score": 0.88,
+          "impact": "positive",
+          "detail": "Average 24.8 C is within the ideal 24.0-32.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.17,
+          "headroom": 0.03,
+          "score": 0.85,
+          "impact": "positive",
+          "detail": "pH 6.0 sits inside sorghum's preferred 6.0-8.0 band."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.094,
+          "headroom": 0.0859,
+          "score": 0.522,
+          "impact": "neutral",
+          "detail": "Rainfall is about 191 mm short of the 400 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.0814,
+          "headroom": 0.0186,
+          "score": 0.814,
+          "impact": "positive",
+          "detail": "Available nitrogen (179 kg/ha) is below the 220 kg/ha this crop wants; expect to make it up with fertiliser."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers clay, clay loam, loam."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.05,
+          "headroom": 0.05,
+          "score": 0.5,
+          "impact": "neutral",
+          "detail": "MSP of Rs 4023/quintal against a published cost of Rs 2682/quintal leaves about Rs 1341/quintal."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "6",
+          "target_value": "6.3",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 6.3 instead of 6, it would drop 1 place."
+        },
+        {
+          "factor": "rainfall",
+          "kind": "limiting",
+          "current_value": "",
+          "target_value": null,
+          "score_gain": 0.086,
+          "rank_gain": 0,
+          "message": "Nothing you can realistically change moves this crop up the list. Its biggest limit is rainfall, costing about 0.09 of its score."
+        }
+      ],
       "risks": [
         {
           "type": "pest",
@@ -175,7 +375,9 @@
           "start": "2027-10-03",
           "end": "2027-11-02"
         },
-        "duration_days": 110
+        "duration_days": 110,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 2.99,
@@ -185,8 +387,110 @@
         "net_margin": 26789,
         "margin_per_ha": 26789,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 18320,
+        "margin_per_acre": 10841,
+        "expected_yield_t_acre": 1.21
       },
+      "price_outlook": {
+        "harvest_month": "2027-10",
+        "expected_per_quintal": null,
+        "low_per_quintal": 2410,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 2410,
+        "current_per_quintal": 2410,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project October. What is certain: the support price is Rs 2410/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1953,
+          "headroom": 0.0047,
+          "score": 0.977,
+          "impact": "positive",
+          "detail": "Average 24.8 C is within the ideal 21.0-30.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.1771,
+          "headroom": 0.0229,
+          "score": 0.885,
+          "impact": "positive",
+          "detail": "pH 6.0 sits inside maize's preferred 5.8-7.5 band."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.12,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Silt loam soil is well suited; this crop prefers loam, sandy loam, silt loam."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.0752,
+          "headroom": 0.1048,
+          "score": 0.418,
+          "impact": "negative",
+          "detail": "Rainfall is about 291 mm short of the 500 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.0597,
+          "headroom": 0.0403,
+          "score": 0.597,
+          "impact": "neutral",
+          "detail": "Available nitrogen (179 kg/ha) is below the 300 kg/ha this crop wants; expect to make it up with fertiliser."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0561,
+          "headroom": 0.0439,
+          "score": 0.561,
+          "impact": "neutral",
+          "detail": "MSP of Rs 2410/quintal against a published cost of Rs 1544/quintal leaves about Rs 866/quintal."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.03,
+          "headroom": 0.07,
+          "score": 0.3,
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "irrigation",
+          "kind": "threshold",
+          "current_value": "rainfed",
+          "target_value": "canal",
+          "score_gain": 0.133,
+          "rank_gain": 2,
+          "message": "With canal irrigation instead of rainfed, this moves up 2 places."
+        },
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "6",
+          "target_value": "6.1",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 6.1 instead of 6, it would drop 1 place."
+        },
+        {
+          "factor": "nitrogen",
+          "kind": "fragility",
+          "current_value": "179 kg/ha",
+          "target_value": "149 kg/ha",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your available nitrogen. At 149 kg/ha instead of 179 kg/ha, it would drop 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "pest",
@@ -228,7 +532,9 @@
           "start": "2027-09-13",
           "end": "2027-10-18"
         },
-        "duration_days": 85
+        "duration_days": 85,
+        "days_until_sowing": 306,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 1.55,
@@ -238,8 +544,101 @@
         "net_margin": 16653,
         "margin_per_ha": 16653,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 11451,
+        "margin_per_acre": 6739,
+        "expected_yield_t_acre": 0.627
       },
+      "price_outlook": {
+        "harvest_month": "2027-09",
+        "expected_per_quintal": null,
+        "low_per_quintal": 2900,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 2900,
+        "current_per_quintal": 2900,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project September. What is certain: the support price is Rs 2900/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1651,
+          "headroom": 0.0349,
+          "score": 0.826,
+          "impact": "positive",
+          "detail": "Average 24.8 C is cooler than the ideal 25.0-35.0 C range."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.1254,
+          "headroom": 0.0546,
+          "score": 0.697,
+          "impact": "neutral",
+          "detail": "Rainfall is about 91 mm short of the 300 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Available nitrogen (179 kg/ha) covers this crop's needs."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Tolerates limited water, so it suits a season with little to spare."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.085,
+          "headroom": 0.115,
+          "score": 0.425,
+          "impact": "negative",
+          "detail": "pH 6.0 is more acidic than the preferred 6.5-8.0 band, which can limit nutrient uptake."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers sandy, sandy loam, loam."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.0561,
+          "headroom": 0.0439,
+          "score": 0.561,
+          "impact": "neutral",
+          "detail": "MSP of Rs 2900/quintal against a published cost of Rs 1858/quintal leaves about Rs 1042/quintal."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "soil_ph",
+          "kind": "threshold",
+          "current_value": "6",
+          "target_value": "6.2",
+          "score_gain": 0.034,
+          "rank_gain": 1,
+          "message": "At soil pH 6.2 instead of 6, this moves up 1 place."
+        },
+        {
+          "factor": "nitrogen",
+          "kind": "fragility",
+          "current_value": "179 kg/ha",
+          "target_value": "89 kg/ha",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your available nitrogen. At 89 kg/ha instead of 179 kg/ha, it would drop 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "disease",
@@ -286,7 +685,9 @@
           "start": "2027-09-23",
           "end": "2027-10-18"
         },
-        "duration_days": 100
+        "duration_days": 100,
+        "days_until_sowing": 301,
+        "window_status": "closed_this_year"
       },
       "economics": {
         "expected_yield_t_ha": 1.39,
@@ -296,8 +697,110 @@
         "net_margin": 26413,
         "margin_per_ha": 26413,
         "price_source": "MSP, Kharif 2026-27 (CACP/PIB)",
-        "price_as_of": null
+        "price_as_of": null,
+        "input_cost_per_acre": 21419,
+        "margin_per_acre": 10689,
+        "expected_yield_t_acre": 0.563
       },
+      "price_outlook": {
+        "harvest_month": "2027-09",
+        "expected_per_quintal": null,
+        "low_per_quintal": 5708,
+        "high_per_quintal": null,
+        "msp_floor_per_quintal": 5708,
+        "current_per_quintal": 5708,
+        "basis": "msp_floor",
+        "observations_used": 0,
+        "explanation": "Not enough price history yet to project September. What is certain: the support price is Rs 5708/quintal, and procurement runs at harvest. Treat that as the floor, not the expected price.",
+        "below_msp_by": null
+      },
+      "attribution": [
+        {
+          "factor": "temperature",
+          "contribution": 0.1868,
+          "headroom": 0.0132,
+          "score": 0.934,
+          "impact": "positive",
+          "detail": "Average 24.8 C is within the ideal 22.0-32.0 C range."
+        },
+        {
+          "factor": "soil_ph",
+          "contribution": 0.17,
+          "headroom": 0.03,
+          "score": 0.85,
+          "impact": "positive",
+          "detail": "pH 6.0 sits inside soybean's preferred 6.0-7.5 band."
+        },
+        {
+          "factor": "nitrogen",
+          "contribution": 0.1,
+          "headroom": 0.0,
+          "score": 1.0,
+          "impact": "positive",
+          "detail": "Fixes its own nitrogen and leaves the soil better for the next crop."
+        },
+        {
+          "factor": "soil_texture",
+          "contribution": 0.072,
+          "headroom": 0.048,
+          "score": 0.6,
+          "impact": "neutral",
+          "detail": "Silt loam soil is workable but this crop prefers loam, clay loam."
+        },
+        {
+          "factor": "rainfall",
+          "contribution": 0.0627,
+          "headroom": 0.1173,
+          "score": 0.348,
+          "impact": "negative",
+          "detail": "Rainfall is about 391 mm short of the 600 mm this crop needs, with no irrigation to make it up."
+        },
+        {
+          "factor": "market_price",
+          "contribution": 0.05,
+          "headroom": 0.05,
+          "score": 0.5,
+          "impact": "neutral",
+          "detail": "MSP of Rs 5708/quintal against a published cost of Rs 3805/quintal leaves about Rs 1903/quintal."
+        },
+        {
+          "factor": "irrigation",
+          "contribution": 0.03,
+          "headroom": 0.07,
+          "score": 0.3,
+          "impact": "negative",
+          "detail": "Water requirement is medium; your rainfed supply is adequate."
+        }
+      ],
+      "counterfactuals": [
+        {
+          "factor": "irrigation",
+          "kind": "threshold",
+          "current_value": "rainfed",
+          "target_value": "canal",
+          "score_gain": 0.14,
+          "rank_gain": 2,
+          "message": "With canal irrigation instead of rainfed, this moves up 2 places."
+        },
+        {
+          "factor": "soil_ph",
+          "kind": "fragility",
+          "current_value": "6",
+          "target_value": "5.6",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your soil pH. At 5.6 instead of 6, it would drop 1 place."
+        },
+        {
+          "factor": "nitrogen",
+          "kind": "fragility",
+          "current_value": "179 kg/ha",
+          "target_value": "209 kg/ha",
+          "score_gain": 0.0,
+          "rank_gain": -1,
+          "message": "This depends on your available nitrogen. At 209 kg/ha instead of 179 kg/ha, it would drop 1 place."
+        }
+      ],
       "risks": [
         {
           "type": "pest",
@@ -313,6 +816,10 @@
     }
   ],
   "warnings": [
+    {
+      "code": "SOWING_WINDOW_CLOSED",
+      "message": "The kharif sowing window has already closed this year. The dates below are for next season, so treat this as planning ahead rather than something to act on now."
+    },
     {
       "code": "PROVISIONAL_AGRONOMY",
       "message": "Suitability thresholds are provisional and pending expert review. Check against local extension advice before sowing."

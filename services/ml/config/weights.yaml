@@ -25,6 +25,10 @@ weights:
   irrigation: 0.10     # Whether the farmer's water source can meet the crop's need.
   market_price: 0.10   # Deliberately small: this tool is agronomic first. Margin is shown
                        # in full on the results screen and the farmer weighs it themselves.
+  rotation: 0.08       # What grew here last season. Modest, because it adjusts a choice
+                       # rather than deciding it - a bad rotation is a cost to manage, not
+                       # a reason a crop cannot grow. Scored ONLY when the farmer told us;
+                       # see the note under `unscored`.
 
 # Factors defined in the API contract but not scored in v1. Listed so the gap is
 # explicit rather than looking like an oversight.
@@ -32,6 +36,12 @@ unscored:
   season_fit: >-
     Applied as a hard filter before ranking rather than a weighted score. A crop
     that does not fit the season is excluded, not penalised.
-  rotation: >-
-    Needs the field's cropping history, which requires saved fields and therefore
-    auth. Out of scope for v1 - see architecture.md section 11 item 5.
+  rotation_when_not_supplied: >-
+    Rotation IS scored now, from the optional "what did you grow here last
+    season" dropdown - one answered question beats a whole model guessing, and
+    NDVI cannot tell wheat from barley anyway.
+
+    When the farmer skips that dropdown the factor is dropped AND removed from
+    the confidence denominator. Leaving it in would have quietly penalised
+    every farmer who declined an optional question: not telling us is a gap in
+    what we were told, not a gap in what is known about the field.

@@ -1,0 +1,255 @@
+# Minimum Support Prices — CITED, for the reference tab.
+#
+# WHY THIS FILE EXISTS SEPARATELY FROM economics.yaml
+# ---------------------------------------------------
+# economics.yaml carries MSP for the 16 crops this system actually models,
+# because that is what the ranker prices. The government notifies MSP for many
+# more, and a farmer looking up "what is the MSP for moong" should not be told
+# nothing merely because we do not rank moong.
+#
+# So this file lists every mandated crop from the two CCEA notifications, and
+# apps/api/tests/test_msp.py fails the build if any crop present in BOTH files
+# carries a different price. Two MSP figures on one website that disagree is
+# exactly the failure this project keeps having to fix; a test is cheaper than
+# remembering.
+#
+# WHAT MSP IS, AND IS NOT
+# -----------------------
+# It is a floor price the government undertakes to pay at procurement. It is
+# NOT a market price and it is NOT a guarantee that anyone will buy: for wheat
+# and paddy procurement is extensive, for most pulses and oilseeds it reaches a
+# minority of growers, and outside a procurement centre the mandi price is what
+# a farmer actually gets. The UI says so; see the `caveat` key.
+#
+# Cost is A2+FL per quintal as published alongside each MSP: all paid-out costs
+# plus imputed family labour.
+
+version: 1
+updated: 2026-08-20
+marketing_season: 2026-27
+
+sources:
+  kharif:
+    key: msp_kharif_2026_27
+    title: Cabinet approves Minimum Support Prices (MSP) for Kharif Crops for Marketing Season 2026-27
+    publisher: Cabinet Committee on Economic Affairs, Press Information Bureau
+    published: 2026-05-13
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2260617
+  rabi:
+    key: msp_rabi_2026_27
+    title: Cabinet approves Minimum Support Prices (MSP) for Rabi Crops for Marketing Season 2026-27
+    publisher: Ministry of Agriculture & Farmers Welfare, Press Information Bureau
+    published: 2025-10-01
+    url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2173567
+
+# `crop_code` links a row to the crop this system models, where one exists.
+# Null means the government notifies an MSP for it but we do not rank it.
+crops:
+  # ------------------------------------------------------- kharif cereals
+  - name: Paddy (Common)
+    name_hi: धान (सामान्य)
+    group: cereals
+    season: kharif
+    crop_code: RICE
+    msp_per_quintal: 2441
+    cost_a2fl_per_quintal: 1627
+
+  - name: Paddy (Grade A)
+    name_hi: धान (ग्रेड ए)
+    group: cereals
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 2461
+    # Cost is not compiled separately for this grade. Null rather than copying
+    # the Common figure, which would be a different crop's cost wearing this
+    # one's label.
+    cost_a2fl_per_quintal: null
+
+  - name: Jowar (Hybrid)
+    name_hi: ज्वार (हाइब्रिड)
+    group: cereals
+    season: kharif
+    crop_code: SORGHUM
+    msp_per_quintal: 4023
+    cost_a2fl_per_quintal: 2682
+
+  - name: Jowar (Maldandi)
+    name_hi: ज्वार (मालदंडी)
+    group: cereals
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 4073
+    cost_a2fl_per_quintal: null
+
+  - name: Bajra
+    name_hi: बाजरा
+    group: cereals
+    season: kharif
+    crop_code: PEARLMLT
+    msp_per_quintal: 2900
+    cost_a2fl_per_quintal: 1858
+
+  - name: Ragi
+    name_hi: रागी
+    group: cereals
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 5205
+    cost_a2fl_per_quintal: 3470
+
+  - name: Maize
+    name_hi: मक्का
+    group: cereals
+    season: kharif
+    crop_code: MAIZE
+    msp_per_quintal: 2410
+    cost_a2fl_per_quintal: 1544
+
+  # --------------------------------------------------------- kharif pulses
+  - name: Tur / Arhar
+    name_hi: तुअर / अरहर
+    group: pulses
+    season: kharif
+    crop_code: PIGEONPEA
+    msp_per_quintal: 8450
+    cost_a2fl_per_quintal: 5496
+
+  - name: Moong
+    name_hi: मूंग
+    group: pulses
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 8780
+    cost_a2fl_per_quintal: 5438
+
+  - name: Urad
+    name_hi: उड़द
+    group: pulses
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 8200
+    cost_a2fl_per_quintal: 5418
+
+  # ------------------------------------------------------- kharif oilseeds
+  - name: Groundnut
+    name_hi: मूंगफली
+    group: oilseeds
+    season: kharif
+    crop_code: GROUNDNUT
+    msp_per_quintal: 7517
+    cost_a2fl_per_quintal: 5011
+
+  - name: Sunflower Seed
+    name_hi: सूरजमुखी
+    group: oilseeds
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 8343
+    cost_a2fl_per_quintal: 5562
+
+  - name: Soybean (Yellow)
+    name_hi: सोयाबीन (पीला)
+    group: oilseeds
+    season: kharif
+    crop_code: SOYBEAN
+    msp_per_quintal: 5708
+    cost_a2fl_per_quintal: 3805
+
+  - name: Sesamum
+    name_hi: तिल
+    group: oilseeds
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 10346
+    cost_a2fl_per_quintal: 6897
+
+  - name: Nigerseed
+    name_hi: रामतिल
+    group: oilseeds
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 10052
+    cost_a2fl_per_quintal: 6701
+
+  # ----------------------------------------------------- kharif commercial
+  - name: Cotton (Medium Staple)
+    name_hi: कपास (मध्यम रेशा)
+    group: commercial
+    season: kharif
+    crop_code: COTTON
+    msp_per_quintal: 8267
+    cost_a2fl_per_quintal: 5511
+
+  - name: Cotton (Long Staple)
+    name_hi: कपास (लंबा रेशा)
+    group: commercial
+    season: kharif
+    crop_code: null
+    msp_per_quintal: 8667
+    cost_a2fl_per_quintal: null
+
+  # ---------------------------------------------------------- rabi crops
+  - name: Wheat
+    name_hi: गेहूँ
+    group: cereals
+    season: rabi
+    crop_code: WHEAT
+    msp_per_quintal: 2585
+    cost_a2fl_per_quintal: 1239
+
+  - name: Barley
+    name_hi: जौ
+    group: cereals
+    season: rabi
+    crop_code: BARLEY
+    msp_per_quintal: 2150
+    cost_a2fl_per_quintal: 1361
+
+  - name: Gram
+    name_hi: चना
+    group: pulses
+    season: rabi
+    crop_code: CHICKPEA
+    msp_per_quintal: 5875
+    cost_a2fl_per_quintal: 3699
+
+  - name: Lentil (Masur)
+    name_hi: मसूर
+    group: pulses
+    season: rabi
+    crop_code: LENTIL
+    msp_per_quintal: 7000
+    cost_a2fl_per_quintal: 3705
+
+  - name: Rapeseed & Mustard
+    name_hi: सरसों
+    group: oilseeds
+    season: rabi
+    crop_code: MUSTARD
+    msp_per_quintal: 6200
+    cost_a2fl_per_quintal: 3210
+
+  - name: Safflower
+    name_hi: कुसुम
+    group: oilseeds
+    season: rabi
+    crop_code: null
+    msp_per_quintal: 6540
+    cost_a2fl_per_quintal: 4360
+
+# Crops the government supports that are NOT in the two CCEA releases above.
+# Listed by name only, with no price, because we have not sourced one — an
+# unsourced figure here would undermine every sourced figure beside it.
+not_listed_here:
+  - name: Copra
+    name_hi: खोपरा
+    note: Notified separately for the calendar year.
+  - name: Raw Jute
+    name_hi: कच्चा जूट
+    note: Notified separately.
+  - name: Sugarcane
+    name_hi: गन्ना
+    note: >-
+      Set as a Fair and Remunerative Price (FRP) under the Sugarcane Control
+      Order, not as an MSP. Different mechanism, paid by mills rather than
+      through government procurement.

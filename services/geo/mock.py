@@ -107,6 +107,6 @@ def synthesise(place: ResolvedLocation) -> Conditions:
     )
 
 
-def get_conditions(place: ResolvedLocation) -> Conditions:
+def get_conditions(place: ResolvedLocation, season: str | None = None) -> Conditions:
     fixture = FIXTURE_DISTRICTS.get(place.district_code)
     return fixture if fixture is not None else synthesise(place)

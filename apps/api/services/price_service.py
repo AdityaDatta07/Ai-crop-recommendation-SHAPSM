@@ -35,8 +35,14 @@ class Price:
 class PriceService:
     """Wraps price lookup so the orchestrator does not care where it came from."""
 
-    def __init__(self, reference: ReferenceData, client: AgmarknetClient | None = None) -> None:
+    def __init__(
+        self,
+        reference: ReferenceData,
+        client: AgmarknetClient | None = None,
+        history=None,
+    ) -> None:
         self.reference = reference
+        self.history = history
         settings = get_settings()
         # Take the first value that actually looks like a key. Preferring
         # whichever is merely non-empty meant a leaked .env comment in
@@ -101,6 +107,18 @@ class PriceService:
         best = summarise(prices)
         if best is None:
             return None
+
+        # Keep every observation. data.gov.in has no historical endpoint, so
+        # this accumulator is the only route to a real seasonal picture.
+        if self.history is not None:
+            for price in prices:
+                self.history.record(
+                    crop_code=crop.crop_code,
+                    district_code=district_code,
+                    mandi=price.mandi,
+                    price_date=price.price_date,
+                    modal_price=price.modal_price,
+                )
 
         return Price(
             per_quintal=best.modal_price,

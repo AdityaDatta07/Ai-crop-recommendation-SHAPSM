@@ -31,7 +31,7 @@ def resolve_admin(location: Location, area_ha: float) -> ResolvedLocation:
     return districts.resolve(location, area_ha)
 
 
-def get_conditions(place: ResolvedLocation) -> Conditions:
+def get_conditions(place: ResolvedLocation, season: str | None = None) -> Conditions:
     """Sample soil, weather and vegetation for a resolved location.
 
     Never raises on a sampling failure. A backend that falls over returns an
@@ -39,12 +39,12 @@ def get_conditions(place: ResolvedLocation) -> Conditions:
     the farmer. See architecture.md principle 2.
     """
     if _use_mock():
-        return mock.get_conditions(place)
+        return mock.get_conditions(place, season)
 
     from services.geo import earthengine
 
     try:
-        return earthengine.get_conditions(place)
+        return earthengine.get_conditions(place, season)
     except Exception:
         logger.exception(
             "Earth Engine sampling failed for %s; degrading to empty conditions",
@@ -53,7 +53,11 @@ def get_conditions(place: ResolvedLocation) -> Conditions:
         return Conditions(data_completeness=0.0)
 
 
-def get_indices(place: ResolvedLocation, today: date | None = None) -> IndicesResult:
+def get_indices(
+    place: ResolvedLocation,
+    today: date | None = None,
+    season: str | None = None,
+) -> IndicesResult:
     """Sentinel-2 spectral indices and NDVI history for a resolved location.
 
     Same failure contract as get_conditions: never raises. If Earth Engine is
@@ -70,7 +74,7 @@ def get_indices(place: ResolvedLocation, today: date | None = None) -> IndicesRe
     from services.geo import earthengine
 
     try:
-        return earthengine.get_indices(place, today)
+        return earthengine.get_indices(place, today, season)
     except Exception:
         logger.exception("Earth Engine indices failed for %s; returning nulls", place.district_code)
         return IndicesResult(

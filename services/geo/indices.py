@@ -38,7 +38,7 @@ import math
 from dataclasses import dataclass
 from datetime import date, timedelta
 
-from services.geo.types import ResolvedLocation
+from services.geo.types import ProductivitySample, ResolvedLocation
 
 # Sentinel-2 revisit is 5 days with both satellites; cloud cover makes the
 # usable cadence longer. Anything older than this is stale enough to say so.
@@ -77,6 +77,11 @@ class IndicesResult:
     source: str
     tile_url_template: str | None
     """Sentinel-2 overlay tiles. None when Earth Engine is not configured."""
+
+    productivity: "ProductivitySample | None" = None
+    """Amplitude of this plot against the land around it. None when the extra
+    reduction failed or Earth Engine is not configured — a missing comparison
+    must not take the rest of the panel down with it."""
 
 
 DEFINITIONS = {
